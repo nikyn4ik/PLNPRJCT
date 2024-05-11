@@ -34,10 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PRGRM\PRGRM.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="IMG\newbrand-bg2.jpg" />
     <Resource Include="IMG\severstal_logo.ico" />
   </ItemGroup>

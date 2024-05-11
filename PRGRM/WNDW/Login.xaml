@@ -1,0 +1,113 @@
+﻿<Window
+    x:Class="PRGRM.Login"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:PRGRM"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Severstal Infocom"
+    Width="1200"
+    Height="700"
+    AllowsTransparency="False"
+    FontSize="14"
+    Icon="\IMG\severstal_logo.ico"
+    MouseDown="Login_OnMouseDown"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.Background>
+        <ImageBrush ImageSource="\IMG\voestalpine_voest-1024x1024.jpg" />
+    </Window.Background>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*" />
+            <RowDefinition Height="60*" />
+            <RowDefinition Height="20*" />
+        </Grid.RowDefinitions>
+        <StackPanel HorizontalAlignment="Left" />
+
+        <Border
+            Grid.Row="1"
+            Margin="148,10,148,0"
+            Background="#002F6C"
+            CornerRadius="10">
+            <StackPanel Margin="150,0,150,0" VerticalAlignment="Center">
+
+                <TextBlock
+                    Width="577"
+                    HorizontalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="28"
+                    Foreground="#FFFFFF"
+                    Text="Добро пожаловать в Северсталь-Инфоком" />
+
+                <Separator />
+
+                <Label
+                    Margin="-4,5,0,0"
+                    Content="ЛОГИН:"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="14"
+                    Foreground="White" />
+                <TextBox
+                    x:Name="login"
+                    Background="White"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="black" />
+
+
+                <Label
+                    Margin="-4,5,0,0"
+                    Content="ПАРОЛЬ:"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="14"
+                    Foreground="White" />
+
+                <PasswordBox
+                    x:Name="password"
+                    Background="White"
+                    FontSize="18"
+                    Foreground="black">
+
+                    <PasswordBox.Style>
+                        <Style TargetType="PasswordBox">
+                            <Style.Triggers>
+                                <Trigger Property="Validation.HasError" Value="true">
+                                    <Setter Property="Control.ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </PasswordBox.Style>
+                </PasswordBox>
+
+                <Border x:Name="capsLabel">
+                    <TextBlock
+                        Width="150"
+                        Margin="0,-1,0,0"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        FontFamily="Microsoft JhengHei UI Light"
+                        FontSize="14"
+                        Foreground="#FFFFFF"
+                        Text="CAPS LOCK ВКЛЮЧЕН!" />
+                </Border>
+
+                <Button
+                    x:Name="btnLogin"
+                    Margin="0,5,0,0"
+                    Padding="5"
+                    Background="#909090"
+                    Click="btnLogin_Click"
+                    Content="ВОЙТИ"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="14"
+                    Foreground="#FFFFFF"
+                    IsDefault="true" />
+
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

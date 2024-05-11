@@ -8,4 +8,48 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="ApplicationContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="IMG\755815785298206.jpg" />
+    <None Remove="IMG\lebedevsevers.jpg" />
+    <None Remove="IMG\newbrand-bg2.jpg" />
+    <None Remove="IMG\severstal_logo.ico" />
+    <None Remove="IMG\severstal_logo_dzo_icon.ico" />
+    <None Remove="IMG\Severstal_Logo_LAT_White_RGB.png" />
+    <None Remove="IMG\ugs.jpg" />
+    <None Remove="IMG\voestalpine_voest-1024x1024.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HP\HP.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="IMG\755815785298206.jpg" />
+    <Resource Include="IMG\lebedevsevers.jpg" />
+    <Resource Include="IMG\newbrand-bg2.jpg" />
+    <Resource Include="IMG\severstal_logo.ico" />
+    <Resource Include="IMG\severstal_logo_dzo_icon.ico" />
+    <Resource Include="IMG\Severstal_Logo_LAT_White_RGB.png" />
+    <Resource Include="IMG\ugs.jpg" />
+    <Resource Include="IMG\voestalpine_voest-1024x1024.jpg" />
+  </ItemGroup>
+
 </Project>

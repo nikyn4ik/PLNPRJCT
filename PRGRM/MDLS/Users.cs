@@ -1,25 +1,27 @@
-﻿using System.Security.Cryptography;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace PRGRM.MDLS
 {
-    class Users
+    public class Users
     {
-        public int id_authorization { get; set; }
-        public string login { get; set; }
-        private string passwordHash;
+        [Key]
+        public int ID_aut { get; set; }
+        public string Login { get; set; }
+        private string PassHash;
         public string Password
         {
-            get { return passwordHash; }
-            set { passwordHash = HP(value); }
+            get { return PassHash; }
+            set { PassHash = HP(value); }
         }
 
         public static string HP(string password)
         {
-            using (SHA256 sha256 = SHA256.Create())
+            using (SHA256 Sha256 = SHA256.Create())
             {
                 byte[] inputBytes = Encoding.UTF8.GetBytes(password);
-                byte[] hashBytes = sha256.ComputeHash(inputBytes);
+                byte[] hashBytes = Sha256.ComputeHash(inputBytes);
 
                 StringBuilder sb = new StringBuilder();
                 foreach (byte b in hashBytes)
