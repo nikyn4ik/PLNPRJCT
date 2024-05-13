@@ -100,7 +100,7 @@
                     Margin="0,5,0,0"
                     Padding="5"
                     Background="#909090"
-                    Click="btnLogin_Click"
+                    Click="BLogin"
                     Content="ВОЙТИ"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="14"

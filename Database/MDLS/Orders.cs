@@ -1,10 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
-namespace PRGRM.MDLS
+namespace Database
 {
     public class Orders
     {
-        public int IdOrder { get; set; }
+        [Key] public int IdOrder { get; set; }
         public string SystC3 { get; set; }
         public string LogC3 { get; set; }
         public DateTime DateOfDelivery { get; set; }

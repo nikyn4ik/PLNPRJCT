@@ -1,9 +1,8 @@
-﻿using PRGRM.MDLS;
+﻿using Database;
+using HP;
 using PRGRM.WNDW;
 using System.Windows;
 using System.Windows.Input;
-using HP;
-
 namespace PRGRM
 {
     public partial class Login : Window
@@ -30,7 +29,7 @@ namespace PRGRM
                 : Visibility.Hidden;
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private void BLogin(object sender, RoutedEventArgs e)
         {
             using (var db = new ApplicationContext())
             {

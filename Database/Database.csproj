@@ -2,16 +2,11 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="IMG\newbrand-bg2.jpg" />
-    <None Remove="IMG\severstal_logo.ico" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
@@ -26,16 +21,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Database\Database.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Resource Include="IMG\newbrand-bg2.jpg" />
-    <Resource Include="IMG\severstal_logo.ico" />
   </ItemGroup>
 
 </Project>

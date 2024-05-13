@@ -1,0 +1,106 @@
+﻿<Window x:Class="PRGRM.WNDW.Orders"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRGRM.WNDW"
+            Title="Severstal Infocom"
+    Width="1200"
+    Height="700"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Background>
+        <ImageBrush ImageSource="\IMG\ugs.jpg" />
+    </Window.Background>
+
+    <Grid>
+        <Border
+            Width="680"
+            Margin="0,0,0,613"
+            HorizontalAlignment="Center"
+            Background="#002F6C"
+            BorderThickness="0,0,0,0"
+            CornerRadius="10">
+            <StackPanel
+                Width="392"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+                <TextBlock
+                    Width="310"
+                    Margin="0,0,-11,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="26"
+                    Foreground="White"
+                    Text="Заказы"
+                    TextAlignment="Center" />
+
+            </StackPanel>
+        </Border>
+
+
+        <DataGrid
+            Name="OGrid"
+            Margin="10,106,10,50"
+            AutoGenerateColumns="False"
+            Background="Snow"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            IsReadOnly="True"
+            SelectionChanged="Grid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding id_order}"
+                    Header="Id заказа" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding SAP_product_code}"
+                    Header="Продукт" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding syst_c3}"
+                    Header="СИСТ №СЗ" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding log_c3}"
+                    Header="ЛОГ № СЗ" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding date_of_entrance}"
+                    Header="Дата поступления" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding thickness_mm}"
+                    Header="Толщина [мм]" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding width_mm}"
+                    Header="Ширина [мм]" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding length_mm}"
+                    Header="Длина [мм]" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            x:Name="toshipment"
+            Width="207"
+            Height="51"
+            Margin="10,20,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="BShipment"
+            Content="Отправить заявку в отгрузку"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
+
+    </Grid>
+</Window>

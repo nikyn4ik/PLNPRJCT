@@ -1,0 +1,161 @@
+﻿<Window x:Class="PRGRM.WNDW.Shipment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRGRM.WNDW"
+        Title="Severstal Infocom"
+        Width="1200"
+        Height="700"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+
+    <Window.Background>
+        <ImageBrush ImageSource="\IMG\ugs.jpg" />
+    </Window.Background>
+
+    <Grid Height="684" VerticalAlignment="Bottom">
+
+        <Grid.Style>
+            <Style />
+        </Grid.Style>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="551*" />
+            <ColumnDefinition Width="109*" />
+            <ColumnDefinition Width="540*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="91*" />
+            <RowDefinition Height="519*" />
+            <RowDefinition Height="75*" />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.ColumnSpan="3"
+            Width="680"
+            Height="71"
+            Margin="260,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            BorderThickness="0,0,0,0"
+            CornerRadius="10">
+            <StackPanel Margin="144,26,144,3">
+
+                <TextBlock
+                    Width="310"
+                    Height="38"
+                    Margin="0,0,-11,0"
+                    HorizontalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="26"
+                    Foreground="White"
+                    TextAlignment="Center"><Run Language="ru-ru" Text="Отгрузка" /></TextBlock>
+
+            </StackPanel>
+        </Border>
+
+        <DataGrid
+            Name="ShipmentGrid"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            Height="500"
+            Margin="10,0,10,0"
+            VerticalAlignment="Center"
+            AutoGenerateColumns="False"
+            Background="Snow"
+            BorderBrush="#FF7C79BB"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            CanUserReorderColumns="False"
+            CanUserResizeRows="False"
+            CanUserSortColumns="False"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="12"
+            IsReadOnly="False">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding id_shipment}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="id отгрузки"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding consignee}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Груз"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding date_of_shipments}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Дата отгрузки"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding shipment_total_amount_tons}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Отгр.кол-во всего [тонны]" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding number_of_shipments_per_month_tons}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Отгр. кол-во за месяц [тонны]" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding early_shipment}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Ранняя отгрузка" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding product_standard}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Сертификат" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            Grid.Row="2"
+            Width="247"
+            Height="48"
+            Margin="482,8,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            Click="BGTDelivery"
+            Content="Отправка в доставку"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" Grid.ColumnSpan="3" />
+        <TextBox
+            Grid.Column="2"
+            Width="120"
+            Height="32"
+            Margin="300,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            TextChanged="Pole_textchange"
+            TextWrapping="Wrap" />
+        <Button
+            Grid.Column="2"
+            Width="100"
+            Height="32"
+            Margin="430,0,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Background="#002F6C"
+            Click="B_Search"
+            Content="Поиск"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="#FFFFFF" />
+    </Grid>
+</Window>
