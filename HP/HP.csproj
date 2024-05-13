@@ -6,11 +6,16 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>IMG\severstal_logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="IMG\newbrand-bg2.jpg" />
     <None Remove="IMG\severstal_logo.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="IMG\severstal_logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
