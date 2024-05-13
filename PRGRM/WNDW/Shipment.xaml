@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PRGRM.WNDW"
         Title="Severstal Infocom"
+        Icon="\IMG\icon.ico"
         Width="1200"
         Height="700"
         ResizeMode="NoResize"
@@ -12,35 +13,34 @@
         mc:Ignorable="d">
 
     <Window.Background>
-        <ImageBrush ImageSource="\IMG\ugs.jpg" />
+        <ImageBrush ImageSource="\IMG\newbrand-bg2.jpg" />
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
-
-        <Grid.Style>
-            <Style />
-        </Grid.Style>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="551*" />
-            <ColumnDefinition Width="109*" />
-            <ColumnDefinition Width="540*" />
+            <ColumnDefinition Width="451*" />
+            <ColumnDefinition Width="288*" />
+            <ColumnDefinition Width="451*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="91*" />
-            <RowDefinition Height="519*" />
-            <RowDefinition Height="75*" />
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="598*"/>
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
-            Grid.ColumnSpan="3"
-            Width="680"
-            Height="71"
-            Margin="260,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Background="#002F6C"
-            BorderThickness="0,0,0,0"
-            CornerRadius="10">
-            <StackPanel Margin="144,26,144,3">
+    Grid.RowSpan="2"
+    Grid.ColumnSpan="3"
+    Margin="272,10,260,527"
+    Background="#002F6C"
+    BorderThickness="0,0,0,0"
+    CornerRadius="10">
+            <StackPanel
+        Width="392"
+        Height="41"
+        Margin="0,20,0,0"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top">
 
                 <TextBlock
                     Width="310"
@@ -54,108 +54,108 @@
 
             </StackPanel>
         </Border>
-
         <DataGrid
             Name="ShipmentGrid"
             Grid.Row="1"
             Grid.ColumnSpan="3"
-            Height="500"
-            Margin="10,0,10,0"
-            VerticalAlignment="Center"
+            Margin="10,93,10,0"
             AutoGenerateColumns="False"
-            Background="Snow"
-            BorderBrush="#FF7C79BB"
-            CanUserAddRows="False"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeRows="False"
-            CanUserSortColumns="False"
+            Background="White"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="12"
-            IsReadOnly="False">
-
+            FontSize="15"
+            Foreground="Black"
+            BorderBrush="#002F6C" BorderThickness="2"
+            IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding id_shipment}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="id отгрузки"
-                    IsReadOnly="True" />
+            Width="*"
+            Binding="{Binding id_order}"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="13"
+            Header="Заказ" />
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding consignee}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Груз"
-                    IsReadOnly="True" />
+            Width="*"
+            Binding="{Binding id_shipment}"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="13"
+            Header="id отгрузки" />
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding date_of_shipments}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Дата отгрузки"
-                    IsReadOnly="True" />
+            Width="*"
+            Binding="{Binding name_product}"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="13"
+            Header="Продукт" />
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding shipment_total_amount_tons}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Отгр.кол-во всего [тонны]" />
+            Width="*"
+            Binding="{Binding date_of_shipments}"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="13"
+            Header="Дата отгрузки" />
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding number_of_shipments_per_month_tons}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Отгр. кол-во за месяц [тонны]" />
+            Width="*"
+            Binding="{Binding shipment_total_amount_tons}"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="13"
+            Header="Отгр.кол-во [тонны]" />
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding early_shipment}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Ранняя отгрузка" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding product_standard}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="12"
-                    Header="Сертификат" />
+            Width="*"
+            Binding="{Binding id_storage}"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="13"
+            Header="Склад" />
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox
+            x:Name="pole"
+            Grid.Row="1"
+            Grid.Column="2" Margin="0,18,10,546"
+            TextChanged="polee_TextChanged"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="Black"
+            Background="White"
+            Width="227" 
+            HorizontalAlignment="Right" Height="34" />
         <Button
+            Click="BPDF"
+            Content="PDF"
             Grid.Row="2"
-            Width="247"
+            Grid.Column="1"
             Height="48"
-            Margin="482,8,0,0"
-            HorizontalAlignment="Left"
+            Margin="290,10,0,0"
+            VerticalAlignment="Top"
+            Background="#FF0000"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" 
+            Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+        <Button
+            Click="BEdit"
+            Content="Редактирование"
+            Grid.Row="2"
+            Width="220"
+            Height="48"
+            Margin="0,10,0,0"
+            HorizontalAlignment="Center"
             VerticalAlignment="Top"
             Background="#002F6C"
-            Click="BGTDelivery"
-            Content="Отправка в доставку"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" Grid.ColumnSpan="3" />
-        <TextBox
-            Grid.Column="2"
-            Width="120"
-            Height="32"
-            Margin="300,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            TextChanged="Pole_textchange"
-            TextWrapping="Wrap" />
+            FontSize="20"
+            Foreground="#FFFFFF" BorderBrush="#FF0000" 
+            BorderThickness="2" Grid.Column="1" />
         <Button
-            Grid.Column="2"
-            Width="100"
-            Height="32"
-            Margin="430,0,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Center"
-            Background="#002F6C"
-            Click="B_Search"
-            Content="Поиск"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="14"
-            Foreground="#FFFFFF" />
+            Grid.Row="1"
+            Width="220"
+            Margin="10,0,0,527"
+    HorizontalAlignment="Left"
+    Background="#FF0000"
+    BorderBrush="#002F6C" BorderThickness="2" 
+    Click="BShipment"
+    Content="В доставку"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="20"
+    Foreground="#FFFFFF" Height="51" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

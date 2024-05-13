@@ -4,20 +4,21 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:PRGRM"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Severstal Infocom"
     Width="1200"
     Height="700"
     AllowsTransparency="False"
     FontSize="14"
-    Icon="\IMG\severstal_logo.ico"
+    Icon="\IMG\icon.ico"
     MouseDown="Login_OnMouseDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
     mc:Ignorable="d">
 
     <Window.Background>
-        <ImageBrush ImageSource="\IMG\voestalpine_voest-1024x1024.jpg" />
+        <ImageBrush ImageSource="\IMG\LG.jpg" />
     </Window.Background>
 
     <Grid>

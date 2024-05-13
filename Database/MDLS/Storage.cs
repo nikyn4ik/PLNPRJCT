@@ -1,15 +1,18 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database
 {
     public class Storage
     {
-        [Key] public int IdStorage { get; set; }
-        public string NameStorage { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
+        public int IdStorage { get; set; }
+        public string Name { get; set; }
         public string Address { get; set; }
-        public string PhoneStorage { get; set; }
-        public string Remainder { get; set; }
-        public DateTime DateAddStorage { get; set; }
+        [MaxLength(12)] public string Phone { get; set; }
+        public string? FIOResponsible { get; set; }
+        public DateTime? DateAddStorage { get; set; }
     }
 }

@@ -1,14 +1,19 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Database
 {
     public class Shipment
     {
-        [Key] public int IdShipment { get; set; }
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
+        public int IdShipment { get; set; }
+        public int? IdOrder { get; set; }
         public string Consignee { get; set; }
-        public DateTime DateOfShipments { get; set; }
-        public int ShipmentTotalAmountTons { get; set; }
-        public float NumberOfShipmentsPerMonthTons { get; set; }
+        public DateTime? DTShipments { get; set; }
+        public int? ShipmentTotalAmountTons { get; set; }
+        public int? IdTransport { get; set; }
+        public float? NumberOfShipmentsPerMonthTons { get; set; }
     }
 }

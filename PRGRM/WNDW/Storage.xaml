@@ -1,0 +1,150 @@
+﻿<Window x:Class="PRGRM.WNDW.Storage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRGRM.WNDW"
+            Title="Severstal Infocom"
+    Icon="\IMG\icon.ico"
+    Width="1200"
+    Height="700"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+
+    <Window.Background>
+
+        <ImageBrush ImageSource="\IMG\newbrand-bg2.jpg" />
+
+    </Window.Background>
+
+    <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="451*" />
+            <ColumnDefinition Width="288*" />
+            <ColumnDefinition Width="451*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="598*"/>
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
+        </Grid.RowDefinitions>
+
+        <DataGrid
+            Name="StorageGrid"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            Margin="10,93,10,0"
+            AutoGenerateColumns="False"
+            Background="White"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="15"
+            Foreground="Black"
+            BorderBrush="#002F6C" BorderThickness="2"
+            IsReadOnly="True">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding name_storage}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="Наименование"
+                    IsReadOnly="True" />
+
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding address}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="Адрес"
+                    IsReadOnly="True" />
+
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding FIO_responsible_person}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="ФИО ответственного"
+                    IsReadOnly="True" />
+
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding date_add_storage}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="13"
+                    Header="Дата добавления склада"
+                    IsReadOnly="True" />
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <Button
+            Click="BDelete"
+            Content="Удаление"
+            Grid.Row="2"
+            Grid.Column="1"
+            Height="48"
+            Margin="290,10,0,0"
+            VerticalAlignment="Top"
+            Background="#FF0000"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" />
+
+        <Button
+            Click="BAdd"
+            Content="Добавление"
+            Grid.Row="2"
+            Width="220"
+            Height="48"
+            Margin="235,10,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Background="#002F6C"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.ColumnSpan="2" />
+        <TextBox
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="0,18,10,546"
+            TextChanged="Select"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="Black"
+            Background="White"
+            Width="227" HorizontalAlignment="Right" />
+        <Border
+            Grid.ColumnSpan="3"
+            Width="668"
+            Margin="260,6,0,520"
+            HorizontalAlignment="Left"
+            Background="#002F6C"
+            BorderThickness="0,0,0,0"
+            CornerRadius="10" Grid.Row="1">
+            <StackPanel
+                Width="392"
+                Height="41"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
+
+                <TextBlock
+                    Width="310"
+                    Height="36"
+                    Margin="0,0,-11,0"
+                    HorizontalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="26"
+                    Foreground="White"
+                    Text="Склады"
+                    TextAlignment="Center" />
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</Window>

@@ -14,14 +14,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="IMG\205541.jpg" />
     <None Remove="IMG\755815785298206.jpg" />
+    <None Remove="IMG\add.jpg" />
+    <None Remove="IMG\background.jpg" />
+    <None Remove="IMG\icon.ico" />
     <None Remove="IMG\lebedevsevers.jpg" />
+    <None Remove="IMG\LG.jpg" />
     <None Remove="IMG\newbrand-bg2.jpg" />
+    <None Remove="IMG\SeverstalPDF.jpg" />
     <None Remove="IMG\severstal_logo.ico" />
     <None Remove="IMG\severstal_logo_dzo_icon.ico" />
     <None Remove="IMG\Severstal_Logo_LAT_White_RGB.png" />
     <None Remove="IMG\ugs.jpg" />
-    <None Remove="IMG\voestalpine_voest-1024x1024.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.1.2" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.3" />
+    <PackageReference Include="MaterialDesignColors" Version="3.0.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
       <PrivateAssets>all</PrivateAssets>
@@ -40,6 +49,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,14 +58,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="IMG\755815785298206.jpg" />
-    <Resource Include="IMG\lebedevsevers.jpg" />
+    <Resource Include="IMG\205541.jpg" />
+    <Resource Include="IMG\add.jpg" />
+    <Resource Include="IMG\background.jpg" />
+    <Resource Include="IMG\icon.ico" />
     <Resource Include="IMG\newbrand-bg2.jpg" />
-    <Resource Include="IMG\severstal_logo.ico" />
-    <Resource Include="IMG\severstal_logo_dzo_icon.ico" />
+    <Resource Include="IMG\SeverstalPDF.jpg" />
     <Resource Include="IMG\Severstal_Logo_LAT_White_RGB.png" />
-    <Resource Include="IMG\ugs.jpg" />
-    <Resource Include="IMG\voestalpine_voest-1024x1024.jpg" />
+    <Resource Include="IMG\LG.jpg" />
   </ItemGroup>
 
 </Project>

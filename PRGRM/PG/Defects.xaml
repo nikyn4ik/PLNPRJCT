@@ -1,18 +1,16 @@
-﻿<Window x:Class="PRGRM.WNDW.Orders"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        xmlns:local="clr-namespace:PRGRM.WNDW"
-        Title="Severstal Infocom"
-        Width="1200"
-        Height="700"
-        WindowStartupLocation="CenterScreen"
-        mc:Ignorable="d">
-    <Window.Background>
+﻿<Page x:Class="PRGRM.PG.Defects"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:PRGRM.PG"
+      Title="Severstal Infocom"
+      Width="1200"
+      Height="700"
+      mc:Ignorable="d">
+    <Page.Background>
         <ImageBrush ImageSource="\IMG\newbrand-bg2.jpg" />
-    </Window.Background>
+    </Page.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
         <Grid.ColumnDefinitions>
@@ -27,40 +25,39 @@
             <RowDefinition Height="17*" />
         </Grid.RowDefinitions>
         <Border
-        Grid.RowSpan="2"
-        Grid.ColumnSpan="3"
-        Margin="272,10,260,527"
-        Background="#002F6C"
-        BorderThickness="0,0,0,0"
-        CornerRadius="10">
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            Margin="272,10,260,527"
+            Background="#002F6C"
+            BorderThickness="0,0,0,0"
+            CornerRadius="10">
             <StackPanel
-            Width="392"
-            Height="41"
-            Margin="0,20,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top">
+                Width="392"
+                Height="41"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
 
                 <TextBlock
-                Width="310"
-                Height="36"
-                Margin="0,0,-11,0"
-                HorizontalAlignment="Center"
-                FontFamily="Microsoft JhengHei UI Light"
-                FontSize="26"
-                Foreground="White"
-                Text="Заказы"
-                TextAlignment="Center" />
+                    Width="310"
+                    Height="36"
+                    Margin="0,0,-11,0"
+                    HorizontalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="26"
+                    Foreground="White"
+                    Text="Брак"
+                    TextAlignment="Center" />
 
             </StackPanel>
         </Border>
         <DataGrid
-            Name="OGrid"
             Grid.Row="1"
             Grid.ColumnSpan="3"
             Margin="10,93,10,0"
             AutoGenerateColumns="False"
             Background="White"
-            SelectionChanged="Grid_SelectionChanged"
+            SelectionChanged="DGrid"
             BorderBrush="#002F6C" BorderThickness="2"
             IsReadOnly="True">
             <DataGrid.Columns>
@@ -98,31 +95,6 @@
                     Header="Длина [мм]" />
             </DataGrid.Columns>
         </DataGrid>
-        <Button
-            Grid.Row="1"
-            Width="220"
-            Margin="10,0,0,527"
-            HorizontalAlignment="Left"
-            Background="#FF0000"
-            BorderBrush="#002F6C" BorderThickness="2" 
-            Click="BPackage"
-            Content="В упаковку"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20"
-            Foreground="#FFFFFF" Height="51" VerticalAlignment="Bottom" />
-        <Button
-    Click="BDefects"
-    Content="Брак"
-    Grid.Row="2"
-    Grid.Column="1"
-    Height="48"
-    Margin="0,10,0,0"
-    VerticalAlignment="Top"
-    Background="#FF0000"
-    BorderBrush="#002F6C" BorderThickness="2"
-    FontFamily="Microsoft JhengHei UI Light"
-    FontSize="20"
-    Foreground="#FFFFFF" Width="220" HorizontalAlignment="Center" />
 
         <TextBox
             TextChanged="Search"
@@ -134,4 +106,4 @@
             Grid.Row="1"
             Grid.Column="2" Margin="0,18,10,546"/>
     </Grid>
-</Window>
+</Page>

@@ -42,6 +42,10 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("ID_aut");
 
                     b.ToTable("Authorization");
@@ -62,12 +66,25 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("Max")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Min")
+                        .HasColumnType("int");
+
                     b.Property<string>("ProductStandard")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StandardPerMark")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Units")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("properties_cert")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdQuaCertificate");
@@ -105,19 +122,135 @@ namespace Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDelivery"));
 
                     b.Property<string>("Consignee")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfDelivery")
+                    b.Property<DateTime?>("DateOfDelivery")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ProductStandard")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdOrder")
+                        .HasColumnType("int");
 
                     b.HasKey("IdDelivery");
 
                     b.ToTable("Delivery");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Consignee", b =>
+                {
+                    b.Property<int>("IdConsignee")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsignee"));
+
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("IdPayer")
+                        .HasColumnType("int");
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.HasKey("IdConsignee");
+
+                    b.ToTable("Consignee");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Container", b =>
+                {
+                    b.Property<int>("IdContainer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdContainer"));
+
+                    b.Property<string>("MarkPackage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeModel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdContainer");
+
+                    b.ToTable("Container");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Defects", b =>
+                {
+                    b.Property<int>("IdDefect")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDefect"));
+
+                    b.Property<string>("FIO")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IdOrder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ProductSending")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Reasons")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdDefect");
+
+                    b.ToTable("Defects");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Payer", b =>
+                {
+                    b.Property<int>("IdPayer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPayer"));
+
+                    b.Property<string>("FIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.HasKey("IdPayer");
+
+                    b.ToTable("Payer");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Transport", b =>
+                {
+                    b.Property<int>("IdTransport")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTransport"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VehicleRegistration")
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.HasKey("IdTransport");
+
+                    b.ToTable("Transport");
                 });
 
             modelBuilder.Entity("Database.Orders", b =>
@@ -129,25 +262,28 @@ namespace Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOrder"));
 
                     b.Property<string>("AccessStandart")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Company")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfAdoption")
+                    b.Property<DateTime?>("DTAdoption")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfDelivery")
+                    b.Property<DateTime?>("DTDelivery")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfEntrance")
+                    b.Property<DateTime>("DTEntrance")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdConsignee")
+                    b.Property<int?>("IdConsignee")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdPayer")
+                    b.Property<int?>("IdPayer")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdQuaCertificate")
+                    b.Property<int?>("IdQuaCertificate")
                         .HasColumnType("int");
 
                     b.Property<double>("LengthMm")
@@ -158,14 +294,9 @@ namespace Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Mark")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NameConsignee")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameProduct")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -174,7 +305,6 @@ namespace Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StatusOrder")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SystC3")
@@ -204,13 +334,19 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfShipments")
+                    b.Property<DateTime?>("DTShipments")
                         .HasColumnType("datetime2");
 
-                    b.Property<float>("NumberOfShipmentsPerMonthTons")
+                    b.Property<int?>("IdOrder")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdTransport")
+                        .HasColumnType("int");
+
+                    b.Property<float?>("NumberOfShipmentsPerMonthTons")
                         .HasColumnType("real");
 
-                    b.Property<int>("ShipmentTotalAmountTons")
+                    b.Property<int?>("ShipmentTotalAmountTons")
                         .HasColumnType("int");
 
                     b.HasKey("IdShipment");
@@ -230,74 +366,24 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateAddStorage")
+                    b.Property<DateTime?>("DateAddStorage")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("NameStorage")
+                    b.Property<string>("FIOResponsible")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneStorage")
+                    b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Remainder")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
 
                     b.HasKey("IdStorage");
 
                     b.ToTable("Storage");
-                });
-
-            modelBuilder.Entity("Database.TypeProduct", b =>
-                {
-                    b.Property<int>("IdTypeProduct")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTypeProduct"));
-
-                    b.Property<string>("ProductDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SapProductCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Unit")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("IdTypeProduct");
-
-                    b.ToTable("TypeProduct");
-                });
-
-            modelBuilder.Entity("Database.Users", b =>
-                {
-                    b.Property<int>("ID_aut")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID_aut"));
-
-                    b.Property<string>("Login")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ID_aut");
-
-                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

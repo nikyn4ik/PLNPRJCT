@@ -101,7 +101,7 @@
                     Content="Заказы"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
-                    Foreground="#002F6C" />
+                    Foreground="#002F6C" Width="278" Height="44" />
                 <Button
                     Width="278"
                     Height="44"

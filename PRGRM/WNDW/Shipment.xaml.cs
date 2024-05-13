@@ -36,5 +36,25 @@ namespace PRGRM.WNDW
         {
             RefreshDataGrid();
         }
+
+        private void BEdit(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BPDF(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BShipment(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void polee_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+
+        }
     }
 }
