@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PRGRM.WNDW"
         Title="Severstal Infocom"
-        Icon="\IMG\icon.ico"
         Width="1200"
         Height="700"
         ResizeMode="NoResize"

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>severstal_logo.ico</ApplicationIcon>
+    <ApplicationIcon>IMG\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="severstal_logo.ico" />
+    <Content Include="IMG\icon.ico" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿using Database;
+using Microsoft.Identity.Client.Extensions.Msal;
+using PRGRM.WNDW;
+using System.IO.Packaging;
+using System.Windows;
 
 namespace PRGRM.WNDW
 
@@ -6,11 +10,14 @@ namespace PRGRM.WNDW
     public partial class Main : Window
 {
     private Login loginWindow;
-    public Main()
+    public string FIO;
+    public Main(string fio)
     {
         InitializeComponent();
         loginWindow = null;
-    }
+        FIO = fio;
+        lplogin.Text = fio;
+        }
 
     private void OpenPage(Window page)
     {
@@ -19,49 +26,16 @@ namespace PRGRM.WNDW
         page.ShowDialog();
         Show();
     }
-        private void B_order(object sender, RoutedEventArgs e)
-        {
-            Hide();
-            var window = new Orders();
-            window.ShowDialog();
-            Show();
-        }
-        private void B_shipment(object sender, RoutedEventArgs e)
-        {
-            Hide();
-            var window = new Shipment();
-            window.ShowDialog();
-            Show();
-        }
+        private void B_order(object sender, RoutedEventArgs e) => OpenPage(new Orders(FIO));
+        private void B_shipment(object sender, RoutedEventArgs e) => OpenPage(new Shipment());
 
-        private void B_Delivery(object sender, RoutedEventArgs e)
-        {
+        private void B_Delivery(object sender, RoutedEventArgs e) => OpenPage(new Delivery());
 
-        }
+        private void B_Done_Orders(object sender, RoutedEventArgs e) => OpenPage(new Orders(FIO));
+        private void B_Storage(object sender, RoutedEventArgs e) => OpenPage(new Storage());
 
-        private void B_Done_Orders(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void B_Storage(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void B_Certificates(object sender, RoutedEventArgs e)
-        {
-
-        }
-        //private void Button_Shipment(object sender, RoutedEventArgs e) => OpenPage(new ShipmentPage());
-
-        //private void Button_Storage(object sender, RoutedEventArgs e) => OpenPage(new StoragePage());
-
-        //private void Button_Certificates(object sender, RoutedEventArgs e) => OpenPage(new Certificates());
-
-        //private void Button_order(object sender, RoutedEventArgs e) => OpenPage(new OrdersPage());
-
-        //private void Button_Delivery(object sender, RoutedEventArgs e) => OpenPage(new DeliveryPage());
+        private void B_Certificates(object sender, RoutedEventArgs e) => OpenPage(new Certificates());
+        private void BPackage(object sender, RoutedEventArgs e) => OpenPage(new Package());
 
         //    private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
         //{
@@ -71,24 +45,20 @@ namespace PRGRM.WNDW
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBoxResult result = MessageBox.Show("Вы уверены, что хотите выйти?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-
-            switch (result)
+            if (MessageBox.Show("Вы уверены, что хотите выйти?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)
             {
-                case MessageBoxResult.No:
-                    e.Cancel = true;
-                    break;
+                e.Cancel = true;
+            }
+            else
+            {
+                if (loginWindow == null)
+                {
+                    loginWindow = new Login();
+                    loginWindow.Closed += LoginWindow_Closed;
+                }
 
-                case MessageBoxResult.Yes:
-                    if (loginWindow == null)
-                    {
-                        loginWindow = new Login();
-                        loginWindow.Closed += LoginWindow_Closed;
-                    }
-
-                    loginWindow.Show();
-                    Hide();
-                    break;
+                loginWindow.Show();
+                Hide();
             }
         }
 
@@ -96,5 +66,6 @@ namespace PRGRM.WNDW
         {
             Application.Current.Shutdown();
         }
+
     }
 }

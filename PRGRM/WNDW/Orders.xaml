@@ -133,5 +133,6 @@
             FontSize="14" Width="227" HorizontalAlignment="Right"
             Grid.Row="1"
             Grid.Column="2" Margin="0,18,10,546"/>
+        <Frame x:Name="MainFrame"/>
     </Grid>
 </Window>

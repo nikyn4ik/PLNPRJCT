@@ -39,11 +39,12 @@ namespace PRGRM
 
                 if (user != null)
                 {
-                    var window = new Main();
-                    window.lplogin.Text = user.Login;
+
+                    var window = new Main(user.FIO);
+                    window.lplogin.Text = user.FIO;
 
                     MessageBox.Show(
-                        $"Добро пожаловать, {user.Login}",
+                        $"Добро пожаловать, {user.FIO}",
                         "Severstal Infocom",
                         MessageBoxButton.OK,
                         MessageBoxImage.Information);

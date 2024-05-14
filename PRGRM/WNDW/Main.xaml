@@ -153,6 +153,17 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#002F6C" />
+                <Button
+                    Height="44"
+                    Margin="0,412,920,238"
+                    AllowDrop="True"
+                    Background="#FFFFFF"
+                    Click="BPackage"
+                    Content="Упаковка"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="18"
+                    Foreground="#002F6C" />
+                
             </Grid>
         </Grid>
     </Grid>

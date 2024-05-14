@@ -29,5 +29,10 @@ namespace PRGRM.PG
         {
 
         }
+
+        private void DGrid(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

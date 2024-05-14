@@ -11,7 +11,6 @@
     Height="700"
     AllowsTransparency="False"
     FontSize="14"
-    Icon="\IMG\icon.ico"
     MouseDown="Login_OnMouseDown"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterScreen"
