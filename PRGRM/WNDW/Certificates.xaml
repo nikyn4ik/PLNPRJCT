@@ -3,17 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PRGRM.WNDW"
-            Title="Severstal Infocom"
-    Width="1200"
-    Height="700"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+        Title="Severstal Infocom"
+        Width="1200"
+        Height="700"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
     <Window.Background>
-
         <ImageBrush ImageSource="\IMG\newbrand-bg2.jpg" />
-
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
@@ -34,7 +33,10 @@
             Margin="266,10,0,526"
             Background="#002F6C"
             BorderThickness="0,0,0,0"
-            CornerRadius="10" Height="72" Width="668" HorizontalAlignment="Left">
+            CornerRadius="10"
+            Height="72"
+            Width="668"
+            HorizontalAlignment="Left">
             <StackPanel
                 Width="392"
                 Height="41"
@@ -48,11 +50,10 @@
                     FontSize="26"
                     Foreground="White"
                     TextAlignment="Center"
-                    Text="Сертификация" HorizontalAlignment="Center"/>
-
+                    Text="Сертификация"
+                    HorizontalAlignment="Center"/>
             </StackPanel>
         </Border>
-
 
         <DataGrid
             Name="CertificatesGrid"
@@ -64,38 +65,40 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="15"
             Foreground="Black"
-            BorderBrush="#002F6C" BorderThickness="2"
+            BorderBrush="#002F6C"
+            BorderThickness="2"
             IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding standard_per_mark}"
+                    Binding="{Binding StandardPerMark}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Стандарт на марку"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding product_standard}"
+                    Binding="{Binding ProductStandard}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Стандарт на продукцию"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding manufacturer}"
+                    Binding="{Binding Manufacturer}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Изготовитель"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding date_add_certificate}"
+                    Binding="{Binding DateAddCertificate}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Дата добавления" />
             </DataGrid.Columns>
         </DataGrid>
+
         <Button
             Grid.Row="2"
             Grid.Column="2"
@@ -105,10 +108,14 @@
             Background="#FF0000"
             Click="BDelete"
             Content="Удаление"
-            BorderBrush="#002F6C" BorderThickness="2"
+            BorderBrush="#002F6C"
+            BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Right" Grid.RowSpan="2" />
+            Foreground="#FFFFFF"
+            Width="220"
+            HorizontalAlignment="Right"
+            Grid.RowSpan="2" />
 
         <Button
             Grid.Row="2"
@@ -118,10 +125,14 @@
             Background="#FF0000"
             Click="outpdf"
             Content="PDF"
-            BorderBrush="#002F6C" BorderThickness="2"
+            BorderBrush="#002F6C"
+            BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.RowSpan="2" />
+            Foreground="#FFFFFF"
+            Width="220"
+            HorizontalAlignment="Left"
+            Grid.RowSpan="2" />
 
         <Button
             Grid.Row="2"
@@ -133,16 +144,23 @@
             Content="Добавление"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.RowSpan="2" Grid.Column="1"/>
+            Foreground="#FFFFFF"
+            BorderBrush="#FF0000"
+            BorderThickness="2"
+            Grid.RowSpan="2"
+            Grid.Column="1"/>
 
         <TextBox
             Grid.Row="1"
-            Grid.Column="2" Margin="0,18,1,546"
+            Grid.Column="2"
+            Margin="0,18,1,546"
             TextChanged="Search"
-            BorderBrush="#002F6C" BorderThickness="2"
+            BorderBrush="#002F6C"
+            BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
-            Width="227" HorizontalAlignment="Right" 
+            Width="227"
+            HorizontalAlignment="Right"
             Foreground="Black"
             Background="White"
             Height="34"/>

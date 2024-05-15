@@ -10,27 +10,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace PRGRM.PG
+namespace PRGRM.ADD
 {
     /// <summary>
-    /// Interaction logic for Defects.xaml
+    /// Interaction logic for AddDelivery.xaml
     /// </summary>
-    public partial class Defects : Page
+    public partial class AddDelivery : Window
     {
-        public Defects()
+        public AddDelivery()
         {
             InitializeComponent();
         }
 
-        private void Search(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void DGrid(object sender, SelectionChangedEventArgs e)
+        private void BSaved(object sender, RoutedEventArgs e)
         {
 
         }

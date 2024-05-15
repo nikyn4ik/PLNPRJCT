@@ -1,0 +1,102 @@
+﻿<Window x:Class="PRGRM.EDIT.SendingDefect"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRGRM.EDIT"
+                Title="Severstal Infocom"
+        Width="750"
+        Height="470"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+    <Window.Background>
+
+        <ImageBrush ImageSource="/IMG/add.jpg" />
+
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*" />
+            <ColumnDefinition Width="314*"/>
+            <ColumnDefinition Width="108*"/>
+            <ColumnDefinition Width="306*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="84*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="53*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="73*" />
+            <RowDefinition Height="61*"/>
+        </Grid.RowDefinitions>
+        <TextBox
+            x:Name="reasonbrak"
+            Grid.Row="2"
+            Grid.Column="3"
+            Margin="0,13,0,0"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="16"
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="White"
+            BorderThickness="1,1,1,1"
+            Height="31"
+            TextWrapping="Wrap" VerticalAlignment="Top" />
+        <Label
+            Grid.Row="2"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Причина"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Width="314" VerticalAlignment="Center" 
+            Height="50" HorizontalAlignment="Center" Grid.Column="1" />
+        <Label
+            Grid.Row="4"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Дата отправки в брак"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Width="314" VerticalAlignment="Center" 
+            Height="50" HorizontalAlignment="Center" Grid.Column="1" />
+        <Label
+            Grid.ColumnSpan="5"
+            Height="56"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#FFFFFF"
+            Content="Отправка заказа в брак"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="35"
+            Foreground="#002F6C" />
+        <DatePicker
+            x:Name="DatePicker"
+            Grid.Row="4"
+            Grid.Column="3"
+            FirstDayOfWeek="Monday"
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="White"
+            BorderThickness="1,1,1,1"
+            Height="31"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18" />
+        <Button
+            Grid.Row="5"
+            Margin="230,72,230,0"
+            Background="#FF0000"
+            BorderThickness="0,0,0,0"
+            Click="BSaved"
+            Content="Сохранить"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Column="1" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+    </Grid>
+</Window>
