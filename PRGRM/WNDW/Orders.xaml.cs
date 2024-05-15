@@ -108,5 +108,15 @@ namespace PRGRM.WNDW
         {
 
         }
+
+        private void BAttestation(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BEdit(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

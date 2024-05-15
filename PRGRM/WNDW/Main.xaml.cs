@@ -16,7 +16,7 @@ namespace PRGRM.WNDW
         InitializeComponent();
         loginWindow = null;
         FIO = fio;
-        lplogin.Text = fio;
+        lplogin.Content = fio;
         }
 
     private void OpenPage(Window page)
@@ -30,8 +30,7 @@ namespace PRGRM.WNDW
         private void B_shipment(object sender, RoutedEventArgs e) => OpenPage(new Shipment());
 
         private void B_Delivery(object sender, RoutedEventArgs e) => OpenPage(new Delivery());
-
-        private void B_Done_Orders(object sender, RoutedEventArgs e) => OpenPage(new Orders(FIO));
+        private void B_Done(object sender, RoutedEventArgs e) => OpenPage(new Done());
         private void B_Storage(object sender, RoutedEventArgs e) => OpenPage(new Storage());
 
         private void B_Certificates(object sender, RoutedEventArgs e) => OpenPage(new Certificates());
@@ -67,5 +66,11 @@ namespace PRGRM.WNDW
             Application.Current.Shutdown();
         }
 
+        private void BDocuments(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        
     }
 }

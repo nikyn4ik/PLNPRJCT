@@ -1,0 +1,130 @@
+﻿<Window x:Class="PRGRM.WNDW.Done"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRGRM.WNDW"
+            Title="Severstal Infocom"
+    Width="1200"
+    Height="700"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Background>
+
+        <ImageBrush ImageSource="\IMG\newbrand-bg2.jpg" />
+
+    </Window.Background>
+
+    <Grid Height="684" VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="451*" />
+            <ColumnDefinition Width="288*" />
+            <ColumnDefinition Width="451*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*" />
+            <RowDefinition Height="598*"/>
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="17*" />
+        </Grid.RowDefinitions>
+        <Border
+            Grid.ColumnSpan="3"
+            Width="668"
+            Margin="258,6,0,520"
+            HorizontalAlignment="Left"
+            Background="#002F6C"
+            BorderThickness="0,0,0,0"
+            CornerRadius="10" Grid.Row="1">
+            <StackPanel
+                Width="392"
+                Height="41"
+                Margin="0,20,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top">
+
+                <TextBlock
+                    Width="310"
+                    Height="36"
+                    Margin="0,0,-11,0"
+                    HorizontalAlignment="Center"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="26"
+                    Foreground="White"
+                    Text="Выполненные заказы"
+                    TextAlignment="Center" />
+            </StackPanel>
+        </Border>
+
+
+        <DataGrid
+            Name="DocGrid"
+            Grid.Row="1"
+            Grid.ColumnSpan="3"
+            Margin="10,93,10,0"
+            AutoGenerateColumns="False"
+            Background="White"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="15"
+            Foreground="Black"
+            BorderBrush="#002F6C" BorderThickness="2"
+            IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding id_order}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Id"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding name_product}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Заказ"
+                    IsReadOnly="True" />
+                <DataGridTextColumn
+                    Width="*"
+                    Binding="{Binding date_of_delivery}"
+                    FontFamily="Microsoft JhengHei UI Light"
+                    FontSize="12"
+                    Header="Дата доставки " />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button
+            Click="BPDF"
+            Content="PDF"
+            Grid.Row="2"
+            Margin="235,11,0,17"
+            Background="#FF0000"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="48" Grid.RowSpan="2"/>
+        <Button
+    Click="BExcel"
+    Content="Excel"
+    Grid.Row="2"
+    Height="48"
+    Margin="290,11,0,0"
+    VerticalAlignment="Top"
+    Background="#FF0000"
+    BorderBrush="#002F6C" BorderThickness="2"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="20"
+    Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+
+        <TextBox
+            TextChanged="Search"
+            Grid.Row="1"
+            Grid.Column="2"
+            Margin="0,18,10,546"
+            BorderBrush="#002F6C" BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="14"
+            Foreground="Black"
+            Background="White"
+            Width="227" HorizontalAlignment="Right" Height="34" />
+    </Grid>
+</Window>

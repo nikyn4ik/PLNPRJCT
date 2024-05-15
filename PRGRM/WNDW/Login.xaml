@@ -56,8 +56,8 @@
                     Background="White"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
+                    BorderBrush="#FFABADB3"
                     Foreground="black" />
-
 
                 <Label
                     Margin="-4,5,0,0"

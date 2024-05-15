@@ -111,6 +111,33 @@
             FontSize="20"
             Foreground="#FFFFFF" Height="51" VerticalAlignment="Bottom" />
         <Button
+    Grid.Row="2"
+    Width="220"
+    Height="48"
+    Margin="290,10,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Background="#002F6C"
+    Click="BAttestation"
+    Content="Аттестация"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="20"
+    BorderBrush="#FF0000" BorderThickness="2"
+    Foreground="#FFFFFF" Grid.Column="1" Grid.ColumnSpan="2" />
+        <Button
+    Click="BEdit"
+    Content="Изменение"
+    Grid.Row="2"
+    Width="220"
+    Height="48"
+    Margin="235,10,0,0"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
+    Background="#002F6C"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="20"
+    Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.ColumnSpan="2" />
+        <Button
     Click="BDefects"
     Content="Брак"
     Grid.Row="2"

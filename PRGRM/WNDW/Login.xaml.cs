@@ -41,7 +41,7 @@ namespace PRGRM
                 {
 
                     var window = new Main(user.FIO);
-                    window.lplogin.Text = user.FIO;
+                    window.lplogin.Content = user.FIO;
 
                     MessageBox.Show(
                         $"Добро пожаловать, {user.FIO}",

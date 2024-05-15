@@ -68,4 +68,9 @@
     <Resource Include="IMG\LG.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="EDIT\" />
+    <Folder Include="ADD\" />
+  </ItemGroup>
+
 </Project>
