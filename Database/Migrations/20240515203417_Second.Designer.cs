@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240513200715_First")]
-    partial class First
+    [Migration("20240515203417_Second")]
+    partial class Second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,7 +95,6 @@ namespace Database.Migrations
                     b.ToTable("Certificate");
                 });
 
-            
             modelBuilder.Entity("Database.Delivery", b =>
                 {
                     b.Property<int>("IdDelivery")
@@ -284,7 +283,6 @@ namespace Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NameStorage")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StatusOrder")
@@ -346,6 +344,10 @@ namespace Database.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdStorage"));
 
                     b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Company")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

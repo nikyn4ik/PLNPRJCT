@@ -1,5 +1,4 @@
 ﻿using Database;
-using Microsoft.EntityFrameworkCore;
 using PRGRM.ADD;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,10 +19,10 @@ namespace PRGRM.WNDW
         {
             CertificatesGrid.ItemsSource = GetCertificatesData();
         }
-        public List<Certificate> GetCertificatesData()
-        {
-            return _dbContext.Certificate.ToList();
-        }
+            public List<Certificate> GetCertificatesData()
+            {
+                return _dbContext.Certificate.ToList();
+            }
         private void BAdd(object sender, RoutedEventArgs e)
         {
             ACertificates addWindow = new ACertificates();

@@ -48,20 +48,6 @@ namespace Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Confirmation",
-                columns: table => new
-                {
-                    IdConfirmation = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductStandard = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DoneDelivery = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Confirmation", x => x.IdConfirmation);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Consignee",
                 columns: table => new
                 {
@@ -134,7 +120,7 @@ namespace Database.Migrations
                     IdPayer = table.Column<int>(type: "int", nullable: true),
                     IdConsignee = table.Column<int>(type: "int", nullable: true),
                     DTDelivery = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DTEntrance = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DTReceived = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DTAdoption = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ThicknessMm = table.Column<double>(type: "float", nullable: false),
                     WidthMm = table.Column<double>(type: "float", nullable: false),
@@ -224,9 +210,6 @@ namespace Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Certificate");
-
-            migrationBuilder.DropTable(
-                name: "Confirmation");
 
             migrationBuilder.DropTable(
                 name: "Consignee");

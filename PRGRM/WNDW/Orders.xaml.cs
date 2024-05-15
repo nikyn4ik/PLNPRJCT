@@ -86,7 +86,25 @@ namespace PRGRM.WNDW
             if (!string.IsNullOrEmpty(searchText))
             {
                 var filteredOrders = _dbContext.Orders
-                    .Where(order => order.Name.Contains(searchText))
+                    .Where(order =>
+                        order.SystC3.Contains(searchText) ||
+                        order.LogC3.Contains(searchText) ||
+                        (order.IdPayer != null && order.IdPayer.ToString().Contains(searchText)) ||
+                        (order.IdConsignee != null && order.IdConsignee.ToString().Contains(searchText)) ||
+                        (order.DTDelivery != null && order.DTDelivery.ToString().Contains(searchText)) ||
+                        order.DTReceived.ToString().Contains(searchText) ||
+                        (order.DTAdoption != null && order.DTAdoption.ToString().Contains(searchText)) ||
+                        order.ThicknessMm.ToString().Contains(searchText) ||
+                        order.WidthMm.ToString().Contains(searchText) ||
+                        order.LengthMm.ToString().Contains(searchText) ||
+                        order.Name.Contains(searchText) ||
+                        order.Company.Contains(searchText) ||
+                        (order.StatusOrder != null && order.StatusOrder.Contains(searchText)) ||
+                        (order.Mark != null && order.Mark.Contains(searchText)) ||
+                        (order.IdQuaCertificate != null && order.IdQuaCertificate.ToString().Contains(searchText)) ||
+                        (order.AccessStandart != null && order.AccessStandart.Contains(searchText)) ||
+                        (order.NameStorage != null && order.NameStorage.Contains(searchText))
+                    )
                     .ToList();
                 OGrid.ItemsSource = filteredOrders;
             }

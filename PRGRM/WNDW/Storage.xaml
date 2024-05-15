@@ -3,19 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PRGRM.WNDW"
-            Title="Severstal Infocom"
-    Icon="\IMG\icon.ico"
-    Width="1200"
-    Height="700"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+        Title="Severstal Infocom"
+        Width="1200"
+        Height="700"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
 
     <Window.Background>
-
         <ImageBrush ImageSource="\IMG\newbrand-bg2.jpg" />
-
     </Window.Background>
 
     <Grid Height="684" VerticalAlignment="Bottom">
@@ -47,7 +45,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding name_storage}"
+                    Binding="{Binding Name}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Наименование"
@@ -55,7 +53,7 @@
 
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding address}"
+                    Binding="{Binding Address}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Адрес"
@@ -63,7 +61,7 @@
 
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding FIO_responsible_person}"
+                    Binding="{Binding FIOResponsible}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="ФИО ответственного"
@@ -71,10 +69,10 @@
 
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding date_add_storage}"
+                    Binding="{Binding Company}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Дата добавления склада"
+                    Header="Грузополучатель"
                     IsReadOnly="True" />
             </DataGrid.Columns>
 
@@ -145,6 +143,5 @@
 
             </StackPanel>
         </Border>
-
     </Grid>
 </Window>
