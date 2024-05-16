@@ -25,8 +25,8 @@ namespace PRGRM.ADD
 
             if (selectedConsignee != null)
             {
-                int phone;
-                if (!int.TryParse(Phone.Text, out phone))
+                string phone = Phone.Text;
+                if (string.IsNullOrWhiteSpace(phone) || !phone.All(char.IsDigit))
                 {
                     MessageBox.Show("Некорректный формат телефона.", "Severstal Infocom", MessageBoxButton.OK);
                     return;
@@ -43,7 +43,7 @@ namespace PRGRM.ADD
                 {
                     Name = Name.Text,
                     Address = Address.Text,
-                    Phone = phone.ToString(),
+                    Phone = phone,
                     FIOResponsible = FIOResponsible.Text,
                     DateAddStorage = dateAddStorage,
                     Company = Company.SelectedItem?.ToString()

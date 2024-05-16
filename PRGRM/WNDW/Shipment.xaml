@@ -105,10 +105,9 @@
             </DataGrid.Columns>
         </DataGrid>
         <TextBox
-            x:Name="pole"
             Grid.Row="1"
             Grid.Column="2" Margin="0,18,10,546"
-            TextChanged="polee_TextChanged"
+            TextChanged="Select"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="14"
@@ -151,7 +150,7 @@
     HorizontalAlignment="Left"
     Background="#FF0000"
     BorderBrush="#002F6C" BorderThickness="2" 
-    Click="BShipment"
+    Click="BDelivery"
     Content="В доставку"
     FontFamily="Microsoft JhengHei UI Light"
     FontSize="20"

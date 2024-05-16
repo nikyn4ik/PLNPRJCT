@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Database;
+using Org.BouncyCastle.Ocsp;
 using PRGRM.ADD;
 using PRGRM.EDIT;
 
@@ -122,7 +123,42 @@ namespace PRGRM.WNDW
         }
         private void BAttestation(object sender, RoutedEventArgs e)
         {
+            var selectedOrder = OGrid.SelectedItem as Database.Orders;
+            if (selectedOrder == null)
+            {
+                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                return;
+            }
 
+            var certificates = _dbContext.Certificate.ToList();
+            bool isCertified = false;
+
+            foreach (var certificate in certificates)
+            {
+                double thickness_mm = selectedOrder.ThicknessMm;
+                double width_mm = selectedOrder.WidthMm;
+                double length_mm = selectedOrder.LengthMm;
+
+                if (thickness_mm >= certificate.Min && thickness_mm <= certificate.Max &&
+                    width_mm >= certificate.Min && width_mm <= certificate.Max &&
+                    length_mm >= certificate.Min && length_mm <= certificate.Max)
+                {
+                    isCertified = true;
+                    break;
+                }
+            }
+
+            if (isCertified)
+            {
+                MessageBox.Show("Заказ соответствует сертификату.", "Аттестация успешна", MessageBoxButton.OK, MessageBoxImage.Information);
+                var editWindow = new EAttestation(selectedOrder);
+                editWindow.Closed += AddWindow_Closed;
+                editWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Заказ не соответствует сертификату.", "Аттестация не пройдена", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
     }
 }

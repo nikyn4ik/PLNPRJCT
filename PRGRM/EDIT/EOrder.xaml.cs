@@ -19,7 +19,7 @@ namespace PRGRM.EDIT
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
-            this.orderId = selectedOrder.IdOrder;
+            orderId = selectedOrder.IdOrder;
             InitializeOrderData();
         }
         private void InitializeOrderData()
