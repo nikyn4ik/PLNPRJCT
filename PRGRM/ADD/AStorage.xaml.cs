@@ -28,14 +28,14 @@ namespace PRGRM.ADD
                 int phone;
                 if (!int.TryParse(Phone.Text, out phone))
                 {
-                    MessageBox.Show("Некорректный формат телефона. Пожалуйста, введите числовое значение.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Некорректный формат телефона.", "Severstal Infocom", MessageBoxButton.OK);
                     return;
                 }
 
                 DateTime dateAddStorage;
                 if (!DateTime.TryParse(DatePicker.Text, out dateAddStorage))
                 {
-                    MessageBox.Show("Некорректный формат даты. Пожалуйста, выберите дату из календаря.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
                     return;
                 }
 
@@ -43,7 +43,7 @@ namespace PRGRM.ADD
                 {
                     Name = Name.Text,
                     Address = Address.Text,
-                    Phone = phone.ToString(), // сохраняем в формате строки
+                    Phone = phone.ToString(),
                     FIOResponsible = FIOResponsible.Text,
                     DateAddStorage = dateAddStorage,
                     Company = Company.SelectedItem?.ToString()
@@ -61,7 +61,7 @@ namespace PRGRM.ADD
         }
 
 
-        private void Company_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void Company_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Company.SelectedItem != null)
             {

@@ -108,7 +108,7 @@
                     Margin="0,143,920,507"
                     AllowDrop="True"
                     Background="#FFFFFF"
-                    Click="BPackage"
+                    Click="BContainer"
                     Content="Упаковка"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"

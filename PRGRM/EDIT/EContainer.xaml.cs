@@ -14,12 +14,9 @@ using System.Windows.Shapes;
 
 namespace PRGRM.ADD
 {
-    /// <summary>
-    /// Interaction logic for AddPackage.xaml
-    /// </summary>
-    public partial class AddPackage : Window
+    public partial class EContainer : Window
     {
-        public AddPackage()
+        public EContainer()
         {
             InitializeComponent();
         }

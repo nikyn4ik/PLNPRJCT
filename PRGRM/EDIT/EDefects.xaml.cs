@@ -1,36 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Database;
+using Database.MDLS;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace PRGRM.ADD
 {
-    /// <summary>
-    /// Interaction logic for Defects.xaml
-    /// </summary>
-    public partial class Defects : Window
+    public partial class EDefects : Window
     {
-        public Defects()
+        private readonly ApplicationContext _dbContext;
+        public EDefects()
         {
             InitializeComponent();
+            _dbContext = new ApplicationContext();
+            LoadOrdersData();
+        }
+
+        private void LoadOrdersData()
+        {
+            var filteredData = GetOrdersData();
+            DGrid.ItemsSource = filteredData;
+        }
+        public List<Defects> GetOrdersData()
+        {
+            return _dbContext.Defects.ToList();
+        }
+        private void AddWindow_Closed(object sender, EventArgs e)
+        {
+            LoadOrdersData();
         }
 
         private void Search(object sender, TextChangedEventArgs e)
         {
+            TextBox textBox = sender as TextBox;
+            string searchText = textBox.Text.ToLower();
+            int idDefect;
+            bool isNumeric = int.TryParse(searchText, out idDefect);
 
-        }
-
-        private void DGrid(object sender, SelectionChangedEventArgs e)
-        {
+            var filteredData = _dbContext.Defects
+                .Where(s => (isNumeric && s.IdDefect == idDefect) ||
+                s.IdOrder.ToLower().Contains(searchText) ||
+                s.Reasons.ToLower().Contains(searchText) ||
+            (s.FIO != null && s.FIO.ToLower().Contains(searchText)) ||
+            (s.ProductSending != null && s.ProductSending.ToString().ToLower().Contains(searchText)))
+                .ToList();
+            DGrid.ItemsSource = filteredData;
 
         }
     }

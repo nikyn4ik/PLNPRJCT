@@ -14,12 +14,9 @@ using System.Windows.Shapes;
 
 namespace PRGRM.WNDW
 {
-    /// <summary>
-    /// Interaction logic for Package.xaml
-    /// </summary>
-    public partial class Package : Window
+    public partial class Container : Window
     {
-        public Package()
+        public Container()
         {
             InitializeComponent();
         }

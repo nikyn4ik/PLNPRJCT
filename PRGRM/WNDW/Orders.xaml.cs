@@ -1,84 +1,49 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using Database;
-using Microsoft.EntityFrameworkCore;
+using PRGRM.ADD;
+using PRGRM.EDIT;
 
 namespace PRGRM.WNDW
 {
     public partial class Orders : Window
     {
-
-        public string FIO;
+        private readonly string fio;
         private readonly ApplicationContext _dbContext;
-        public Orders(string fio)
+        private int IdOrder;
+        public Orders(string FIO)
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
-            Grid_SelectionChanged();
             LoadOrders();
-            FIO = fio;
-        }
-
-        private void Grid_SelectionChanged()
-        {
-            OGrid.ItemsSource = _dbContext.Orders.ToList();
+            fio = FIO;
         }
         private void LoadOrders()
         {
-            var orders = _dbContext.Orders.ToList();
-            OGrid.ItemsSource = orders;
+            OGrid.ItemsSource = GetOrdersData();
         }
-        private void BSshipment(object sender, RoutedEventArgs e)
+        public List<Database.Orders> GetOrdersData()
         {
-            try
+            return _dbContext.Orders.ToList();
+        }
+        private void BEdit(object sender, RoutedEventArgs e)
+        {
+            var selectedOrder = OGrid.SelectedItem as Database.Orders;
+            if (selectedOrder == null)
             {
-                LoadOrders();
-                MessageBox.Show("Заявка успешно отправлена в отгрузку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                return;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show("Данная заявка уже отправлена в отгрузку", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                var editWindow = new EOrder(selectedOrder);
+                editWindow.Closed += AddWindow_Closed;
+                editWindow.ShowDialog();
             }
         }
-        private void UpdateGrid()
+        private void AddWindow_Closed(object sender, EventArgs e)
         {
             LoadOrders();
-        }
-        private void BShipment(object sender, RoutedEventArgs e)
-        {
-            //var item = OGrid.SelectedItem;
-            //if (item == null)
-            //{
-            //    MessageBox.Show("Выберите строчку", "Severstal Infocom");
-            //    return;
-            //}
-
-            //var selectedOrder = (Orders)item;
-            //var idOrders = selectedOrder.IdOrder;
-
-            //var countDefects = _dbContext.DefectProducts.Count(d => d.IdOrder == idOrders);
-            //if (countDefects == 1)
-            //{
-            //    MessageBox.Show("Данный заказ находится в браке или не пройдена аттестация!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    UpdateGrid();
-            //    return;
-            //}
-
-            //var countPackages = _dbContext.Packages.Count(p => p.IdOrder == idOrders);
-            //if (countPackages == 0)
-            //{
-            //    _dbContext.Package.Add(new Package { IdOrder = idOrders });
-            //    _dbContext.SaveChanges();
-
-            //    MessageBox.Show("Заказ успешно отправлен в упаковку!", "Severstal Infocom");
-            //    UpdateGrid();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Данный заказ уже был отправлен в упаковку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    UpdateGrid();
-            //}
         }
         private void Search(object sender, TextChangedEventArgs e)
         {
@@ -113,26 +78,49 @@ namespace PRGRM.WNDW
                 LoadOrders();
             }
         }
+        
         private void BDefects(object sender, RoutedEventArgs e)
         {
+            EDefects addWindow = new EDefects();
+            addWindow.Closed += AddWindow_Closed;
+            addWindow.ShowDialog();
         }
-
-        private void BPackage(object sender, RoutedEventArgs e)
+        private void BContainer(object sender, RoutedEventArgs e)
         {
+            var selectedOrder = OGrid.SelectedItem as Orders;
+            if (selectedOrder == null)
+            {
+                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                return;
+            }
 
+            var idOrder = selectedOrder.IdOrder;
+
+            var isDefective = _dbContext.Defects.Any(d => d.IdOrder == idOrder.ToString());
+            if (isDefective)
+            {
+                MessageBox.Show("Данный заказ находится в браке или не прошел аттестацию!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                LoadOrders();
+                return;
+            }
+
+            var packaged = _dbContext.Container.Any(p => p.IdOrder == idOrder);
+            if (!packaged)
+            {
+                var contain = new Database.MDLS.Container { IdOrder = idOrder };
+                _dbContext.Container.Add(contain);
+                _dbContext.SaveChanges();
+
+                MessageBox.Show("Заказ успешно отправлен в упаковку!", "Severstal Infocom");
+                LoadOrders();
+            }
+            else
+            {
+                MessageBox.Show("Данный заказ уже был отправлен в упаковку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                LoadOrders();
+            }
         }
-
-        private void Grid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void BAttestation(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void BEdit(object sender, RoutedEventArgs e)
         {
 
         }

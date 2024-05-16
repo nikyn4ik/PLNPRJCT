@@ -1,4 +1,4 @@
-﻿<Window x:Class="PRGRM.WNDW.Package"
+﻿<Window x:Class="PRGRM.WNDW.Container"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -60,7 +60,7 @@
 
 
         <DataGrid
-            Name="PackageGrid"
+            Name="ContainerGrid"
             Grid.Row="1"
             Grid.ColumnSpan="3"
             Margin="10,93,10,0"
@@ -80,7 +80,7 @@
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_package}"
+                    Binding="{Binding IdContainer}"
                     Header="Id упаковка" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
@@ -92,13 +92,13 @@
                     Header="Продукт" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding type_model}"
+                    Binding="{Binding TypeModel}"
                     Header="Тип" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding mark_package}"
+                    Binding="{Binding MarkPackage}"
                     Header="Маркировка" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>

@@ -1,5 +1,6 @@
 ﻿using Database;
 using Microsoft.Identity.Client.Extensions.Msal;
+using PRGRM.ADD;
 using PRGRM.WNDW;
 using System.IO.Packaging;
 using System.Windows;
@@ -34,7 +35,7 @@ namespace PRGRM.WNDW
         private void B_Storage(object sender, RoutedEventArgs e) => OpenPage(new Storage());
 
         private void B_Certificates(object sender, RoutedEventArgs e) => OpenPage(new Certificates());
-        private void BPackage(object sender, RoutedEventArgs e) => OpenPage(new Package());
+        private void BContainer(object sender, RoutedEventArgs e) => OpenPage(new EContainer());
 
         //    private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
         //{

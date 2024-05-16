@@ -90,7 +90,7 @@
             Background="white"
             Grid.Row="2" Grid.Column="3" />
         <ComboBox
-            x:Name="status"
+            x:Name="StatusOrder"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Grid.Row="6"

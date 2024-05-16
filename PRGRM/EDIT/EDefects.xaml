@@ -1,4 +1,4 @@
-﻿<Window x:Class="PRGRM.ADD.Defects"
+﻿<Window x:Class="PRGRM.ADD.EDefects"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -52,12 +52,12 @@
             </StackPanel>
         </Border>
         <DataGrid
+        Name="DGrid"
         Grid.Row="1"
         Grid.ColumnSpan="3"
         Margin="10,93,10,0"
         AutoGenerateColumns="False"
         Background="White"
-        SelectionChanged="DGrid"
         BorderBrush="#002F6C" BorderThickness="2"
         IsReadOnly="True">
             <DataGrid.Columns>
@@ -67,32 +67,20 @@
                 Header="Id" />
                 <DataGridTextColumn
                 Width="4*"
-                Binding="{Binding Name}"
-                Header="Продукт" />
+                Binding="{Binding IdDefect}"
+                Header="Id дефект" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding ProductSending}"
+                    Header="Продукт" />
                 <DataGridTextColumn
                 Width="4*"
-                Binding="{Binding SystC3}"
-                Header="СИСТ №СЗ" />
+                Binding="{Binding Reasons}"
+                Header="Причина" />
                 <DataGridTextColumn
                 Width="4*"
-                Binding="{Binding LogC3}"
-                Header="ЛОГ № СЗ" />
-                <DataGridTextColumn
-                Width="4*"
-                Binding="{Binding DTReceived}"
-                Header="Дата поступления" />
-                <DataGridTextColumn
-                Width="4*"
-                Binding="{Binding ThicknessMm}"
-                Header="Толщина [мм]" />
-                <DataGridTextColumn
-                Width="4*"
-                Binding="{Binding WidthMm}"
-                Header="Ширина [мм]" />
-                <DataGridTextColumn
-                Width="4*"
-                Binding="{Binding LengthMm}"
-                Header="Длина [мм]" />
+                Binding="{Binding FIO}"
+                Header="ФИО ответственного" />
             </DataGrid.Columns>
         </DataGrid>
 
