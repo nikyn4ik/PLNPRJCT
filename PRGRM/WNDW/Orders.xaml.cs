@@ -88,7 +88,7 @@ namespace PRGRM.WNDW
         }
         private void BContainer(object sender, RoutedEventArgs e)
         {
-            var selectedOrder = OGrid.SelectedItem as Orders;
+            var selectedOrder = OGrid.SelectedItem as Database.Orders;
             if (selectedOrder == null)
             {
                 MessageBox.Show("Выберите строку!", "Severstal Infocom");
@@ -150,14 +150,17 @@ namespace PRGRM.WNDW
 
             if (isCertified)
             {
-                MessageBox.Show("Заказ соответствует сертификату.", "Аттестация успешна", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Заказ проходит по нормам аттестации и соответствует сертификату(там)", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
                 var editWindow = new EAttestation(selectedOrder);
                 editWindow.Closed += AddWindow_Closed;
                 editWindow.ShowDialog();
             }
             else
             {
-                MessageBox.Show("Заказ не соответствует сертификату.", "Аттестация не пройдена", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Заказ не проходит по нормам аттестации!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                var defectWindow = new SendingDefect(selectedOrder, fio);
+                defectWindow.Closed += AddWindow_Closed;
+                defectWindow.ShowDialog();
             }
         }
     }

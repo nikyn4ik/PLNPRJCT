@@ -3,13 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PRGRM.EDIT"
-                Title="Severstal Infocom"
-        Width="750"
-        Height="470"
-        ResizeMode="NoResize"
-        WindowStartupLocation="CenterScreen"
-        mc:Ignorable="d">
+                    Title="Severstal Infocom"
+    Width="1200"
+    Height="710"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
     <Window.Background>
 
         <ImageBrush ImageSource="/IMG/add.jpg" />
@@ -17,11 +18,11 @@
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="11*" />
-            <ColumnDefinition Width="314*"/>
-            <ColumnDefinition Width="108*"/>
-            <ColumnDefinition Width="306*"/>
-            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="20*" />
+            <ColumnDefinition Width="507*"/>
+            <ColumnDefinition Width="165*"/>
+            <ColumnDefinition Width="490*"/>
+            <ColumnDefinition Width="18*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="70*" />
@@ -33,38 +34,34 @@
             <RowDefinition Height="61*"/>
         </Grid.RowDefinitions>
         <TextBox
-            x:Name="reasonbrak"
-            Grid.Row="2"
-            Grid.Column="3"
-            Margin="0,13,0,0"
+            x:Name="Reason"
+            Grid.Column="2"
+            Margin="163,106,0,0"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="Black"
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
-            Height="31"
-            TextWrapping="Wrap" VerticalAlignment="Top" />
+            Height="71"
+            TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2" />
         <Label
-            Grid.Row="2"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Причина"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="314" VerticalAlignment="Center" 
-            Height="50" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Center" Margin="0,106,0,57" Grid.Column="1" Height="70.4904157549233" Grid.RowSpan="2" />
         <Label
-            Grid.Row="4"
+            Grid.Row="3"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата отправки в брак"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="314" VerticalAlignment="Center" 
-            Height="50" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Center" Grid.Column="1" Margin="0,0,0,10" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -78,25 +75,25 @@
             Foreground="#002F6C" />
         <DatePicker
             x:Name="DatePicker"
-            Grid.Row="4"
-            Grid.Column="3"
+            Grid.Row="3"
+            Grid.Column="2"
             FirstDayOfWeek="Monday"
             Foreground="Black"
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
-            Height="31"
+            Height="69"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18" />
+            FontSize="18" Margin="163,1,0,0" Grid.ColumnSpan="2" VerticalAlignment="Top" />
         <Button
             Grid.Row="5"
-            Margin="230,72,230,0"
+            Margin="229,45,231,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="BSaved"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Column="1" Height="54" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+            Foreground="#FFFFFF" Grid.Column="1" Height="65" VerticalAlignment="Top" Grid.ColumnSpan="3" />
     </Grid>
 </Window>
