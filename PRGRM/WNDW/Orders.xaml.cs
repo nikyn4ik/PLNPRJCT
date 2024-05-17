@@ -158,6 +158,8 @@ namespace PRGRM.WNDW
             else
             {
                 MessageBox.Show("Заказ не проходит по нормам аттестации!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                selectedOrder.StatusOrder = "Заказ в браке";
+                _dbContext.SaveChanges();
                 var defectWindow = new SendingDefect(selectedOrder, fio);
                 defectWindow.Closed += AddWindow_Closed;
                 defectWindow.ShowDialog();

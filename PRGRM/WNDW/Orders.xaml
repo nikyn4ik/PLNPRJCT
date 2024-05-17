@@ -82,7 +82,12 @@
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding DTReceived}"
-                    Header="Дата поступления" />
+                    Header="Поступил" />
+
+                <DataGridTextColumn
+    Width="4*"
+    Binding="{Binding StatusOrder}"
+    Header="Статус" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding ThicknessMm}"
