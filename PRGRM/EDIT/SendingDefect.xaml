@@ -8,9 +8,10 @@
                     Title="Severstal Infocom"
     Width="1200"
     Height="710"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+    
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
     <Window.Background>
 
         <ImageBrush ImageSource="/IMG/add.jpg" />

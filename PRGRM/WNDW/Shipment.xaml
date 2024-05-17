@@ -10,7 +10,6 @@
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
-
     <Window.Background>
         <ImageBrush ImageSource="\IMG\newbrand-bg2.jpg" />
     </Window.Background>

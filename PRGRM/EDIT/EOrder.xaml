@@ -8,6 +8,8 @@
         Title="Severstal Infocom"
         Width="1200"
         Height="700"
+        
+        ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
     <Window.Background>
