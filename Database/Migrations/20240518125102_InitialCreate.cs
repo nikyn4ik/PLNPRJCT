@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Database.Migrations
 {
     /// <inheritdoc />
-    public partial class First : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -48,20 +48,16 @@ namespace Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Consignee",
+                name: "Company",
                 columns: table => new
                 {
-                    IdConsignee = table.Column<int>(type: "int", nullable: false)
+                    IdCompany = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FIO = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdPayer = table.Column<int>(type: "int", nullable: true),
-                    phone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Company = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Consignee", x => x.IdConsignee);
+                    table.PrimaryKey("PK_Company", x => x.IdCompany);
                 });
 
             migrationBuilder.CreateTable(
@@ -70,8 +66,10 @@ namespace Database.Migrations
                 {
                     IdContainer = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MarkPackage = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TypeModel = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IdOrder = table.Column<int>(type: "int", nullable: false),
+                    TypeModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MarkContainer = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DTContainer = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -84,7 +82,7 @@ namespace Database.Migrations
                 {
                     IdDefect = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdOrder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdOrder = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Reasons = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ProductSending = table.Column<DateTime>(type: "datetime2", nullable: true),
                     FIO = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -107,35 +105,6 @@ namespace Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Delivery", x => x.IdDelivery);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Orders",
-                columns: table => new
-                {
-                    IdOrder = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    SystC3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    LogC3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IdPayer = table.Column<int>(type: "int", nullable: true),
-                    IdConsignee = table.Column<int>(type: "int", nullable: true),
-                    DTDelivery = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DTReceived = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DTAdoption = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    ThicknessMm = table.Column<double>(type: "float", nullable: false),
-                    WidthMm = table.Column<double>(type: "float", nullable: false),
-                    LengthMm = table.Column<double>(type: "float", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StatusOrder = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Mark = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IdQuaCertificate = table.Column<int>(type: "int", nullable: true),
-                    AccessStandart = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameStorage = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Orders", x => x.IdOrder);
                 });
 
             migrationBuilder.CreateTable(
@@ -171,23 +140,6 @@ namespace Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Storage",
-                columns: table => new
-                {
-                    IdStorage = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Phone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
-                    FIOResponsible = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateAddStorage = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Storage", x => x.IdStorage);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Transport",
                 columns: table => new
                 {
@@ -200,6 +152,134 @@ namespace Database.Migrations
                 {
                     table.PrimaryKey("PK_Transport", x => x.IdTransport);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Consignee",
+                columns: table => new
+                {
+                    IdConsignee = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FIO = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdPayer = table.Column<int>(type: "int", nullable: true),
+                    phone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdCompany = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Consignee", x => x.IdConsignee);
+                    table.ForeignKey(
+                        name: "FK_Consignee_Company_IdCompany",
+                        column: x => x.IdCompany,
+                        principalTable: "Company",
+                        principalColumn: "IdCompany",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Storage",
+                columns: table => new
+                {
+                    IdStorage = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Phone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    FIOResponsible = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateAddStorage = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IdCompany = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Storage", x => x.IdStorage);
+                    table.ForeignKey(
+                        name: "FK_Storage_Company_IdCompany",
+                        column: x => x.IdCompany,
+                        principalTable: "Company",
+                        principalColumn: "IdCompany",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
+                columns: table => new
+                {
+                    IdOrder = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SystC3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LogC3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdPayer = table.Column<int>(type: "int", nullable: true),
+                    IdConsignee = table.Column<int>(type: "int", nullable: true),
+                    DTDelivery = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DTReceived = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DTAdoption = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    ThicknessMm = table.Column<double>(type: "float", nullable: false),
+                    WidthMm = table.Column<double>(type: "float", nullable: false),
+                    LengthMm = table.Column<double>(type: "float", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdCompany = table.Column<int>(type: "int", nullable: false),
+                    StatusOrder = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Mark = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdQuaCertificate = table.Column<int>(type: "int", nullable: true),
+                    AccessStandart = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NameStorage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IdStorage = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Orders", x => x.IdOrder);
+                    table.ForeignKey(
+                        name: "FK_Orders_Company_IdCompany",
+                        column: x => x.IdCompany,
+                        principalTable: "Company",
+                        principalColumn: "IdCompany",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Orders_Consignee_IdConsignee",
+                        column: x => x.IdConsignee,
+                        principalTable: "Consignee",
+                        principalColumn: "IdConsignee");
+                    table.ForeignKey(
+                        name: "FK_Orders_Payer_IdPayer",
+                        column: x => x.IdPayer,
+                        principalTable: "Payer",
+                        principalColumn: "IdPayer");
+                    table.ForeignKey(
+                        name: "FK_Orders_Storage_IdStorage",
+                        column: x => x.IdStorage,
+                        principalTable: "Storage",
+                        principalColumn: "IdStorage");
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Consignee_IdCompany",
+                table: "Consignee",
+                column: "IdCompany");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_IdCompany",
+                table: "Orders",
+                column: "IdCompany");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_IdConsignee",
+                table: "Orders",
+                column: "IdConsignee");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_IdPayer",
+                table: "Orders",
+                column: "IdPayer");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_IdStorage",
+                table: "Orders",
+                column: "IdStorage");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Storage_IdCompany",
+                table: "Storage",
+                column: "IdCompany");
         }
 
         /// <inheritdoc />
@@ -210,9 +290,6 @@ namespace Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Certificate");
-
-            migrationBuilder.DropTable(
-                name: "Consignee");
 
             migrationBuilder.DropTable(
                 name: "Container");
@@ -227,16 +304,22 @@ namespace Database.Migrations
                 name: "Orders");
 
             migrationBuilder.DropTable(
-                name: "Payer");
+                name: "Shipment");
 
             migrationBuilder.DropTable(
-                name: "Shipment");
+                name: "Transport");
+
+            migrationBuilder.DropTable(
+                name: "Consignee");
+
+            migrationBuilder.DropTable(
+                name: "Payer");
 
             migrationBuilder.DropTable(
                 name: "Storage");
 
             migrationBuilder.DropTable(
-                name: "Transport");
+                name: "Company");
         }
     }
 }

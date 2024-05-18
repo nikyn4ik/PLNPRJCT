@@ -69,7 +69,7 @@
 
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding Company}"
+                    Binding="{Binding Company.Name}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Грузополучатель"

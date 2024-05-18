@@ -1,4 +1,5 @@
 ﻿using Database;
+using Microsoft.EntityFrameworkCore;
 using PRGRM.ADD;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,7 +18,7 @@ namespace PRGRM.WNDW
 
         private void LoadStoragesData()
         {
-            StorageGrid.ItemsSource = GetStoragesData();
+            StorageGrid.ItemsSource = _dbContext.Storage.Include(s => s.Company).ToList();
         }
         public List<Database.Storage> GetStoragesData()
         {
@@ -60,12 +61,13 @@ namespace PRGRM.WNDW
             string searchText = textBox.Text.ToLower();
 
             var filteredData = _dbContext.Storage
+                .Include(s => s.Company)
                 .Where(s => s.Name.ToLower().Contains(searchText) ||
                             s.Address.ToLower().Contains(searchText) ||
                             s.Phone.ToLower().Contains(searchText) ||
                             (s.FIOResponsible != null && s.FIOResponsible.ToLower().Contains(searchText)) ||
                             (s.DateAddStorage != null && s.DateAddStorage.ToString().ToLower().Contains(searchText)) ||
-                            s.Company.ToLower().Contains(searchText))
+                            s.Company.Name.ToLower().Contains(searchText))
                 .ToList();
             StorageGrid.ItemsSource = filteredData;
         }

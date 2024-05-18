@@ -3,13 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PRGRM.ADD"
-            Title="Severstal Infocom"
-    Width="750"
-    Height="470"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+        Title="Severstal Infocom"
+Width="1200"
+Height="710"
+ResizeMode="NoResize"
+WindowStartupLocation="CenterScreen"
+mc:Ignorable="d">
     <Window.Background>
 
         <ImageBrush ImageSource="/IMG/add.jpg" />
@@ -18,25 +17,23 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*" />
-            <ColumnDefinition Width="316*" />
-            <ColumnDefinition Width="106*"/>
-            <ColumnDefinition Width="306*"/>
+            <ColumnDefinition Width="318*" />
+            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="305*"/>
             <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="75*" />
-            <RowDefinition Height="56*" />
-            <RowDefinition Height="55*"/>
-            <RowDefinition Height="55*" />
-            <RowDefinition Height="56*"/>
-            <RowDefinition Height="56*"/>
-            <RowDefinition Height="41*"/>
-            <RowDefinition Height="61*"/>
+            <RowDefinition Height="130*" />
+            <RowDefinition Height="108*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="108*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="129*"/>
+            <RowDefinition Height="115*"/>
         </Grid.RowDefinitions>
         <ComboBox
-            x:Name="type_model"
+            x:Name="TypeModel"
             IsEditable="False"
-            Grid.Row="1"
             Grid.Column="3"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
@@ -45,16 +42,14 @@
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
-            Height="31" SelectionChanged="type_model_SelectionChanged"/>
+            Height="68" SelectionChanged="type_model_SelectionChanged" Grid.Row="1" VerticalAlignment="Top"/>
         <ComboBox
+            x:Name="MarkContainer"
             IsEnabled="False"
-            x:Name="MarkPackage"
-            Grid.Row="3"
             Grid.Column="3"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18"
-            Height="31" BorderBrush="Black" SelectionChanged="MarkPackage_SelectionChanged">
+            FontSize="18" BorderBrush="Black" Margin="0,48,0,41" Grid.Row="2" Grid.RowSpan="2">
             <ComboBox.Style>
                 <Style TargetType="ComboBox">
                     <Style.Triggers>
@@ -70,32 +65,30 @@
             </ComboBox.Style>
         </ComboBox>
         <Label
-            Grid.Row="1"
+            Margin="0,0,0,41" Grid.Column="1"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Тип"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="316" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Center" Grid.Row="1" Height="68.0139181286549"/>
         <Label
-            Grid.Row="3"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Маркировка"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" VerticalAlignment="Center" Height="50" Width="316" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Height="68.0139181286549" Width="508" HorizontalAlignment="Center" Grid.Column="1" Margin="0,48,0,42" Grid.Row="2" Grid.RowSpan="2" />
         <Label
-            Grid.Row="5"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата упаковки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" VerticalAlignment="Center" Width="316" Height="50" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Width="508" Height="68.0139181286549" HorizontalAlignment="Center" Grid.Column="1" Margin="0,47,0,63" Grid.Row="4" Grid.RowSpan="2" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -109,7 +102,6 @@
             Foreground="#002F6C" />
         <DatePicker
             x:Name="DatePicker"
-            Grid.Row="5"
             Grid.Column="3" 
             Language="fr-FR"
             RenderTransformOrigin="0.5,0.5"
@@ -119,17 +111,16 @@
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
-            FirstDayOfWeek="Monday"/>
+            FirstDayOfWeek="Monday" Height="66" Margin="0,2,0,0" VerticalAlignment="Top" Grid.Row="5"/>
         <Button
-            Grid.Row="7"
             Grid.Column="1"
-            Margin="228,0,0,0"
+            Margin="0,131,220,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="BSaved"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.ColumnSpan="3" Width="282" Height="54" VerticalAlignment="Center" HorizontalAlignment="Left" />
+            Foreground="#FFFFFF" Width="704" Height="54" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="5" Grid.RowSpan="2" Grid.ColumnSpan="3" />
     </Grid>
 </Window>

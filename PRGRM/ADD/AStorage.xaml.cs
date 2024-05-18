@@ -8,22 +8,23 @@ namespace PRGRM.ADD
     public partial class AStorage : Window
     {
         private readonly ApplicationContext _dbContext;
-        private List<Consignee> _consignees;
+        private List<Company> _companies;
+
         public AStorage()
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
-            _consignees = _dbContext.Consignee.ToList();
-            Company.ItemsSource = _consignees.Select(c => c.Company);
+            _companies = _dbContext.Company.ToList();
+            Company.ItemsSource = _companies;
             DatePicker.DisplayDate = DateTime.Today;
             DatePicker.Text = DateTime.Today.ToString();
         }
 
         private void BSaved(object sender, RoutedEventArgs e)
         {
-            var selectedConsignee = _consignees.FirstOrDefault(c => c.Company == Company.SelectedItem?.ToString());
+            var selectedCompany = Company.SelectedItem as Company;
 
-            if (selectedConsignee != null)
+            if (selectedCompany != null)
             {
                 string phone = Phone.Text;
                 if (string.IsNullOrWhiteSpace(phone) || !phone.All(char.IsDigit))
@@ -46,7 +47,8 @@ namespace PRGRM.ADD
                     Phone = phone,
                     FIOResponsible = FIOResponsible.Text,
                     DateAddStorage = dateAddStorage,
-                    Company = Company.SelectedItem?.ToString()
+                    Company = selectedCompany,
+                    IdCompany = selectedCompany.IdCompany
                 };
                 _dbContext.Storage.Add(storage);
                 _dbContext.SaveChanges();
@@ -60,15 +62,16 @@ namespace PRGRM.ADD
             }
         }
 
-
         private void Company_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (Company.SelectedItem != null)
             {
-                string selectedCompany = Company.SelectedItem.ToString();
-                Company.Text = selectedCompany;
+                var selectedCompany = Company.SelectedItem as Company;
+                if (selectedCompany != null)
+                {
+                    Company.Text = selectedCompany.Name;
+                }
             }
-
         }
     }
 }

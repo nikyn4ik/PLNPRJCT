@@ -65,13 +65,17 @@
             IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding IdOrder}"
-                    Header="Id" />
+    Width="4*"
+    Binding="{Binding IdOrder}"
+    Header="Id" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding Name}"
-                    Header="Продукт" />
+                    Binding="{Binding Storage.Name}"
+                    Header="Storage" />
+                <DataGridTextColumn
+                    Width="4*"
+                    Binding="{Binding Company.Name}"
+                    Header="Company" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding SystC3}"
@@ -86,9 +90,9 @@
                     Header="Поступил" />
 
                 <DataGridTextColumn
-    Width="4*"
-    Binding="{Binding StatusOrder}"
-    Header="Статус" />
+                    Width="4*"
+                    Binding="{Binding StatusOrder}"
+                    Header="Статус" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding ThicknessMm}"

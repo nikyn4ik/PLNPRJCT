@@ -3,12 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Database.MDLS
 {
-    public class Transport
+    public class ContainerPackage
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdTransport { get; set; }
-        public string? Name { get; set; }
-        [MaxLength(8)] public string? VehicleRegistration { get; set; }
+        public int IdContainer { get; set; }
+        public string? TypeModel { get; set; }
+        public string? MarkContainer { get; set; }
     }
 }

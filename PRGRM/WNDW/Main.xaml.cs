@@ -35,7 +35,7 @@ namespace PRGRM.WNDW
         private void B_Storage(object sender, RoutedEventArgs e) => OpenPage(new Storage());
 
         private void B_Certificates(object sender, RoutedEventArgs e) => OpenPage(new Certificates());
-        private void BContainer(object sender, RoutedEventArgs e) => OpenPage(new EContainer());
+        private void BContainer(object sender, RoutedEventArgs e) => OpenPage(new Container());
 
         //    private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
         //{

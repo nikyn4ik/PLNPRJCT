@@ -13,6 +13,7 @@ namespace Database.MDLS
         [MaxLength(12)]
         public string phone { get; set; }
         public string? email { get; set; }
-        public string Company { get; set; }
+        public int IdCompany { get; set; }
+        public Company Company { get; set; }
     }
 }

@@ -114,6 +114,23 @@ namespace Database.Migrations
                     b.ToTable("Delivery");
                 });
 
+            modelBuilder.Entity("Database.MDLS.Company", b =>
+                {
+                    b.Property<int>("IdCompany")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCompany"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdCompany");
+
+                    b.ToTable("Company");
+                });
+
             modelBuilder.Entity("Database.MDLS.Consignee", b =>
                 {
                     b.Property<int>("IdConsignee")
@@ -122,13 +139,12 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsignee"));
 
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("FIO")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdCompany")
+                        .HasColumnType("int");
 
                     b.Property<int?>("IdPayer")
                         .HasColumnType("int");
@@ -142,6 +158,8 @@ namespace Database.Migrations
                         .HasColumnType("nvarchar(12)");
 
                     b.HasKey("IdConsignee");
+
+                    b.HasIndex("IdCompany");
 
                     b.ToTable("Consignee");
                 });
@@ -250,10 +268,6 @@ namespace Database.Migrations
                     b.Property<string>("AccessStandart")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("DTAdoption")
                         .HasColumnType("datetime2");
 
@@ -263,6 +277,9 @@ namespace Database.Migrations
                     b.Property<DateTime>("DTReceived")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("IdCompany")
+                        .HasColumnType("int");
+
                     b.Property<int?>("IdConsignee")
                         .HasColumnType("int");
 
@@ -270,6 +287,9 @@ namespace Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("IdQuaCertificate")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("IdStorage")
                         .HasColumnType("int");
 
                     b.Property<double>("LengthMm")
@@ -303,6 +323,14 @@ namespace Database.Migrations
                         .HasColumnType("float");
 
                     b.HasKey("IdOrder");
+
+                    b.HasIndex("IdCompany");
+
+                    b.HasIndex("IdConsignee");
+
+                    b.HasIndex("IdPayer");
+
+                    b.HasIndex("IdStorage");
 
                     b.ToTable("Orders");
                 });
@@ -351,15 +379,14 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Company")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("DateAddStorage")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("FIOResponsible")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("IdCompany")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -372,7 +399,67 @@ namespace Database.Migrations
 
                     b.HasKey("IdStorage");
 
+                    b.HasIndex("IdCompany");
+
                     b.ToTable("Storage");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Consignee", b =>
+                {
+                    b.HasOne("Database.MDLS.Company", "Company")
+                        .WithMany("Consignee")
+                        .HasForeignKey("IdCompany")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("Database.Orders", b =>
+                {
+                    b.HasOne("Database.MDLS.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("IdCompany")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Database.MDLS.Consignee", "Consignee")
+                        .WithMany()
+                        .HasForeignKey("IdConsignee");
+
+                    b.HasOne("Database.MDLS.Payer", "Payer")
+                        .WithMany()
+                        .HasForeignKey("IdPayer");
+
+                    b.HasOne("Database.Storage", "Storage")
+                        .WithMany()
+                        .HasForeignKey("IdStorage");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Consignee");
+
+                    b.Navigation("Payer");
+
+                    b.Navigation("Storage");
+                });
+
+            modelBuilder.Entity("Database.Storage", b =>
+                {
+                    b.HasOne("Database.MDLS.Company", "Company")
+                        .WithMany("Storage")
+                        .HasForeignKey("IdCompany")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Company", b =>
+                {
+                    b.Navigation("Consignee");
+
+                    b.Navigation("Storage");
                 });
 #pragma warning restore 612, 618
         }

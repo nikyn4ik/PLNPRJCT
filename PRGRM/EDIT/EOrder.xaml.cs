@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Database;
+using Database.MDLS;
 
 namespace PRGRM.EDIT
 {
@@ -23,7 +24,16 @@ namespace PRGRM.EDIT
 
             if (order != null)
             {
-                Company.Text = order.Company;
+                var company = _dbContext.Company.FirstOrDefault(c => c.IdCompany == order.IdCompany);
+
+                if (company != null)
+                {
+                    Company.Text = company.Name;
+                }
+                else
+                {
+                    MessageBox.Show("Компания не найдена.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
 
             DatePicker.DisplayDate = DateTime.Today;
@@ -53,7 +63,6 @@ namespace PRGRM.EDIT
                 {
                     orderToUpdate.DTAdoption = Adoption;
                     orderToUpdate.StatusOrder = "Заказ на выполнении";
-                    orderToUpdate.Company = selectedCompany;
 
                     _dbContext.SaveChanges();
 
@@ -62,7 +71,7 @@ namespace PRGRM.EDIT
                 }
                 else
                 {
-                    MessageBox.Show("Не удалось найти заказ для обновления.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Обновление невозможно.", "Severstal Infocom", MessageBoxButton.OK);
                 }
             }
         }

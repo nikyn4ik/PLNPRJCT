@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using Database;
-using Org.BouncyCastle.Ocsp;
+using Microsoft.EntityFrameworkCore;
 using PRGRM.ADD;
 using PRGRM.EDIT;
 
@@ -21,12 +21,52 @@ namespace PRGRM.WNDW
         }
         private void LoadOrders()
         {
+            OGrid.ItemsSource = null;
             OGrid.ItemsSource = GetOrdersData();
         }
+
         public List<Database.Orders> GetOrdersData()
         {
-            return _dbContext.Orders.ToList();
+            var orders = _dbContext.Orders
+
+                .Include(o => o.Storage)
+                .Include(o => o.Company)
+                .ToList();
+
+            foreach (var order in orders)
+            {
+                var consignee = _dbContext.Consignee.FirstOrDefault(c =>
+                    c.IdConsignee == order.IdConsignee);
+
+                if (consignee != null)
+                {
+                    var storage = _dbContext.Storage.FirstOrDefault(s =>
+                        s.IdCompany == consignee.IdCompany);
+
+                    if (storage != null)
+                    {
+                        order.Storage = storage;
+                        order.IdStorage = storage.IdStorage;
+                    }
+
+                    var payer = _dbContext.Payer.FirstOrDefault(p =>
+                        p.IdPayer == consignee.IdPayer);
+
+                    if (payer != null)
+                    {
+                        order.Payer = payer;
+                    }
+                }
+            }
+
+            return orders;
         }
+
+        private void EOrder_Closed(object sender, EventArgs e)
+        {
+            LoadOrders();
+        }
+
         private void BEdit(object sender, RoutedEventArgs e)
         {
             var selectedOrder = OGrid.SelectedItem as Database.Orders;
@@ -35,17 +75,23 @@ namespace PRGRM.WNDW
                 MessageBox.Show("Выберите строку!", "Severstal Infocom");
                 return;
             }
-            else
+
+            if (selectedOrder.StatusOrder == "Заказ в браке")
             {
-                var editWindow = new EOrder(selectedOrder);
-                editWindow.Closed += AddWindow_Closed;
-                editWindow.ShowDialog();
+                MessageBox.Show("Невозможно редактировать заказ, находящийся в браке.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
+
+            var editWindow = new EOrder(selectedOrder);
+            editWindow.Closed += EOrder_Closed;
+            editWindow.ShowDialog();
         }
+
         private void AddWindow_Closed(object sender, EventArgs e)
         {
             LoadOrders();
         }
+
         private void Search(object sender, TextChangedEventArgs e)
         {
             var searchText = ((TextBox)sender).Text;
@@ -56,7 +102,9 @@ namespace PRGRM.WNDW
                         order.SystC3.Contains(searchText) ||
                         order.LogC3.Contains(searchText) ||
                         (order.IdPayer != null && order.IdPayer.ToString().Contains(searchText)) ||
+                        (order.IdCompany != null && order.IdCompany.ToString().Contains(searchText)) ||
                         (order.IdConsignee != null && order.IdConsignee.ToString().Contains(searchText)) ||
+                        (order.IdStorage != null && order.IdStorage.ToString().Contains(searchText)) ||
                         (order.DTDelivery != null && order.DTDelivery.ToString().Contains(searchText)) ||
                         order.DTReceived.ToString().Contains(searchText) ||
                         (order.DTAdoption != null && order.DTAdoption.ToString().Contains(searchText)) ||
@@ -64,12 +112,10 @@ namespace PRGRM.WNDW
                         order.WidthMm.ToString().Contains(searchText) ||
                         order.LengthMm.ToString().Contains(searchText) ||
                         order.Name.Contains(searchText) ||
-                        order.Company.Contains(searchText) ||
                         (order.StatusOrder != null && order.StatusOrder.Contains(searchText)) ||
                         (order.Mark != null && order.Mark.Contains(searchText)) ||
                         (order.IdQuaCertificate != null && order.IdQuaCertificate.ToString().Contains(searchText)) ||
-                        (order.AccessStandart != null && order.AccessStandart.Contains(searchText)) ||
-                        (order.NameStorage != null && order.NameStorage.Contains(searchText))
+                        (order.AccessStandart != null && order.AccessStandart.Contains(searchText))
                     )
                     .ToList();
                 OGrid.ItemsSource = filteredOrders;
@@ -79,13 +125,14 @@ namespace PRGRM.WNDW
                 LoadOrders();
             }
         }
-        
+
         private void BDefects(object sender, RoutedEventArgs e)
         {
             EDefects addWindow = new EDefects();
             addWindow.Closed += AddWindow_Closed;
             addWindow.ShowDialog();
         }
+
         private void BContainer(object sender, RoutedEventArgs e)
         {
             var selectedOrder = OGrid.SelectedItem as Database.Orders;
@@ -121,6 +168,7 @@ namespace PRGRM.WNDW
                 LoadOrders();
             }
         }
+
         private void BAttestation(object sender, RoutedEventArgs e)
         {
             var selectedOrder = OGrid.SelectedItem as Database.Orders;
@@ -157,12 +205,21 @@ namespace PRGRM.WNDW
             }
             else
             {
-                MessageBox.Show("Заказ не проходит по нормам аттестации!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                selectedOrder.StatusOrder = "Заказ в браке";
-                _dbContext.SaveChanges();
-                var defectWindow = new SendingDefect(selectedOrder, fio);
-                defectWindow.Closed += AddWindow_Closed;
-                defectWindow.ShowDialog();
+                var isAlreadyDefective = _dbContext.Defects.Any(d => d.IdOrder == selectedOrder.IdOrder.ToString());
+                if (isAlreadyDefective)
+                {
+                    MessageBox.Show("Данный заказ уже находится в браке!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Заказ не проходит по нормам аттестации!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    selectedOrder.StatusOrder = "Заказ в браке";
+                    _dbContext.SaveChanges();
+                    LoadOrders();
+                    var defectWindow = new SendingDefect(selectedOrder, fio);
+                    defectWindow.Closed += AddWindow_Closed;
+                    defectWindow.ShowDialog();
+                }
             }
         }
     }

@@ -136,7 +136,13 @@
     BorderBrush="Black"
     Background="White"
     BorderThickness="1,1,1,1"
-    Height="48" SelectionChanged="Company_SelectionChanged" Grid.ColumnSpan="2" Margin="1,38,15,0" VerticalAlignment="Top"/>
+    Height="48"
+    SelectionChanged="Company_SelectionChanged"
+    Grid.ColumnSpan="2"
+    Margin="1,38,15,0"
+    VerticalAlignment="Top"
+    DisplayMemberPath="Name"
+    SelectedValuePath="IdCompany"/>
         <TextBox
             x:Name="FIOResponsible"
             FontFamily="Microsoft JhengHei UI Light"
