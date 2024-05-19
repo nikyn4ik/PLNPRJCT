@@ -8,11 +8,20 @@ namespace PRGRM.ADD
     public partial class EContainer : Window
     {
         private readonly ApplicationContext _dbContext;
-        public EContainer()
+        private readonly Container _selectedContainer;
+        private readonly Action _refreshContainerGrid;
+
+        public EContainer(Container selectedContainer)
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
+            _selectedContainer = selectedContainer;
+            DatePicker.DisplayDate = DateTime.Today;
+            DatePicker.SelectedDate = DateTime.Today;
             LoadTypeModelData();
+            TypeModel.SelectedItem = selectedContainer.TypeModel;
+            MarkContainer.SelectedItem = selectedContainer.MarkContainer;
+            DatePicker.SelectedDate = selectedContainer.DTContainer;
         }
         private void LoadTypeModelData()
         {
@@ -45,33 +54,36 @@ namespace PRGRM.ADD
             var selectedTypeModel = TypeModel.SelectedItem as string;
             var selectedMarkContainer = MarkContainer.SelectedItem as string;
 
-            if (!DateTime.TryParse(DatePicker.Text, out DateTime DTContainer))
+            if (string.IsNullOrEmpty(selectedTypeModel) || string.IsNullOrEmpty(selectedMarkContainer))
+            {
+                MessageBox.Show("Проверьте, введены ли все данные.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            DateTime DTContainer;
+            if (!DateTime.TryParse(DatePicker.Text, out DTContainer))
             {
                 MessageBox.Show("Введите корректную дату.", "Severstal Infocom", MessageBoxButton.OK);
                 return;
             }
+
             if (DTContainer < DateTime.Today)
             {
                 MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK);
                 return;
             }
-            if (!string.IsNullOrEmpty(selectedTypeModel) && !string.IsNullOrEmpty(selectedMarkContainer))
+            var selectedContainer = _dbContext.Container.FirstOrDefault(c => c.IdContainer == _selectedContainer.IdContainer);
+            if (selectedContainer != null)
             {
-                var newContainer = new Container
-                {
-                    TypeModel = selectedTypeModel,
-                    MarkContainer = selectedMarkContainer,
-                    DTContainer = DateTime.Now
-                };
+                selectedContainer.TypeModel = selectedTypeModel;
+                selectedContainer.MarkContainer = selectedMarkContainer;
+                selectedContainer.DTContainer = DTContainer;
 
-                _dbContext.Container.Add(newContainer);
                 _dbContext.SaveChanges();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                Close();
+                _refreshContainerGrid?.Invoke();
             }
-            else
-            {
-                MessageBox.Show("Проверьте, введены ли все данные.", "Severstal Infocom", (MessageBoxButton)MessageBoxImage.Error);
-        }
         }
     }
 }

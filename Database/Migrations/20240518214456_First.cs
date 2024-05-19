@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Database.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class First : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -74,6 +74,20 @@ namespace Database.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Container", x => x.IdContainer);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContainerPackage",
+                columns: table => new
+                {
+                    IdContainer = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TypeModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MarkContainer = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContainerPackage", x => x.IdContainer);
                 });
 
             migrationBuilder.CreateTable(
@@ -222,7 +236,6 @@ namespace Database.Migrations
                     Mark = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdQuaCertificate = table.Column<int>(type: "int", nullable: true),
                     AccessStandart = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    NameStorage = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdStorage = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -293,6 +306,9 @@ namespace Database.Migrations
 
             migrationBuilder.DropTable(
                 name: "Container");
+
+            migrationBuilder.DropTable(
+                name: "ContainerPackage");
 
             migrationBuilder.DropTable(
                 name: "Defects");

@@ -17,7 +17,8 @@ namespace HP
 
                 if (string.IsNullOrWhiteSpace(Log.Text) || string.IsNullOrWhiteSpace(Pass.Password) || string.IsNullOrWhiteSpace(FIO.Text))
                 {
-                    MessageBox.Show("Необходимо заполнить все данные");
+                    MessageBox.Show("Необходимо заполнить все данные",
+                        "Severstal Infocom");
                 }
                 else
                 {
@@ -36,7 +37,8 @@ namespace HP
                     Log.Clear();
                     Pass.Clear();
                     FIO.Clear();
-                    MessageBox.Show("Пользователь успешно добавлен!", "Успешно.");
+                    MessageBox.Show("Пользователь успешно добавлен!",
+                        "Severstal Infocom");
                 }
             }
         }
@@ -49,7 +51,7 @@ namespace HP
                 var login_check = db.Authorization.Where(p => p.Login == log).ToList();
                 if (login_check.Count > 0)
                 {
-                    MessageBox.Show($"Пользователь с таким логином уже существует!", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Пользователь с таким логином уже существует!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return true;
                 }
                 else return false;

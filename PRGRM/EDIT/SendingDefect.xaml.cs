@@ -45,7 +45,7 @@ namespace PRGRM.EDIT
                 }
                 var defect = new Database.MDLS.Defects
                 {
-                    IdOrder = orderId.ToString(),
+                    IdOrder = orderId,
                     Reasons = Reason.Text,
                     ProductSending = ProductSending,
                     FIO = fio

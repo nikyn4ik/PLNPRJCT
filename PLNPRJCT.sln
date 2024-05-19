@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HP", "HP\HP.csproj", "{0856
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRGRM", "PRGRM\PRGRM.csproj", "{C1BC0E64-7112-4CDE-890E-87C234032E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{7687DF82-8CD1-4090-BCC5-1BCE2CC1A1D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{F12338AD-FFB1-4963-96FC-7C339E4A2315}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{C1BC0E64-7112-4CDE-890E-87C234032E10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1BC0E64-7112-4CDE-890E-87C234032E10}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C1BC0E64-7112-4CDE-890E-87C234032E10}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7687DF82-8CD1-4090-BCC5-1BCE2CC1A1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7687DF82-8CD1-4090-BCC5-1BCE2CC1A1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7687DF82-8CD1-4090-BCC5-1BCE2CC1A1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7687DF82-8CD1-4090-BCC5-1BCE2CC1A1D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F12338AD-FFB1-4963-96FC-7C339E4A2315}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F12338AD-FFB1-4963-96FC-7C339E4A2315}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F12338AD-FFB1-4963-96FC-7C339E4A2315}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F12338AD-FFB1-4963-96FC-7C339E4A2315}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

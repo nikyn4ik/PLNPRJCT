@@ -144,7 +144,7 @@ namespace PRGRM.WNDW
 
             var idOrder = selectedOrder.IdOrder;
 
-            var isDefective = _dbContext.Defects.Any(d => d.IdOrder == idOrder.ToString());
+            var isDefective = _dbContext.Defects.Any(d => d.IdOrder == idOrder);
             if (isDefective)
             {
                 MessageBox.Show("Данный заказ находится в браке или не прошел аттестацию!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -174,7 +174,7 @@ namespace PRGRM.WNDW
             var selectedOrder = OGrid.SelectedItem as Database.Orders;
             if (selectedOrder == null)
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -198,14 +198,15 @@ namespace PRGRM.WNDW
 
             if (isCertified)
             {
-                MessageBox.Show("Заказ проходит по нормам аттестации и соответствует сертификату(там)", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Заказ проходит по нормам аттестации и соответствует сертификату.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
+                selectedOrder.StatusOrder = "Заказ на выполнении";
                 var editWindow = new EAttestation(selectedOrder);
                 editWindow.Closed += AddWindow_Closed;
                 editWindow.ShowDialog();
             }
             else
             {
-                var isAlreadyDefective = _dbContext.Defects.Any(d => d.IdOrder == selectedOrder.IdOrder.ToString());
+                var isAlreadyDefective = _dbContext.Defects.Any(d => d.IdOrder == selectedOrder.IdOrder);
                 if (isAlreadyDefective)
                 {
                     MessageBox.Show("Данный заказ уже находится в браке!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);

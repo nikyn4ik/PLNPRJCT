@@ -9,10 +9,8 @@ namespace Database
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int IdShipment { get; set; }
         public int? IdOrder { get; set; }
-        public string Consignee { get; set; }
         public DateTime? DTShipments { get; set; }
         public int? ShipmentTotalAmountTons { get; set; }
         public int? IdTransport { get; set; }
-        public float? NumberOfShipmentsPerMonthTons { get; set; }
     }
 }

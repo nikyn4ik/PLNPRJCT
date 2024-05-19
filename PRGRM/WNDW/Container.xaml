@@ -73,7 +73,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_order}"
+                    Binding="{Binding IdOrder}"
                     Header="Заказ" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
@@ -85,25 +85,19 @@
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding name_product}"
-                    FontFamily="Microsoft JhengHei UI Light"
-                    FontSize="13"
-                    Header="Продукт" />
-                <DataGridTextColumn
-                    Width="*"
                     Binding="{Binding TypeModel}"
                     Header="Тип" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding MarkPackage}"
+                    Binding="{Binding MarkContainer}"
                     Header="Маркировка" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding date_package}"
+                    Binding="{Binding DTContainer}"
                     Header="Дата упаковки" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>

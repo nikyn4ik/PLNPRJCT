@@ -1,5 +1,6 @@
 ﻿using Database;
 using Database.MDLS;
+using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -22,7 +23,9 @@ namespace PRGRM.ADD
         }
         public List<Defects> GetOrdersData()
         {
-            return _dbContext.Defects.ToList();
+            return _dbContext.Defects
+                     .Include(d => d.Orders)
+                     .ToList();
         }
         private void AddWindow_Closed(object sender, EventArgs e)
         {
@@ -38,13 +41,13 @@ namespace PRGRM.ADD
 
             var filteredData = _dbContext.Defects
                 .Where(s => (isNumeric && s.IdDefect == idDefect) ||
-                s.IdOrder.ToLower().Contains(searchText) ||
-                s.Reasons.ToLower().Contains(searchText) ||
-            (s.FIO != null && s.FIO.ToLower().Contains(searchText)) ||
-            (s.ProductSending != null && s.ProductSending.ToString().ToLower().Contains(searchText)))
+                            (isNumeric && s.IdOrder == idDefect) ||
+                            s.Reasons.ToLower().Contains(searchText) ||
+                            (s.FIO != null && s.FIO.ToLower().Contains(searchText)) ||
+                            (s.ProductSending != null && s.ProductSending.ToString().ToLower().Contains(searchText)))
                 .ToList();
             DGrid.ItemsSource = filteredData;
-
         }
+
     }
 }

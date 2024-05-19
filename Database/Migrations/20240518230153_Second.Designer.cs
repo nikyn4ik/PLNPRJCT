@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240518125102_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240518230153_Second")]
+    partial class Second
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -192,6 +192,25 @@ namespace Database.Migrations
                     b.ToTable("Container");
                 });
 
+            modelBuilder.Entity("Database.MDLS.ContainerPackage", b =>
+                {
+                    b.Property<int>("IdContainer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdContainer"));
+
+                    b.Property<string>("MarkContainer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TypeModel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("IdContainer");
+
+                    b.ToTable("ContainerPackage");
+                });
+
             modelBuilder.Entity("Database.MDLS.Defects", b =>
                 {
                     b.Property<int>("IdDefect")
@@ -203,9 +222,8 @@ namespace Database.Migrations
                     b.Property<string>("FIO")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("IdOrder")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IdOrder")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("ProductSending")
                         .HasColumnType("datetime2");
@@ -214,6 +232,8 @@ namespace Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdDefect");
+
+                    b.HasIndex("IdOrder");
 
                     b.ToTable("Defects");
                 });
@@ -307,9 +327,6 @@ namespace Database.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NameStorage")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("StatusOrder")
@@ -416,6 +433,17 @@ namespace Database.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Defects", b =>
+                {
+                    b.HasOne("Database.Orders", "Orders")
+                        .WithMany()
+                        .HasForeignKey("IdOrder")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Database.Orders", b =>

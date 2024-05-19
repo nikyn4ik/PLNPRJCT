@@ -68,13 +68,13 @@
                 Binding="{Binding IdOrder}"
                 Header="Id" />
                 <DataGridTextColumn
-                Width="4*"
-                Binding="{Binding IdDefect}"
-                Header="Id дефект" />
+                    Width="4*"
+                    Binding="{Binding Orders.Name}"
+                    Header="Продукт" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding ProductSending}"
-                    Header="Продукт" />
+                    Header="Дата" />
                 <DataGridTextColumn
                 Width="4*"
                 Binding="{Binding Reasons}"

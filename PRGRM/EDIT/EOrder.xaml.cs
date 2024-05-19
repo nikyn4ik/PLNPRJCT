@@ -69,10 +69,6 @@ namespace PRGRM.EDIT
                     MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                     Close();
                 }
-                else
-                {
-                    MessageBox.Show("Обновление невозможно.", "Severstal Infocom", MessageBoxButton.OK);
-                }
             }
         }
     }

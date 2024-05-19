@@ -1,0 +1,152 @@
+﻿<Window x:Class="PRGRM.EDIT.EShipment"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRGRM.EDIT"
+            Width="1200"
+    Height="720"
+    ResizeMode="NoResize"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Background>
+
+        <ImageBrush ImageSource="/IMG/add.jpg" />
+
+    </Window.Background>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*" />
+            <ColumnDefinition Width="318*" />
+            <ColumnDefinition Width="106*"/>
+            <ColumnDefinition Width="306*"/>
+            <ColumnDefinition Width="11*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="66*" />
+            <RowDefinition Height="58*" />
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="25*"/>
+            <RowDefinition Height="58*"/>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="66*"/>
+        </Grid.RowDefinitions>
+        <TextBox
+            x:Name="ShipmentTotalAmountTons"
+            Grid.Column="2"
+            Margin="169,102,0,22"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="White"
+            BorderThickness="1,1,1,1"
+            TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <Label
+            Height="68.0139181286549"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Кол-во отгрузки (тонн)"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Margin="0,102,0,22" Grid.RowSpan="2" Width="508" HorizontalAlignment="Center" Grid.Column="1" />
+        <Label
+            Grid.Row="2"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Склад"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Height="68.0139181286549" Margin="0,38,0,23" Grid.RowSpan="2" HorizontalAlignment="Center" Width="508" Grid.Column="1" />
+        <Label
+            Grid.Row="5"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Транспорт"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Height="68.0139181286549" Grid.Column="1" HorizontalAlignment="Center" Width="508" Margin="0,0,0,22" />
+        <Label
+            Grid.Row="6"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Дата отгрузки"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Grid.Column="1" Height="68.0139181286549" Margin="0,38,0,22" HorizontalAlignment="Center" Width="508" Grid.RowSpan="2" />
+        <Label
+            Grid.ColumnSpan="5"
+            Height="56"
+            VerticalAlignment="Top"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#FFFFFF"
+            Content="Редактирование заказа в отгрузке"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="35"
+            Foreground="#002F6C" />
+        <DatePicker
+            x:Name="DatePicker"
+            Grid.Row="6"
+            Grid.Column="2"
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="white"
+            Margin="169,38,0,0"
+            FirstDayOfWeek="Monday"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18" VerticalAlignment="Top" Height="68" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+        <ComboBox
+    IsEnabled="False"
+    x:Name="Storage"
+    RenderTransformOrigin="0.5,0.5"
+    Grid.Row="2"
+    Grid.Column="2"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="18" BorderBrush="Black" Margin="169,39,0,23" Grid.ColumnSpan="2" Grid.RowSpan="2">
+            <ComboBox.Style>
+                <Style TargetType="ComboBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsEnabled}" Value="True">
+                            <Setter Property="Opacity" Value="1" />
+                            <Setter Property="BorderBrush" Value="Black" />
+                            <Setter Property="Foreground" Value="Black" />
+                            <Setter Property="Background" Value="White" />
+                            <Setter Property="ItemContainerStyle" Value="{StaticResource MaterialDesignComboBoxItemSelectedCollapsedStyle}" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
+        </ComboBox>
+        <ComboBox
+            x:Name="Transport"
+            Grid.Row="5"
+            Grid.Column="2"
+            Foreground="Black"
+            BorderBrush="Black"
+            Background="White"
+            BorderThickness="1,1,1,1"
+            RenderTransformOrigin="0.5,0.5"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Height="68" Grid.ColumnSpan="2" Margin="169,0,0,0" VerticalAlignment="Top"/>
+        <Button
+            Grid.Row="8"
+            Grid.Column="1"
+            Background="#FF0000"
+            BorderThickness="0,0,0,0"
+            Click="BSaved"
+            Content="Сохранить"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" Width="705" HorizontalAlignment="Right" Height="54" VerticalAlignment="Top" Margin="0,21,220,0" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+    </Grid>
+</Window>
+

@@ -4,6 +4,7 @@ using Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20240518214456_First")]
+    partial class First
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -219,8 +222,9 @@ namespace Database.Migrations
                     b.Property<string>("FIO")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IdOrder")
-                        .HasColumnType("int");
+                    b.Property<string>("IdOrder")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ProductSending")
                         .HasColumnType("datetime2");
@@ -229,8 +233,6 @@ namespace Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdDefect");
-
-                    b.HasIndex("IdOrder");
 
                     b.ToTable("Defects");
                 });
@@ -430,17 +432,6 @@ namespace Database.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
-                });
-
-            modelBuilder.Entity("Database.MDLS.Defects", b =>
-                {
-                    b.HasOne("Database.Orders", "Orders")
-                        .WithMany()
-                        .HasForeignKey("IdOrder")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("Database.Orders", b =>

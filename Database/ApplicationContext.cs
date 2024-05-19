@@ -53,6 +53,10 @@ namespace Database
                 .HasOne(o => o.Consignee)
                 .WithMany()
                 .HasForeignKey(o => o.IdConsignee);
-        }
+            modelBuilder.Entity<Defects>()
+                .HasOne(d => d.Orders)
+                .WithMany()
+                .HasForeignKey(d => d.IdOrder);
+    }
     }
 }

@@ -67,37 +67,31 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
             Width="*"
-            Binding="{Binding id_order}"
+            Binding="{Binding IdOrder}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
             Header="Заказ" />
                 <DataGridTextColumn
             Width="*"
-            Binding="{Binding id_shipment}"
+            Binding="{Binding IdShipment}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
             Header="id отгрузки" />
                 <DataGridTextColumn
             Width="*"
-            Binding="{Binding name_product}"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="13"
-            Header="Продукт" />
-                <DataGridTextColumn
-            Width="*"
-            Binding="{Binding date_of_shipments}"
+            Binding="{Binding DTShipments}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
             Header="Дата отгрузки" />
                 <DataGridTextColumn
             Width="*"
-            Binding="{Binding shipment_total_amount_tons}"
+            Binding="{Binding ShipmentTotalAmountTons}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
             Header="Отгр.кол-во [тонны]" />
                 <DataGridTextColumn
             Width="*"
-            Binding="{Binding id_storage}"
+            Binding="{Binding Storage.Name}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
             Header="Склад" />

@@ -1,8 +1,6 @@
 ﻿using Database;
-using Microsoft.Identity.Client.Extensions.Msal;
-using PRGRM.ADD;
-using PRGRM.WNDW;
-using System.IO.Packaging;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Windows;
 
 namespace PRGRM.WNDW
@@ -10,23 +8,53 @@ namespace PRGRM.WNDW
 {
     public partial class Main : Window
 {
+    private readonly ApplicationContext _dbContext;
     private Login loginWindow;
     public string FIO;
     public Main(string fio)
     {
         InitializeComponent();
         loginWindow = null;
-        FIO = fio;
+        _dbContext = new ApplicationContext();
+         FIO = fio;
         lplogin.Content = fio;
         }
 
-    private void OpenPage(Window page)
+        private bool CheckRequiredData(out string errorMessage)
+        {
+            errorMessage = "";
+            if (!_dbContext.Certificate.Any())
+                errorMessage += "Нет данных в таблице Certificate.\n";
+            if (!_dbContext.Storage.Any())
+                errorMessage += "Нет данных в таблице Storage.\n";
+            if (!_dbContext.Payer.Any())
+                errorMessage += "Нет данных в таблице Payer.\n";
+            if (!_dbContext.ContainerPackage.Any())
+                errorMessage += "Нет данных в таблице ContainerPackage.\n";
+            if (!_dbContext.Company.Any())
+                errorMessage += "Нет данных в таблице Company.\n";
+            if (!_dbContext.Transport.Any())
+                errorMessage += "Нет данных в таблице Transport.\n";
+            if (!_dbContext.Consignee.Any())
+                errorMessage += "Нет данных в таблице Consignee.\n";
+
+            return string.IsNullOrEmpty(errorMessage);
+        }
+        private void OpenPage(Window page)
     {
-        Hide();
-        page.Owner = this;
-        page.ShowDialog();
-        Show();
-    }
+            if (page is Orders)
+            {
+                if (!CheckRequiredData(out string errorMessage))
+                {
+                    MessageBox.Show(errorMessage, "Sevestal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+            }
+            Hide();
+            page.Owner = this;
+            page.ShowDialog();
+            Show();
+        }
         private void B_order(object sender, RoutedEventArgs e) => OpenPage(new Orders(FIO));
         private void B_shipment(object sender, RoutedEventArgs e) => OpenPage(new Shipment());
 
