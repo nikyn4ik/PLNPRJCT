@@ -1,5 +1,6 @@
 ﻿using Database;
 using System.Windows;
+using System.Linq;
 using System.Windows.Controls;
 
 namespace PRGRM.EDIT
@@ -19,19 +20,17 @@ namespace PRGRM.EDIT
             if (order != null)
             {
                 int idStorage = order.IdStorage ?? 0;
-
-                Storage.Items.Add(idStorage);
-                Storage.SelectedItem = idStorage;
+                var storage = _dbContext.Storage.FirstOrDefault(s => s.IdStorage == idStorage);
+                Storage.Items.Add(storage.Name);
+                Storage.SelectedItem = storage.Name;
             }
             var transports = _dbContext.Transport.Select(t => t.Name).ToList();
             foreach (var transport in transports)
             {
                 Transport.Items.Add(transport);
             }
-
             DatePicker.SelectedDate = DateTime.Today;
         }
-
 
         private void BSaved(object sender, RoutedEventArgs e)
         {
@@ -39,31 +38,69 @@ namespace PRGRM.EDIT
             var selectedTransportName = Transport.SelectedItem as string;
             var shipmentDate = DatePicker.SelectedDate;
 
-            int.TryParse(ShipmentTotalAmountTons.Text, out int shipmentTotalAmountTons);
+            bool isValid = true;
+            string errorMessage = "Пожалуйста, заполните следующие поля корректно:\n";
 
-            if (selectedStorageName == null || selectedTransportName == null || shipmentDate == null)
+            int shipmentTotalAmountTons = 0;
+
+            if (string.IsNullOrEmpty(ShipmentTotalAmountTons.Text))
             {
-                MessageBox.Show("Пожалуйста, выберите значения для всех полей!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                isValid = false;
+                errorMessage += "- Кол-во отгрузки (тонн) (не должно быть пустым)\n";
+            }
+            else if (!int.TryParse(ShipmentTotalAmountTons.Text, out shipmentTotalAmountTons))
+            {
+                isValid = false;
+                errorMessage += "- Кол-во отгрузки (тонн) (должно быть числом)\n";
+            }
+
+            if (string.IsNullOrEmpty(selectedStorageName))
+            {
+                isValid = false;
+                errorMessage += "- Склад\n";
+            }
+
+            if (string.IsNullOrEmpty(selectedTransportName))
+            {
+                isValid = false;
+                errorMessage += "- Транспорт\n";
+            }
+
+            if (shipmentDate == null)
+            {
+                isValid = false;
+                errorMessage += "- Дата отгрузки\n";
+            }
+            else if (shipmentDate < DateTime.Today)
+            {
+                isValid = false;
+                errorMessage += "- Дата отгрузки не может быть раньше текущей даты\n";
+            }
+
+            if (!isValid)
+            {
+                MessageBox.Show(errorMessage, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            if (DatePicker.SelectedDate < DateTime.Today)
+            var shipment = _dbContext.Shipment.FirstOrDefault(s => s.IdOrder == _idOrder);
+            if (shipment != null)
             {
-                MessageBox.Show("Дата отгрузки не может быть раньше текущей даты!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                shipment.DTShipments = shipmentDate;
+                shipment.ShipmentTotalAmountTons = shipmentTotalAmountTons;
+
+                var selectedTransport = _dbContext.Transport.FirstOrDefault(t => t.Name == selectedTransportName);
+
+                if (selectedTransport != null)
+                {
+                    shipment.IdTransport = selectedTransport.IdTransport;
+                }
+
+                _dbContext.SaveChanges();
+
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
             }
-            var shipment = new Shipment
-            {
-                IdOrder = _idOrder,
-                DTShipments = shipmentDate,
-                ShipmentTotalAmountTons = shipmentTotalAmountTons
-            };
-
-            _dbContext.Shipment.Add(shipment);
-            _dbContext.SaveChanges();
-
-            MessageBox.Show("Данные сохранены успешно!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
-            Close();
         }
     }
 }

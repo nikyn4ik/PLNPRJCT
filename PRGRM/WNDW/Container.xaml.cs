@@ -70,7 +70,7 @@ namespace PRGRM.WNDW
                 return;
             }
 
-            var shipment = new Database.Shipment { IdOrder = idOrder };
+            var shipment = new Database.MDLS.Shipment { IdOrder = idOrder };
             _dbContext.Shipment.Add(shipment);
             _dbContext.SaveChanges();
 

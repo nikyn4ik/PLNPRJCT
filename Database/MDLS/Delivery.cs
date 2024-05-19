@@ -10,7 +10,7 @@ namespace Database
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int IdDelivery { get; set; }
         public int IdOrder { get; set; }
-        public string? Consignee { get; set; }
+        public string? EarlyDelivery { get; set; }
         public DateTime? DateOfDelivery { get; set; }
     }
 }

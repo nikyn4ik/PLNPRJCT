@@ -76,25 +76,19 @@
             Binding="{Binding IdShipment}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
-            Header="id отгрузки" />
+            Header="ID отгрузки" />
                 <DataGridTextColumn
             Width="*"
             Binding="{Binding DTShipments}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
-            Header="Дата отгрузки" />
+            Header="Дата" />
                 <DataGridTextColumn
             Width="*"
             Binding="{Binding ShipmentTotalAmountTons}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
             Header="Отгр.кол-во [тонны]" />
-                <DataGridTextColumn
-            Width="*"
-            Binding="{Binding Storage.Name}"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="13"
-            Header="Склад" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox
