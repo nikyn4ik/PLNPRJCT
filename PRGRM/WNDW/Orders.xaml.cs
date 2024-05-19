@@ -4,6 +4,7 @@ using Database;
 using Microsoft.EntityFrameworkCore;
 using PRGRM.ADD;
 using PRGRM.EDIT;
+using Database.MDLS;
 
 namespace PRGRM.WNDW
 {
@@ -25,7 +26,7 @@ namespace PRGRM.WNDW
             OGrid.ItemsSource = GetOrdersData();
         }
 
-        public List<Database.Orders> GetOrdersData()
+        public List<Database.MDLS.Orders> GetOrdersData()
         {
             var orders = _dbContext.Orders
 
@@ -69,7 +70,7 @@ namespace PRGRM.WNDW
 
         private void BEdit(object sender, RoutedEventArgs e)
         {
-            var selectedOrder = OGrid.SelectedItem as Database.Orders;
+            var selectedOrder = OGrid.SelectedItem as Database.MDLS.Orders;
             if (selectedOrder == null)
             {
                 MessageBox.Show("Выберите строку!", "Severstal Infocom");
@@ -126,16 +127,16 @@ namespace PRGRM.WNDW
             }
         }
 
-        private void BDefects(object sender, RoutedEventArgs e)
+        private void BDefect(object sender, RoutedEventArgs e)
         {
-            EDefects addWindow = new EDefects();
+            Defect addWindow = new Defect();
             addWindow.Closed += AddWindow_Closed;
             addWindow.ShowDialog();
         }
 
         private void BContainer(object sender, RoutedEventArgs e)
         {
-            var selectedOrder = OGrid.SelectedItem as Database.Orders;
+            var selectedOrder = OGrid.SelectedItem as Database.MDLS.Orders;
             if (selectedOrder == null)
             {
                 MessageBox.Show("Выберите строку!", "Severstal Infocom");
@@ -171,7 +172,7 @@ namespace PRGRM.WNDW
 
         private void BAttestation(object sender, RoutedEventArgs e)
         {
-            var selectedOrder = OGrid.SelectedItem as Database.Orders;
+            var selectedOrder = OGrid.SelectedItem as Database.MDLS.Orders;
             if (selectedOrder == null)
             {
                 MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);

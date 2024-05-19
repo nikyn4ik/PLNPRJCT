@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Database;
+using Database.MDLS;
 
 namespace PRGRM.WNDW
 {
@@ -18,19 +19,20 @@ namespace PRGRM.WNDW
         }
         private void LoadShipmentsData()
         {
-            //var shipments = (from shipment in _dbContext.Shipment
-            //                 join order in _dbContext.Orders on shipment.IdOrder equals order.IdOrder
-            //                // join storage in _dbContext.Storage on order.IdStorage equals storage.IdStorage
-            //                 select new
-            //                 {
-            //                     IdOrder = order.IdOrder,
-            //                     IdShipment = shipment.IdShipment,
-            //                     DTShipments = shipment.DTShipments,
-            //                     ShipmentTotalAmountTons = shipment.ShipmentTotalAmountTons
-            //                     //StorageName = storage.Name
-            //                 }).ToList();
+            var shipmentData = (from shipment in _dbContext.Shipment
+                               join order in _dbContext.Orders on shipment.IdOrder equals order.IdOrder
+                               join storage in _dbContext.Storage on order.IdStorage equals storage.IdStorage
+                               select new Database.MDLS.Shipment
+                               {
+                                   IdOrder = order.IdOrder,
+                                   IdShipment = shipment.IdShipment,
+                                   DTShipments = shipment.DTShipments,
+                                   IdTransport = shipment.IdTransport,
+                                   ShipmentTotalAmountTons = shipment.ShipmentTotalAmountTons,
+                                   StorageName = storage.Name
+                               }).ToList();
 
-            ShipmentGrid.ItemsSource = GetShipmentsData();
+            ShipmentGrid.ItemsSource = shipmentData;
         }
         public List<Database.MDLS.Shipment> GetShipmentsData()
         {
@@ -62,7 +64,7 @@ namespace PRGRM.WNDW
                 return;
             }
 
-            var shipmentData = new Database.Delivery { IdOrder = idOrder };
+            var shipmentData = new Database.MDLS.Delivery { IdOrder = idOrder };
 
             _dbContext.Delivery.Add(shipmentData);
             _dbContext.SaveChanges();
@@ -132,42 +134,5 @@ namespace PRGRM.WNDW
 
         }
 
-        //private void ShipmentGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //        if (ShipmentGrid.SelectedItem is Database.MDLS.Shipment selectedShipment)
-        //        {
-        //            var order = _dbContext.Orders.FirstOrDefault(o => o.IdOrder == selectedShipment.IdOrder);
-
-        //            if (order != null)
-        //            {
-
-        //                var storageName = order.Storage?.Name;
-
-        //                if (!string.IsNullOrEmpty(storageName))
-        //                {
-        //                    var column = ShipmentGrid.Columns.FirstOrDefault(col => col.Header.ToString() == "Склад");
-        //                    if (column != null)
-        //                    {
-        //                        var index = ShipmentGrid.Columns.IndexOf(column);
-        //                        ShipmentGrid.CurrentCell = new DataGridCellInfo(ShipmentGrid.SelectedItem, column);
-        //                        ShipmentGrid.BeginEdit();
-        //                        ShipmentGrid.CurrentColumn = ShipmentGrid.Columns[index];
-        //                        ShipmentGrid.CommitEdit(DataGridEditingUnit.Cell, true);
-
-        //                        foreach (var cell in ShipmentGrid.SelectedCells)
-        //                        {
-        //                            var dataGridColumn = cell.Column as DataGridColumn;
-        //                            if (dataGridColumn.Header.ToString() == "Склад")
-        //                            {
-        //                                var textBlock = cell.Column.GetCellContent(cell.Item) as TextBlock;
-        //                                textBlock.Text = storageName;
-        //                                break;
-        //                            }
-        //                        }
-        //                    }
-        //                }
-        //            }
-            //    }
-            //}
     }
 }

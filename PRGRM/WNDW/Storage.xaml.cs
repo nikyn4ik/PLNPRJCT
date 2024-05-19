@@ -1,6 +1,7 @@
 ﻿using Database;
 using Microsoft.EntityFrameworkCore;
 using PRGRM.ADD;
+using Database.MDLS;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,7 +21,7 @@ namespace PRGRM.WNDW
         {
             StorageGrid.ItemsSource = _dbContext.Storage.Include(s => s.Company).ToList();
         }
-        public List<Database.Storage> GetStoragesData()
+        public List<Database.MDLS.Storage> GetStoragesData()
         {
             return _dbContext.Storage.ToList();
         }
@@ -37,7 +38,7 @@ namespace PRGRM.WNDW
 
         private void BDelete(object sender, RoutedEventArgs e)
         {
-            var selectedStorage = StorageGrid.SelectedItem as Database.Storage;
+            var selectedStorage = StorageGrid.SelectedItem as Database.MDLS.Storage;
             if (selectedStorage == null)
             {
                 MessageBox.Show("Выберите строку!", "Severstal Infocom");

@@ -147,7 +147,7 @@
     FontSize="20"
     Foreground="#FFFFFF" BorderBrush="#FF0000" BorderThickness="2" Grid.ColumnSpan="2" />
         <Button
-    Click="BDefects"
+    Click="BDefect"
     Content="Брак"
     Grid.Row="2"
     Grid.Column="1"

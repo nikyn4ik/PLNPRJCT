@@ -1,8 +1,8 @@
-﻿using Database.MDLS;
+﻿using Database;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database
+namespace Database.MDLS
 {
     public class Orders
     {
@@ -15,7 +15,6 @@ namespace Database
         public Payer Payer { get; set; }
         public int? IdConsignee { get; set; }
         public Consignee Consignee { get; set; }
-        public DateTime? DTDelivery { get; set; }
         public DateTime DTReceived { get; set; }
         public DateTime? DTAdoption { get; set; }
         public double ThicknessMm { get; set; }

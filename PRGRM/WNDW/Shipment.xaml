@@ -48,7 +48,7 @@
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="26"
                     Foreground="White"
-                    TextAlignment="Center"><Run Language="ru-ru" Text="Отгрузка" /></TextBlock>
+                    TextAlignment="Center"><Run Text="Отгрузка" /></TextBlock>
 
             </StackPanel>
         </Border>
@@ -89,6 +89,12 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
             Header="Отгр.кол-во [тонны]" />
+                <DataGridTextColumn
+            Width="*"
+            Binding="{Binding StorageName}"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="13"
+            Header="Склад" />
             </DataGrid.Columns>
         </DataGrid>
         <TextBox

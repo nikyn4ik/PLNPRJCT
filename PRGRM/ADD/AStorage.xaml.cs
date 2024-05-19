@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using Database;
 using Database.MDLS;
 
+
 namespace PRGRM.ADD
 {
     public partial class AStorage : Window
@@ -33,10 +34,18 @@ namespace PRGRM.ADD
                     return;
                 }
 
+                if (string.IsNullOrWhiteSpace(Name.Text) ||
+                    string.IsNullOrWhiteSpace(Address.Text) ||
+                    string.IsNullOrWhiteSpace(FIOResponsible.Text))
+                {
+                    MessageBox.Show("Введите значения во все текстовые поля.", "Severstal Infocom", MessageBoxButton.OK);
+                    return;
+                }
+
                 DateTime dateAddStorage;
                 if (!DateTime.TryParse(DatePicker.Text, out dateAddStorage))
                 {
-                    MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Некорректная дата", "Severstal Infocom", MessageBoxButton.OK);
                     return;
                 }
 

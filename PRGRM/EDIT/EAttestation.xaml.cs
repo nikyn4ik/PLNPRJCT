@@ -1,6 +1,7 @@
 ﻿using Database;
 using System.Windows;
 using System.Windows.Controls;
+using Database.MDLS;
 
 namespace PRGRM.EDIT
 {
@@ -8,7 +9,7 @@ namespace PRGRM.EDIT
     {
         private readonly ApplicationContext _context;
         private readonly Orders _order;
-        public EAttestation(Database.Orders selectedOrder)
+        public EAttestation(Database.MDLS.Orders selectedOrder)
         {
             InitializeComponent();
             _context = new ApplicationContext();
@@ -37,27 +38,24 @@ namespace PRGRM.EDIT
         {
             if (DatePicker.SelectedDate < DateTime.Today)
             {
-                MessageBox.Show("Дата меньше текущей", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("", "Severstal Infocom", MessageBoxButton.OK);
                 return;
             }
-
-            if (!string.IsNullOrEmpty(StandardPerMark.Text) &&
-                !string.IsNullOrEmpty(Units.Text) &&
-                !string.IsNullOrEmpty(ProductStandard.Text) &&
-                DatePicker.SelectedDate != null)
+            if (string.IsNullOrEmpty(StandardPerMark.Text) ||
+                string.IsNullOrEmpty(Units.Text) ||
+                string.IsNullOrEmpty(ProductStandard.Text) ||
+                DatePicker.SelectedDate == null)
             {
-                var certificate = _context.Certificate.FirstOrDefault(c => c.StandardPerMark == StandardPerMark.Text);
-                if (certificate != null)
-                {
-                    _order.IdQuaCertificate = certificate.IdQuaCertificate;
-                    _context.SaveChanges();
-                    MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-                    Close();
-                }
+                MessageBox.Show("Введите значения во все поля", "Severstal Infocom", MessageBoxButton.OK);
+                return;
             }
-            else
+            var certificate = _context.Certificate.FirstOrDefault(c => c.StandardPerMark == StandardPerMark.Text);
+            if (certificate != null)
             {
-                MessageBox.Show("Введите значения", "Severstal Infocom", MessageBoxButton.OK);
+                _order.IdQuaCertificate = certificate.IdQuaCertificate;
+                _context.SaveChanges();
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                Close();
             }
         }
 

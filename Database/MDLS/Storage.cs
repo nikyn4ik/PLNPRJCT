@@ -1,8 +1,7 @@
-﻿using Database.MDLS;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Database
+namespace Database.MDLS
 {
     public class Storage
     {

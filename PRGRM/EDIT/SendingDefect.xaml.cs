@@ -1,11 +1,5 @@
 ﻿using Database;
 using Database.MDLS;
-using PRGRM.ADD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,7 +11,7 @@ namespace PRGRM.EDIT
         private List<Orders> _orders;
         private readonly int orderId;
         private readonly string fio;
-        public SendingDefect(Database.Orders selectedOrder, string fio)
+        public SendingDefect(Orders selectedOrder, string fio)
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();

@@ -1,15 +1,16 @@
 ﻿using Database;
-using Database.MDLS;
 using Microsoft.EntityFrameworkCore;
 using System.Windows;
 using System.Windows.Controls;
+using Database.MDLS;
+using System;
 
-namespace PRGRM.ADD
+namespace PRGRM.WNDW
 {
-    public partial class EDefects : Window
+    public partial class Defect : Window
     {
         private readonly ApplicationContext _dbContext;
-        public EDefects()
+        public Defect()
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
@@ -21,7 +22,7 @@ namespace PRGRM.ADD
             var filteredData = GetOrdersData();
             DGrid.ItemsSource = filteredData;
         }
-        public List<Defects> GetOrdersData()
+        public List<Database.MDLS.Defects> GetOrdersData()
         {
             return _dbContext.Defects
                      .Include(d => d.Orders)

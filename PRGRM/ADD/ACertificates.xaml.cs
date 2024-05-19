@@ -1,4 +1,5 @@
 ﻿using Database;
+using Database.MDLS;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,7 +18,7 @@ namespace PRGRM.ADD
         {
             if (Convert.ToDateTime(DatePicker.Text) < DateTime.Today)
             {
-                MessageBox.Show("Дата меньше текущей.", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show(".", "Severstal Infocom", MessageBoxButton.OK);
                 return;
             }
 
@@ -33,7 +34,16 @@ namespace PRGRM.ADD
                 MessageBox.Show("Проверьте строку 'Максимальное значение'. Оно должно быть целым числом!", "Severstal Infocom", MessageBoxButton.OK);
                 return;
             }
-
+            
+            if (string.IsNullOrEmpty(StandardPerMark.Text) ||
+                string.IsNullOrEmpty(Manufacturer.Text) ||
+                string.IsNullOrEmpty(ProductStandard.Text) ||
+                string.IsNullOrEmpty(Units.Text) ||
+                string.IsNullOrEmpty(properties_cert.Text))
+            {
+                MessageBox.Show("Проверьте, ввели ли Вы все значения.", "Severstal Infocom", MessageBoxButton.OK);
+                return;
+            }
             var certificate = new Certificate
             {
                 StandardPerMark = StandardPerMark.Text,

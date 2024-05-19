@@ -11,7 +11,7 @@ namespace PRGRM.EDIT
         private List<Orders> _orders;
         private readonly int orderId;
         private readonly string fio;
-        public EOrder(Database.Orders selectedOrder)
+        public EOrder(Orders selectedOrder)
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
