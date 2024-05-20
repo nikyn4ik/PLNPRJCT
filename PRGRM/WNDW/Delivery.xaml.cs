@@ -146,11 +146,11 @@ namespace PRGRM.WNDW
                 doc1.Add(new Paragraph("Информация о заказе", font));
                 doc1.Add(new Paragraph($"ID: {order.IdOrder}", font));
                 doc1.Add(new Paragraph($"Date Adoption: {order.DTAdoption}", font));
-                doc1.Add(new Paragraph($"Date Received: {order.DTReceived}", font));
-                doc1.Add(new Paragraph($"Date Container: {order.DTContainer}", font));
-                doc1.Add(new Paragraph($"Date Shipments: {shipment.DTShipments}", font));
-                doc1.Add(new Paragraph($"Date Delivery: {order.DateOfDelivery}", font));
-                doc1.Add(new Paragraph($"EarlyDelivery: {order.EarlyDelivery}", font));
+                //doc1.Add(new Paragraph($"Date Received: {order.DTReceived}", font));
+                //doc1.Add(new Paragraph($"Date Container: {order.DTContainer}", font));
+                //doc1.Add(new Paragraph($"Date Shipments: {shipment.DTShipments}", font));
+                //doc1.Add(new Paragraph($"Date Delivery: {order.DateOfDelivery}", font));
+                //doc1.Add(new Paragraph($"EarlyDelivery: {order.EarlyDelivery}", font));
 
                 MessageBox.Show("PDF-документ сохранен", "Severstal Infocom");
             }

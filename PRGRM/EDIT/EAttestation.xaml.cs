@@ -13,10 +13,11 @@ namespace PRGRM.EDIT
         {
             InitializeComponent();
             _context = new ApplicationContext();
-            _order = selectedOrder;
+            _order = _context.Orders.FirstOrDefault(o => o.IdOrder == selectedOrder.IdOrder);
             DatePicker.DisplayDate = DateTime.Today;
             DatePicker.Text = DateTime.Today.ToString();
             LoadStandardMark();
+            StandardPerMark.SelectionChanged += StandardPerMarkSelectionChanged;
         }
 
         private void LoadStandardMark()
@@ -28,8 +29,14 @@ namespace PRGRM.EDIT
                     _order.WidthMm >= certificate.Min && _order.WidthMm <= certificate.Max &&
                     _order.LengthMm >= certificate.Min && _order.LengthMm <= certificate.Max)
                 {
-                    StandardPerMark.Items.Add(certificate.StandardPerMark);
-                    ProductStandard.Items.Add(certificate.ProductStandard);
+                    if (!StandardPerMark.Items.Contains(certificate.StandardPerMark))
+                    {
+                        StandardPerMark.Items.Add(certificate.StandardPerMark);
+                    }
+                    if (!ProductStandard.Items.Contains(certificate.ProductStandard))
+                    {
+                        ProductStandard.Items.Add(certificate.ProductStandard);
+                    }
                 }
             }
         }
@@ -38,7 +45,7 @@ namespace PRGRM.EDIT
         {
             if (DatePicker.SelectedDate < DateTime.Today)
             {
-                MessageBox.Show("", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Неверная дата.", "Severstal Infocom", MessageBoxButton.OK);
                 return;
             }
             if (string.IsNullOrEmpty(StandardPerMark.Text) ||
@@ -53,6 +60,7 @@ namespace PRGRM.EDIT
             if (certificate != null)
             {
                 _order.IdQuaCertificate = certificate.IdQuaCertificate;
+                _context.Orders.Update(_order);
                 _context.SaveChanges();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
                 Close();
@@ -60,7 +68,7 @@ namespace PRGRM.EDIT
         }
 
         private void StandardPerMarkSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+       {
             if (StandardPerMark.SelectedIndex > -1)
             {
                 var selectedMark = StandardPerMark.SelectedItem.ToString();
@@ -69,6 +77,8 @@ namespace PRGRM.EDIT
                 {
                     ProductStandard.SelectedItem = certificate.ProductStandard;
                     Units.Text = certificate.Units;
+                    _order.IdQuaCertificate = certificate.IdQuaCertificate;
+                    _context.SaveChanges();
                 }
             }
         }

@@ -25,7 +25,6 @@ namespace Database.MDLS
         public string? StatusOrder { get; set; }
         public string? Mark { get; set; }
         public int? IdQuaCertificate { get; set; }
-        public string? AccessStandart { get; set; }
         public int? IdStorage { get; set; }
         public Company Company { get; set; }
         public Storage Storage { get; set; }

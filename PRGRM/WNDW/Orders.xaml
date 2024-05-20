@@ -68,11 +68,11 @@
     Width="4*"
     Binding="{Binding IdOrder}"
     Header="Id" />
-                <DataGridTextColumn
-                    Width="4*"
-                    Binding="{Binding Storage.Name}"
-                    Header="Storage" />
-                <DataGridTextColumn
+                    <DataGridTextColumn
+Width="4*"
+Binding="{Binding Orders.IdQuaCertificate}"
+Header="IdQuaCertificate" />
+                    <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding Company.Name}"
                     Header="Company" />

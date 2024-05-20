@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using PRGRM.ADD;
 using PRGRM.EDIT;
 using Database.MDLS;
+using System.Linq;
+using System;
 
 namespace PRGRM.WNDW
 {
@@ -106,7 +108,6 @@ namespace PRGRM.WNDW
                         (order.IdCompany != null && order.IdCompany.ToString().Contains(searchText)) ||
                         (order.IdConsignee != null && order.IdConsignee.ToString().Contains(searchText)) ||
                         (order.IdStorage != null && order.IdStorage.ToString().Contains(searchText)) ||
-                        (order.DTDelivery != null && order.DTDelivery.ToString().Contains(searchText)) ||
                         order.DTReceived.ToString().Contains(searchText) ||
                         (order.DTAdoption != null && order.DTAdoption.ToString().Contains(searchText)) ||
                         order.ThicknessMm.ToString().Contains(searchText) ||
@@ -115,8 +116,7 @@ namespace PRGRM.WNDW
                         order.Name.Contains(searchText) ||
                         (order.StatusOrder != null && order.StatusOrder.Contains(searchText)) ||
                         (order.Mark != null && order.Mark.Contains(searchText)) ||
-                        (order.IdQuaCertificate != null && order.IdQuaCertificate.ToString().Contains(searchText)) ||
-                        (order.AccessStandart != null && order.AccessStandart.Contains(searchText))
+                        (order.IdQuaCertificate != null && order.IdQuaCertificate.ToString().Contains(searchText))
                     )
                     .ToList();
                 OGrid.ItemsSource = filteredOrders;
@@ -196,7 +196,16 @@ namespace PRGRM.WNDW
                     break;
                 }
             }
+            if (selectedOrder.IdQuaCertificate.HasValue)
+            {
+                var certificate = _dbContext.Certificate
+                    .FirstOrDefault(c => c.IdQuaCertificate == selectedOrder.IdQuaCertificate.Value);
 
+                if (certificate != null)
+                {
+                    MessageBox.Show($"StandardPerMark: {certificate.StandardPerMark}", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
             if (isCertified)
             {
                 MessageBox.Show("Заказ проходит по нормам аттестации и соответствует сертификату.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
