@@ -148,7 +148,7 @@ namespace PRGRM.WNDW
                 img.Alignment = Element.ALIGN_CENTER;
                 doc1.Add(img);
 
-                Font font = FontFactory.GetFont(FontFactory.TIMES_ROMAN, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                Font font = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
                 doc1.Add(new Paragraph("Order Information", font));
 
