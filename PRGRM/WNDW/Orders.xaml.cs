@@ -31,7 +31,6 @@ namespace PRGRM.WNDW
         public List<Database.MDLS.Orders> GetOrdersData()
         {
             var orders = _dbContext.Orders
-
                 .Include(o => o.Storage)
                 .Include(o => o.Company)
                 .ToList();
@@ -41,15 +40,23 @@ namespace PRGRM.WNDW
                 var consignee = _dbContext.Consignee.FirstOrDefault(c =>
                     c.IdConsignee == order.IdConsignee);
 
+                var storage = _dbContext.Storage.FirstOrDefault(s => s.IdStorage == order.IdStorage);
+                if (storage != null)
+                {
+                    order.Storage = storage;
+                    order.StorageName = storage.Name;
+                }
+
                 if (consignee != null)
                 {
-                    var storage = _dbContext.Storage.FirstOrDefault(s =>
+                    var consigneeStorage = _dbContext.Storage.FirstOrDefault(s =>
                         s.IdCompany == consignee.IdCompany);
 
-                    if (storage != null)
+                    if (consigneeStorage != null)
                     {
-                        order.Storage = storage;
-                        order.IdStorage = storage.IdStorage;
+                        order.Storage = consigneeStorage;
+                        order.IdStorage = consigneeStorage.IdStorage;
+                        order.StorageName = consigneeStorage.Name;
                     }
 
                     var payer = _dbContext.Payer.FirstOrDefault(p =>
@@ -65,6 +72,7 @@ namespace PRGRM.WNDW
             return orders;
         }
 
+
         private void EOrder_Closed(object sender, EventArgs e)
         {
             LoadOrders();
@@ -78,7 +86,11 @@ namespace PRGRM.WNDW
                 MessageBox.Show("Выберите строку!", "Severstal Infocom");
                 return;
             }
-
+            if (!selectedOrder.IdQuaCertificate.HasValue || !selectedOrder.DTAttestation.HasValue)
+            {
+                MessageBox.Show("Проверьте, заполнили ли Вы данные.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             if (selectedOrder.StatusOrder == "Заказ в браке")
             {
                 MessageBox.Show("Невозможно редактировать заказ, находящийся в браке.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -142,7 +154,11 @@ namespace PRGRM.WNDW
                 MessageBox.Show("Выберите строку!", "Severstal Infocom");
                 return;
             }
-
+            if (!selectedOrder.IdQuaCertificate.HasValue || !selectedOrder.DTAttestation.HasValue)
+            {
+                MessageBox.Show("Проверьте, заполнили ли Вы данные.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
             var idOrder = selectedOrder.IdOrder;
 
             var isDefective = _dbContext.Defects.Any(d => d.IdOrder == idOrder);

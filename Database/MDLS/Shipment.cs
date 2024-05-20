@@ -12,6 +12,7 @@ namespace Database.MDLS
         public DateTime? DTShipments { get; set; }
         public int? ShipmentTotalAmountTons { get; set; }
         public int? IdTransport { get; set; }
+
         [NotMapped]
         public string StorageName { get; set; }
     }

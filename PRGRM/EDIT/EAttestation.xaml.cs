@@ -2,6 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using Database.MDLS;
+using System;
+using System.Linq;
 
 namespace PRGRM.EDIT
 {
@@ -60,6 +62,7 @@ namespace PRGRM.EDIT
             if (certificate != null)
             {
                 _order.IdQuaCertificate = certificate.IdQuaCertificate;
+                _order.DTAttestation = DatePicker.SelectedDate.Value;
                 _context.Orders.Update(_order);
                 _context.SaveChanges();
                 MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>IMG\severstal_logo.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="IMG\severstal_logo.ico" />
+    <Content Include="icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -40,7 +40,6 @@
 
   <ItemGroup>
     <Resource Include="IMG\newbrand-bg2.jpg" />
-    <Resource Include="IMG\severstal_logo.ico" />
   </ItemGroup>
 
 </Project>

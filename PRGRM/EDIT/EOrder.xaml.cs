@@ -16,6 +16,7 @@ namespace PRGRM.EDIT
             InitializeComponent();
             _dbContext = new ApplicationContext();
             orderId = selectedOrder.IdOrder;
+            LoadStorageData();
             InitializeOrderData();
         }
         private void InitializeOrderData()
@@ -38,6 +39,18 @@ namespace PRGRM.EDIT
 
             DatePicker.DisplayDate = DateTime.Today;
             DatePicker.Text = DateTime.Today.ToString();
+            var storage = _dbContext.Storage.FirstOrDefault(s => s.IdStorage == order.IdStorage);
+            if (storage != null)
+            {
+                Storage.SelectedValue = storage.IdStorage;
+            }
+        }
+        private void LoadStorageData()
+        {
+            var storages = _dbContext.Storage.ToList();
+            Storage.ItemsSource = storages;
+            Storage.DisplayMemberPath = "Name";
+            Storage.SelectedValuePath = "IdStorage";
         }
         private void BSaved(object sender, RoutedEventArgs e)
         {
@@ -55,12 +68,18 @@ namespace PRGRM.EDIT
                     MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK);
                     return;
                 }
-
+                var selectedStorage = Storage.SelectedItem as Storage;
+                if (selectedStorage == null)
+                {
+                    MessageBox.Show("Выберите склад.", "Severstal Infocom", MessageBoxButton.OK);
+                    return;
+                }
                 var selectedCompany = Company.Text;
 
                 var orderToUpdate = _dbContext.Orders.FirstOrDefault(o => o.IdOrder == orderId);
                 if (orderToUpdate != null)
                 {
+                    orderToUpdate.IdStorage = selectedStorage.IdStorage;
                     orderToUpdate.DTAdoption = Adoption;
                     orderToUpdate.StatusOrder = "Заказ на выполнении";
 

@@ -141,7 +141,7 @@
                     AllowDrop="True"
                     Background="#FFFFFF "
                     Click="B_Done"
-                    Content="Документация"
+                    Content="Выполненные заказы"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="18"
                     Foreground="#002F6C"/>

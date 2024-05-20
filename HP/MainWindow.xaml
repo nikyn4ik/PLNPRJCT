@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HP"
-        Title="Утилита для добавления пользователей в систему"
+        Title="Добавление пользователей в систему"
         Height="250" Width="450"
         Foreground="#FFFFFF"
         ResizeMode="NoResize"

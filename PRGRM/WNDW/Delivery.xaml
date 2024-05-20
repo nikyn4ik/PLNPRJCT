@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PRGRM.WNDW"
             Title="Severstal Infocom"
     Width="1200"
@@ -83,7 +84,7 @@
                     Binding="{Binding ProductName}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
-                    Header="Продукт"/>
+                    Header="Наименование"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding DateOfDelivery}"
@@ -108,18 +109,6 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="48" Grid.RowSpan="2" />
-        <Button
-            Click="BExcel"
-            Content="Excel"
-            Grid.Row="2"
-            Height="48"
-            Margin="290,11,0,0"
-            VerticalAlignment="Top"
-            Background="#FF0000"
-            BorderBrush="#002F6C" BorderThickness="2"
-            FontFamily="Microsoft JhengHei UI Light"
-            FontSize="20"
-            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
 
         <Button
             Click="BEdit"

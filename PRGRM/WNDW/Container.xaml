@@ -118,14 +118,14 @@
             Grid.Row="2"
             Width="220"
             Height="48"
-            Margin="0,10,0,0"
-            HorizontalAlignment="Center"
+            Margin="290,10,0,0"
+            HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Background="#002F6C"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" BorderBrush="#FF0000" 
-            BorderThickness="2" Grid.Column="1" />
+            BorderThickness="2" Grid.Column="1" Grid.ColumnSpan="2" />
         <Button
             Grid.Row="1"
             Width="220"
@@ -138,5 +138,21 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Height="51" VerticalAlignment="Bottom" />
+        <Button
+            Grid.Row="2"
+            Height="48"
+            Margin="235,10,0,0"
+            VerticalAlignment="Top"
+            Background="#FF0000"
+            Click="outpdf"
+            Content="PDF"
+            BorderBrush="#002F6C"
+            BorderThickness="2"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF"
+            Width="220"
+            HorizontalAlignment="Left"
+    Grid.ColumnSpan="2" />
     </Grid>
 </Window>

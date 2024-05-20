@@ -16,7 +16,8 @@ namespace Database.MDLS
         public int? IdConsignee { get; set; }
         public Consignee Consignee { get; set; }
         public DateTime DTReceived { get; set; }
-        public DateTime? DTAdoption { get; set; }
+        public  DateTime? DTAdoption { get; set; }
+        public DateTime? DTAttestation  { get; set; }
         public double ThicknessMm { get; set; }
         public double WidthMm { get; set; }
         public double LengthMm { get; set; }
@@ -28,5 +29,7 @@ namespace Database.MDLS
         public int? IdStorage { get; set; }
         public Company Company { get; set; }
         public Storage Storage { get; set; }
+        [NotMapped]
+        public string StorageName { get; set; }
     }
 }

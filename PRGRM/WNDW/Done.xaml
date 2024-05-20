@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PRGRM.WNDW"
             Title="Severstal Infocom"
     Width="1200"
@@ -72,48 +73,48 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding id_order}"
+                    Binding="{Binding IdOrder}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Id"
+                    Header="Id заказ"
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding name_product}"
+                    Binding="{Binding Name}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Заказ"
+                    Header="Наименование"
                     IsReadOnly="True" />
                 <DataGridTextColumn
+    Width="*"
+    Binding="{Binding PayerFIO}"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="12"
+    Header="Заказчик" />
+                <DataGridTextColumn
+    Width="*"
+    Binding="{Binding ConsigneeFIO}"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="12"
+    Header="Грузоперевозчик" />
+                <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding date_of_delivery}"
+                    Binding="{Binding DateOfDelivery}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="12"
-                    Header="Дата доставки " />
+                    Header="Дата доставки" />
             </DataGrid.Columns>
         </DataGrid>
         <Button
             Click="BPDF"
             Content="PDF"
             Grid.Row="2"
-            Margin="235,11,0,17"
+            Margin="0,10,0,0"
             Background="#FF0000"
             BorderBrush="#002F6C" BorderThickness="2"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.ColumnSpan="2" Height="48" Grid.RowSpan="2"/>
-        <Button
-    Click="BExcel"
-    Content="Excel"
-    Grid.Row="2"
-    Height="48"
-    Margin="290,11,0,0"
-    VerticalAlignment="Top"
-    Background="#FF0000"
-    BorderBrush="#002F6C" BorderThickness="2"
-    FontFamily="Microsoft JhengHei UI Light"
-    FontSize="20"
-    Foreground="#FFFFFF" Width="220" HorizontalAlignment="Left" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            Foreground="#FFFFFF" Width="220" HorizontalAlignment="Center" Height="48" Grid.Column="1"/>
 
         <TextBox
             TextChanged="Search"

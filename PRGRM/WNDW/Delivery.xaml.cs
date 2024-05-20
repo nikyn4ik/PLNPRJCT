@@ -232,10 +232,6 @@ namespace PRGRM.WNDW
                 doc1.Close();
             }
         }
-        private void BExcel(object sender, RoutedEventArgs e)
-        {
-
-        }
 
     }
 }

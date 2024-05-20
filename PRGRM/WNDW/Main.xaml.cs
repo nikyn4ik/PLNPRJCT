@@ -64,13 +64,6 @@ namespace PRGRM.WNDW
 
         private void B_Certificates(object sender, RoutedEventArgs e) => OpenPage(new Certificates());
         private void BContainer(object sender, RoutedEventArgs e) => OpenPage(new Container());
-
-        //    private void Button_RabMestoMastera(object sender, RoutedEventArgs e)
-        //{
-        //    MessageBox.Show("Функционал недоступен для десктоп", "Sevestal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
-        //}
-
-
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             if (MessageBox.Show("Вы уверены, что хотите выйти?", "Sevestal Infocom", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.No)

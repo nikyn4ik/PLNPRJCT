@@ -49,7 +49,7 @@ namespace PRGRM.ADD
                 StandardPerMark = StandardPerMark.Text,
                 Manufacturer = Manufacturer.Text,
                 ProductStandard = ProductStandard.Text,
-                DateAddCertificate = Convert.ToDateTime(DatePicker.Text),
+                DateAddCertificate = Convert.ToDateTime(DatePicker.Text), 
                 Min = min,
                 Max = max,
                 Units = Units.Text,
