@@ -112,7 +112,14 @@ namespace PRGRM.WNDW
                 MessageBox.Show("Заказ не найден.", "Ошибка");
                 return;
             }
-            var shipment = _dbContext.Shipment.FirstOrDefault(s => s.IdOrder == idOrder);
+            var payer = _dbContext.Payer.FirstOrDefault(p => p.IdPayer == order.IdPayer);
+            var company = _dbContext.Company.FirstOrDefault(c => c.IdCompany == order.IdCompany);
+            var consignee = _dbContext.Consignee.FirstOrDefault(c => c.IdConsignee == order.IdConsignee);
+            var storage = _dbContext.Storage.FirstOrDefault(s => s.IdStorage == order.IdStorage);
+            var container = _dbContext.Container.FirstOrDefault(c => c.IdOrder == order.IdOrder);
+            var shipment = _dbContext.Shipment.FirstOrDefault(s => s.IdOrder == order.IdOrder);
+            var transport = _dbContext.Transport.FirstOrDefault(t => t.IdTransport == shipment.IdTransport);
+            var delivery = _dbContext.Delivery.FirstOrDefault(d => d.IdOrder == order.IdOrder);
 
             string projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
             string documentationFolder = Path.Combine(projectRoot, "Documentation");
@@ -143,16 +150,78 @@ namespace PRGRM.WNDW
 
                 Font font = FontFactory.GetFont(FontFactory.TIMES_ROMAN, BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 
-                doc1.Add(new Paragraph("Информация о заказе", font));
-                doc1.Add(new Paragraph($"ID: {order.IdOrder}", font));
-                doc1.Add(new Paragraph($"Date Adoption: {order.DTAdoption}", font));
-                //doc1.Add(new Paragraph($"Date Received: {order.DTReceived}", font));
-                //doc1.Add(new Paragraph($"Date Container: {order.DTContainer}", font));
-                //doc1.Add(new Paragraph($"Date Shipments: {shipment.DTShipments}", font));
-                //doc1.Add(new Paragraph($"Date Delivery: {order.DateOfDelivery}", font));
-                //doc1.Add(new Paragraph($"EarlyDelivery: {order.EarlyDelivery}", font));
+                doc1.Add(new Paragraph("Order Information", font));
 
-                MessageBox.Show("PDF-документ сохранен", "Severstal Infocom");
+                doc1.Add(new Paragraph($"Order ID: {order.IdOrder}", font));
+                doc1.Add(new Paragraph($"System C3: {order.SystC3}", font));
+                doc1.Add(new Paragraph($"Log C3: {order.LogC3}", font));
+                doc1.Add(new Paragraph($"Received Date: {order.DTReceived}", font));
+                doc1.Add(new Paragraph($"Adoption Date: {order.DTAdoption}", font));
+                doc1.Add(new Paragraph($"Thickness (mm): {order.ThicknessMm}", font));
+                doc1.Add(new Paragraph($"Width (mm): {order.WidthMm}", font));
+                doc1.Add(new Paragraph($"Length (mm): {order.LengthMm}", font));
+                doc1.Add(new Paragraph($"Name: {order.Name}", font));
+                doc1.Add(new Paragraph($"Mark: {order.Mark}", font));
+
+                if (payer != null)
+                {
+                    doc1.Add(new Paragraph("Payer Information", font));
+                    doc1.Add(new Paragraph($"Name: {payer.FIO}", font));
+                    doc1.Add(new Paragraph($"Phone: {payer.phone}", font));
+                }
+
+                if (company != null)
+                {
+                    doc1.Add(new Paragraph("Company Information", font));
+                    doc1.Add(new Paragraph($"Name: {company.Name}", font));
+                }
+
+                if (consignee != null)
+                {
+                    doc1.Add(new Paragraph("Consignee Information", font));
+                    doc1.Add(new Paragraph($"Name: {consignee.FIO}", font));
+                    doc1.Add(new Paragraph($"Phone: {consignee.phone}", font));
+                    doc1.Add(new Paragraph($"Email: {consignee.email}", font));
+                }
+
+                if (storage != null)
+                {
+                    doc1.Add(new Paragraph("Storage Information", font));
+                    doc1.Add(new Paragraph($"Name: {storage.Name}", font));
+                    doc1.Add(new Paragraph($"Address: {storage.Address}", font));
+                    doc1.Add(new Paragraph($"Phone: {storage.Phone}", font));
+                    doc1.Add(new Paragraph($"Responsible Person: {storage.FIOResponsible}", font));
+                }
+
+                if (container != null)
+                {
+                    doc1.Add(new Paragraph("Container Information", font));
+                    doc1.Add(new Paragraph($"Model Type: {container.TypeModel}", font));
+                    doc1.Add(new Paragraph($"Container Mark: {container.MarkContainer}", font));
+                    doc1.Add(new Paragraph($"Container Date: {container.DTContainer}", font));
+                }
+
+                if (shipment != null)
+                {
+                    doc1.Add(new Paragraph("Shipment Information", font));
+                    doc1.Add(new Paragraph($"Total Shipment Amount (tons): {shipment.ShipmentTotalAmountTons}", font));
+                    doc1.Add(new Paragraph($"Shipment Date: {shipment.DTShipments}", font));
+                }
+
+                if (transport != null)
+                {
+                    doc1.Add(new Paragraph("Transport Information", font));
+                    doc1.Add(new Paragraph($"Name: {transport.Name}", font));
+                    doc1.Add(new Paragraph($"Registration Number: {transport.VehicleRegistration}", font));
+                }
+
+                if (delivery != null)
+                {
+                    doc1.Add(new Paragraph("Delivery Information", font));
+                    doc1.Add(new Paragraph($"Early Delivery: {delivery.EarlyDelivery}", font));
+                    doc1.Add(new Paragraph($"Delivery Date: {delivery.DateOfDelivery}", font));
+                }
+                MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom");
             }
             catch (Exception ex)
             {
