@@ -71,7 +71,7 @@
             Binding="{Binding IdOrder}"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="13"
-            Header="Заказ" />
+            Header="ID" />
                 <DataGridTextColumn
             Width="*"
             Binding="{Binding IdShipment}"

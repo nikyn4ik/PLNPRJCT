@@ -68,9 +68,8 @@
                 <DataGridTextColumn
     Width="4*"
     Binding="{Binding IdOrder}"
-    Header="Id" />
-                   
-                <DataGridTextColumn
+    Header="ID" />
+                    <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding SystC3}"
                     Header="СИСТ №СЗ" />

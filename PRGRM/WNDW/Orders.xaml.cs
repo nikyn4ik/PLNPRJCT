@@ -24,7 +24,6 @@ namespace PRGRM.WNDW
         }
         private void LoadOrders()
         {
-            OGrid.ItemsSource = null;
             OGrid.ItemsSource = GetOrdersData();
         }
 

@@ -147,79 +147,103 @@ namespace PRGRM.WNDW
                 img.Alignment = Element.ALIGN_CENTER;
                 doc1.Add(img);
 
-                Font font = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+                Font titleFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 16);
+                Font regularFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 12);
 
-                doc1.Add(new Paragraph("Order Information", font));
-
-                doc1.Add(new Paragraph($"Order ID: {order.IdOrder}", font));
-                doc1.Add(new Paragraph($"System C3: {order.SystC3}", font));
-                doc1.Add(new Paragraph($"Log C3: {order.LogC3}", font));
-                doc1.Add(new Paragraph($"Received Date: {order.DTReceived}", font));
-                doc1.Add(new Paragraph($"Adoption Date: {order.DTAdoption}", font));
-                doc1.Add(new Paragraph($"Thickness (mm): {order.ThicknessMm}", font));
-                doc1.Add(new Paragraph($"Width (mm): {order.WidthMm}", font));
-                doc1.Add(new Paragraph($"Length (mm): {order.LengthMm}", font));
-                doc1.Add(new Paragraph($"Name: {order.Name}", font));
-                doc1.Add(new Paragraph($"Mark: {order.Mark}", font));
-
+                doc1.Add(new Paragraph("Информация о заказе", titleFont) { Alignment = Element.ALIGN_CENTER });
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($"Cист С3: {order.SystC3}", regularFont));
+                doc1.Add(new Paragraph($"Лог С3: {order.LogC3}", regularFont));
+                doc1.Add(new Paragraph($"Log C3: {order.LogC3}", regularFont));
+                doc1.Add(new Paragraph($"Дата получения: {order.DTReceived}", regularFont));
+                doc1.Add(new Paragraph($"Дата принятия: {order.DTAdoption}", regularFont));
+                doc1.Add(new Paragraph($"Толщина (мм): {order.ThicknessMm}", regularFont));
+                doc1.Add(new Paragraph($"Ширина (мм): {order.WidthMm}", regularFont));
+                doc1.Add(new Paragraph($"Длина (мм): {order.LengthMm}", regularFont));
+                doc1.Add(new Paragraph($"Наименование: {order.Name}", regularFont));
+                doc1.Add(new Paragraph($"Марка: {order.Mark}", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (payer != null)
                 {
-                    doc1.Add(new Paragraph("Payer Information", font));
-                    doc1.Add(new Paragraph($"Name: {payer.FIO}", font));
-                    doc1.Add(new Paragraph($"Phone: {payer.phone}", font));
+                    doc1.Add(new Paragraph("Информация о заказчике", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"ФИО: {payer.FIO}", regularFont));
+                    doc1.Add(new Paragraph($"Телефон: {payer.phone}", regularFont));
                 }
-
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (company != null)
                 {
-                    doc1.Add(new Paragraph("Company Information", font));
-                    doc1.Add(new Paragraph($"Name: {company.Name}", font));
+                    doc1.Add(new Paragraph("Информация о компании", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"Наименование: {company.Name}", regularFont));
                 }
-
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (consignee != null)
                 {
-                    doc1.Add(new Paragraph("Consignee Information", font));
-                    doc1.Add(new Paragraph($"Name: {consignee.FIO}", font));
-                    doc1.Add(new Paragraph($"Phone: {consignee.phone}", font));
-                    doc1.Add(new Paragraph($"Email: {consignee.email}", font));
+                    doc1.Add(new Paragraph("Информация о грузоперевозчике", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"ФИО: {consignee.FIO}", regularFont));
+                    doc1.Add(new Paragraph($"Телефон: {consignee.phone}", regularFont));
+                    doc1.Add(new Paragraph($"Email: {consignee.email}", regularFont));
                 }
-
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (storage != null)
                 {
-                    doc1.Add(new Paragraph("Storage Information", font));
-                    doc1.Add(new Paragraph($"Name: {storage.Name}", font));
-                    doc1.Add(new Paragraph($"Address: {storage.Address}", font));
-                    doc1.Add(new Paragraph($"Phone: {storage.Phone}", font));
-                    doc1.Add(new Paragraph($"Responsible Person: {storage.FIOResponsible}", font));
+                    doc1.Add(new Paragraph("Информация об складе", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"Наименование: {storage.Name}", regularFont));
+                    doc1.Add(new Paragraph($"Адрес: {storage.Address}", regularFont));
+                    doc1.Add(new Paragraph($"Телефон: {storage.Phone}", regularFont));
+                    doc1.Add(new Paragraph($"Ответственное лицо: {storage.FIOResponsible}", regularFont));
                 }
-
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (container != null)
                 {
-                    doc1.Add(new Paragraph("Container Information", font));
-                    doc1.Add(new Paragraph($"Model Type: {container.TypeModel}", font));
-                    doc1.Add(new Paragraph($"Container Mark: {container.MarkContainer}", font));
-                    doc1.Add(new Paragraph($"Container Date: {container.DTContainer}", font));
+                    doc1.Add(new Paragraph("Информация о сборке", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"Тип модели: {container.TypeModel}", regularFont));
+                    doc1.Add(new Paragraph($"Контейнер: {container.MarkContainer}", regularFont));
+                    doc1.Add(new Paragraph($"Дата сборки: {container.DTContainer}", regularFont));
                 }
-
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (shipment != null)
                 {
-                    doc1.Add(new Paragraph("Shipment Information", font));
-                    doc1.Add(new Paragraph($"Total Shipment Amount (tons): {shipment.ShipmentTotalAmountTons}", font));
-                    doc1.Add(new Paragraph($"Shipment Date: {shipment.DTShipments}", font));
+                    doc1.Add(new Paragraph("Информация об отгрузке", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"Отгруженно (тонн): {shipment.ShipmentTotalAmountTons}", regularFont));
+                    doc1.Add(new Paragraph($"Дата отгрузки: {shipment.DTShipments}", regularFont));
                 }
-
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (transport != null)
                 {
-                    doc1.Add(new Paragraph("Transport Information", font));
-                    doc1.Add(new Paragraph($"Name: {transport.Name}", font));
-                    doc1.Add(new Paragraph($"Registration Number: {transport.VehicleRegistration}", font));
+                    doc1.Add(new Paragraph("Информация о транспорте", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"Транспорт: {transport.Name}", regularFont));
+                    doc1.Add(new Paragraph($"Номер: {transport.VehicleRegistration}", regularFont));
                 }
-
+                doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (delivery != null)
                 {
-                    doc1.Add(new Paragraph("Delivery Information", font));
-                    doc1.Add(new Paragraph($"Early Delivery: {delivery.EarlyDelivery}", font));
-                    doc1.Add(new Paragraph($"Delivery Date: {delivery.DateOfDelivery}", font));
+                    doc1.Add(new Paragraph("Информация о доставке", titleFont) { Alignment = Element.ALIGN_CENTER });
+                    doc1.Add(new Paragraph($" " + " ", regularFont));
+                    doc1.Add(new Paragraph($"Ранняя доставка: {delivery.EarlyDelivery}", regularFont));
+                    doc1.Add(new Paragraph($"Дата доставки: {delivery.DateOfDelivery}", regularFont));
                 }
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($"Ф.И.О. получателя (разборчиво)      __________________        __________________", regularFont));
+                doc1.Add(new Paragraph($" " + "                                                                          Ф.И.О                                подпись                      ", regularFont));
+
                 MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom");
             }
             catch (Exception ex)

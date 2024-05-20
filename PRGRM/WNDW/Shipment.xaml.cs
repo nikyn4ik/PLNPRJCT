@@ -5,6 +5,8 @@ using Database;
 using Database.MDLS;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.IO;
+using Microsoft.Identity.Client.Extensions.Msal;
 
 namespace PRGRM.WNDW
 {
@@ -133,7 +135,88 @@ namespace PRGRM.WNDW
 
         private void BPDF(object sender, RoutedEventArgs e)
         {
+            if (ShipmentGrid.SelectedItem is Database.MDLS.Shipment selectedShipment)
+            {
+                PDFOUT(selectedShipment.IdOrder);
+            }
+            else
+            {
+                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+            }
+        }
+        private void PDFOUT(int idOrder)
+        {
+            var order = _dbContext.Orders
+        .FirstOrDefault(o => o.IdOrder == idOrder);
 
+            if (order == null)
+            {
+                MessageBox.Show("Заказ не найден.", "Ошибка");
+                return;
+            }
+
+            var storage = _dbContext.Storage.FirstOrDefault(s => s.IdStorage == order.IdStorage);
+            var shipment = _dbContext.Shipment.FirstOrDefault(s => s.IdOrder == order.IdOrder);
+            var transport = _dbContext.Transport.FirstOrDefault(t => t.IdTransport == shipment.IdTransport);
+
+            string projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            string documentationFolder = Path.Combine(projectRoot, "Documentation");
+
+            if (!Directory.Exists(documentationFolder))
+            {
+                Directory.CreateDirectory(documentationFolder);
+            }
+
+            string fileName = $"ОтгрузкаЗаказ № {order.IdOrder}.pdf";
+            // string imgPath = Path.Combine(directory, "IMG", "SeverstalPDF.jpg");
+            string imgPath = @"C:\Users\nikab\source\repos\PLNPRJCT\PRGRM\IMG\SeverstalPDF.jpg";
+            string pdfPath = Path.Combine(documentationFolder, fileName);
+
+            Document doc1 = new Document(PageSize.A4);
+
+            try
+            {
+                PdfWriter.GetInstance(doc1, new FileStream(pdfPath, FileMode.Create));
+                doc1.Open();
+
+                var img = iTextSharp.text.Image.GetInstance(imgPath);
+                img.ScaleToFit(300f, 280f);
+                img.SpacingBefore = 10f;
+                img.SpacingAfter = 1f;
+                img.Alignment = Element.ALIGN_CENTER;
+                doc1.Add(img);
+
+                Font titleFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 16);
+                Font regularFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 12);
+
+                doc1.Add(new Paragraph("Информация об отгрузке", titleFont) { Alignment = Element.ALIGN_CENTER });
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($"ID заказа: {order.IdOrder}", regularFont));
+                doc1.Add(new Paragraph($"Cист С3: {order.SystC3}", regularFont));
+                doc1.Add(new Paragraph($"Лог С3: {order.LogC3}", regularFont));
+                doc1.Add(new Paragraph($"Наименование: {order.Name}", regularFont));
+                doc1.Add(new Paragraph($"Наименование склада: {storage.Name}", regularFont));
+                doc1.Add(new Paragraph($"Адрес: {storage.Address}", regularFont));
+                doc1.Add(new Paragraph($"Телефон: {storage.Phone}", regularFont));
+                doc1.Add(new Paragraph($"Ответственное лицо: {storage.FIOResponsible}", regularFont));
+                doc1.Add(new Paragraph($"Транспорт: {transport.Name}", regularFont));
+                doc1.Add(new Paragraph($"Номер: {transport.VehicleRegistration}", regularFont));
+                doc1.Add(new Paragraph($"Отгруженно (тонн): {shipment.ShipmentTotalAmountTons}", regularFont));
+                doc1.Add(new Paragraph($"Дата отгрузки: {shipment.DTShipments}", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($"Ф.И.О. получателя (разборчиво)      __________________        __________________", regularFont));
+                doc1.Add(new Paragraph($" " + "                                                                          Ф.И.О                                подпись                      ", regularFont));
+
+                MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom");
+            }
+            finally
+            {
+                doc1.Close();
+            }
         }
 
     }

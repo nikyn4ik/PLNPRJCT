@@ -3,6 +3,8 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.Windows;
 using System.Windows.Controls;
+using System.IO;
+using System.Diagnostics;
 
 namespace PRGRM.WNDW
 {
@@ -42,7 +44,38 @@ namespace PRGRM.WNDW
 
         private void BPDF(object sender, RoutedEventArgs e)
         {
+            var selectedOrder = DocGrid.SelectedItem as dynamic;
+            if (selectedOrder == null)
+            {
+                MessageBox.Show("Выберите заказ для открытия документации.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            string projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            string documentationFolder = Path.Combine(projectRoot, "Documentation");
+
+            string fileName = $"Заказ № {selectedOrder.IdOrder}.pdf";
+            string pdfPath = Path.Combine(documentationFolder, fileName);
+
+            if (File.Exists(pdfPath))
+            {
+                try
+                {
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = pdfPath,
+                        UseShellExecute = true
+                    });
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при открытии документации: {ex.Message}", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Документация для выбранного заказа не найдена.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void Search(object sender, TextChangedEventArgs e)

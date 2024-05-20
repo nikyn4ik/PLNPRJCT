@@ -5,6 +5,8 @@ using System.Windows;
 using System.Windows.Controls;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using System.IO;
+using System.ComponentModel;
 
 namespace PRGRM.WNDW
 {
@@ -105,9 +107,85 @@ namespace PRGRM.WNDW
             ContainerGrid.ItemsSource = filteredData;
         }
 
-        private void outpdf(object sender, RoutedEventArgs e)
+        private void BPDF(object sender, RoutedEventArgs e)
         {
-
+            if (ContainerGrid.SelectedItem is Database.MDLS.Container selectedContainer) 
+            {
+                PDFOUT(selectedContainer.IdOrder);
+            }
+            else
+            {
+                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+            }
         }
+        private void PDFOUT(int idOrder)
+        {
+            var order = _dbContext.Orders
+        .FirstOrDefault(o => o.IdOrder == idOrder);
+
+            if (order == null)
+            {
+                MessageBox.Show("Заказ не найден.", "Ошибка");
+                return;
+            }
+            var container = _dbContext.Container.FirstOrDefault(c => c.IdOrder == order.IdOrder);
+
+            string projectRoot = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\..\\"));
+            string documentationFolder = Path.Combine(projectRoot, "Documentation");
+
+            if (!Directory.Exists(documentationFolder))
+            {
+                Directory.CreateDirectory(documentationFolder);
+            }
+
+            string fileName = $"УпаковкаЗаказ № {order.IdOrder}.pdf";
+            // string imgPath = Path.Combine(directory, "IMG", "SeverstalPDF.jpg");
+            string imgPath = @"C:\Users\nikab\source\repos\PLNPRJCT\PRGRM\IMG\SeverstalPDF.jpg";
+            string pdfPath = Path.Combine(documentationFolder, fileName);
+
+            Document doc1 = new Document(PageSize.A4);
+
+            try
+            {
+                PdfWriter.GetInstance(doc1, new FileStream(pdfPath, FileMode.Create));
+                doc1.Open();
+
+                var img = iTextSharp.text.Image.GetInstance(imgPath);
+                img.ScaleToFit(300f, 280f);
+                img.SpacingBefore = 10f;
+                img.SpacingAfter = 1f;
+                img.Alignment = Element.ALIGN_CENTER;
+                doc1.Add(img);
+
+                Font titleFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 16);
+                Font regularFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 12);
+
+                doc1.Add(new Paragraph("Информация об упаковке", titleFont) { Alignment = Element.ALIGN_CENTER });
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($"ID заказа: {order.IdOrder}", regularFont));
+                doc1.Add(new Paragraph($"Cист С3: {order.SystC3}", regularFont));
+                doc1.Add(new Paragraph($"Лог С3: {order.LogC3}", regularFont));
+                doc1.Add(new Paragraph($"Толщина (мм): {order.ThicknessMm}", regularFont));
+                doc1.Add(new Paragraph($"Ширина (мм): {order.WidthMm}", regularFont));
+                doc1.Add(new Paragraph($"Длина (мм): {order.LengthMm}", regularFont));
+                doc1.Add(new Paragraph($"Наименование: {order.Name}", regularFont));
+                doc1.Add(new Paragraph($"Тип модели: {container.TypeModel}", regularFont));
+                doc1.Add(new Paragraph($"Контейнер: {container.MarkContainer}", regularFont));
+                doc1.Add(new Paragraph($"Дата сборки: {container.DTContainer}", regularFont));
+                doc1.Add(new Paragraph($" " + " ", regularFont));
+                doc1.Add(new Paragraph($"Ф.И.О. получателя (разборчиво)      __________________        __________________", regularFont));
+                doc1.Add(new Paragraph($" " + "                                                                          Ф.И.О                                подпись                      ", regularFont));
+                MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom");
+            }
+            finally
+            {
+                doc1.Close();
+            }
+        }
+
     }
 }

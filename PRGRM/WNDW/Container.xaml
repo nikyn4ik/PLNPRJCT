@@ -74,13 +74,13 @@
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding IdOrder}"
-                    Header="Заказ" 
+                    Header="ID" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
                 <DataGridTextColumn
                     Width="*"
                     Binding="{Binding IdContainer}"
-                    Header="Id упаковка" 
+                    Header="Id упаковки" 
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"/>
                 <DataGridTextColumn
@@ -144,7 +144,7 @@
             Margin="235,10,0,0"
             VerticalAlignment="Top"
             Background="#FF0000"
-            Click="outpdf"
+            Click="BPDF"
             Content="PDF"
             BorderBrush="#002F6C"
             BorderThickness="2"
