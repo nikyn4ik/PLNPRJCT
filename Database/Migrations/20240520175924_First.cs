@@ -91,29 +91,13 @@ namespace Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Defects",
-                columns: table => new
-                {
-                    IdDefect = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    IdOrder = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Reasons = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductSending = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    FIO = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Defects", x => x.IdDefect);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Delivery",
                 columns: table => new
                 {
                     IdDelivery = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdOrder = table.Column<int>(type: "int", nullable: false),
-                    Consignee = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EarlyDelivery = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DateOfDelivery = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -141,12 +125,10 @@ namespace Database.Migrations
                 {
                     IdShipment = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    IdOrder = table.Column<int>(type: "int", nullable: true),
-                    Consignee = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IdOrder = table.Column<int>(type: "int", nullable: false),
                     DTShipments = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ShipmentTotalAmountTons = table.Column<int>(type: "int", nullable: true),
-                    IdTransport = table.Column<int>(type: "int", nullable: true),
-                    NumberOfShipmentsPerMonthTons = table.Column<float>(type: "real", nullable: true)
+                    IdTransport = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -224,9 +206,9 @@ namespace Database.Migrations
                     LogC3 = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdPayer = table.Column<int>(type: "int", nullable: true),
                     IdConsignee = table.Column<int>(type: "int", nullable: true),
-                    DTDelivery = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DTReceived = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DTAdoption = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DTAttestation = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ThicknessMm = table.Column<double>(type: "float", nullable: false),
                     WidthMm = table.Column<double>(type: "float", nullable: false),
                     LengthMm = table.Column<double>(type: "float", nullable: false),
@@ -235,7 +217,6 @@ namespace Database.Migrations
                     StatusOrder = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Mark = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdQuaCertificate = table.Column<int>(type: "int", nullable: true),
-                    AccessStandart = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdStorage = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -264,10 +245,37 @@ namespace Database.Migrations
                         principalColumn: "IdStorage");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Defects",
+                columns: table => new
+                {
+                    IdDefect = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IdOrder = table.Column<int>(type: "int", nullable: false),
+                    Reasons = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProductSending = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FIO = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Defects", x => x.IdDefect);
+                    table.ForeignKey(
+                        name: "FK_Defects_Orders_IdOrder",
+                        column: x => x.IdOrder,
+                        principalTable: "Orders",
+                        principalColumn: "IdOrder",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Consignee_IdCompany",
                 table: "Consignee",
                 column: "IdCompany");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Defects_IdOrder",
+                table: "Defects",
+                column: "IdOrder");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_IdCompany",
@@ -317,13 +325,13 @@ namespace Database.Migrations
                 name: "Delivery");
 
             migrationBuilder.DropTable(
-                name: "Orders");
-
-            migrationBuilder.DropTable(
                 name: "Shipment");
 
             migrationBuilder.DropTable(
                 name: "Transport");
+
+            migrationBuilder.DropTable(
+                name: "Orders");
 
             migrationBuilder.DropTable(
                 name: "Consignee");

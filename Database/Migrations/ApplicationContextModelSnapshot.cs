@@ -22,7 +22,7 @@ namespace Database.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Database.Authorization", b =>
+            modelBuilder.Entity("Database.MDLS.Authorization", b =>
                 {
                     b.Property<int>("ID_aut")
                         .ValueGeneratedOnAdd()
@@ -51,7 +51,7 @@ namespace Database.Migrations
                     b.ToTable("Authorization");
                 });
 
-            modelBuilder.Entity("Database.Certificate", b =>
+            modelBuilder.Entity("Database.MDLS.Certificate", b =>
                 {
                     b.Property<int>("IdQuaCertificate")
                         .ValueGeneratedOnAdd()
@@ -90,28 +90,6 @@ namespace Database.Migrations
                     b.HasKey("IdQuaCertificate");
 
                     b.ToTable("Certificate");
-                });
-
-            modelBuilder.Entity("Database.Delivery", b =>
-                {
-                    b.Property<int>("IdDelivery")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDelivery"));
-
-                    b.Property<string>("Consignee")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("DateOfDelivery")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("IdOrder")
-                        .HasColumnType("int");
-
-                    b.HasKey("IdDelivery");
-
-                    b.ToTable("Delivery");
                 });
 
             modelBuilder.Entity("Database.MDLS.Company", b =>
@@ -235,49 +213,29 @@ namespace Database.Migrations
                     b.ToTable("Defects");
                 });
 
-            modelBuilder.Entity("Database.MDLS.Payer", b =>
+            modelBuilder.Entity("Database.MDLS.Delivery", b =>
                 {
-                    b.Property<int>("IdPayer")
+                    b.Property<int>("IdDelivery")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPayer"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDelivery"));
 
-                    b.Property<string>("FIO")
-                        .IsRequired()
+                    b.Property<DateTime?>("DateOfDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EarlyDelivery")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("phone")
-                        .IsRequired()
-                        .HasMaxLength(12)
-                        .HasColumnType("nvarchar(12)");
-
-                    b.HasKey("IdPayer");
-
-                    b.ToTable("Payer");
-                });
-
-            modelBuilder.Entity("Database.MDLS.Transport", b =>
-                {
-                    b.Property<int>("IdTransport")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("IdOrder")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTransport"));
+                    b.HasKey("IdDelivery");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("VehicleRegistration")
-                        .HasMaxLength(8)
-                        .HasColumnType("nvarchar(8)");
-
-                    b.HasKey("IdTransport");
-
-                    b.ToTable("Transport");
+                    b.ToTable("Delivery");
                 });
 
-            modelBuilder.Entity("Database.Orders", b =>
+            modelBuilder.Entity("Database.MDLS.Orders", b =>
                 {
                     b.Property<int>("IdOrder")
                         .ValueGeneratedOnAdd()
@@ -285,13 +243,10 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdOrder"));
 
-                    b.Property<string>("AccessStandart")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("DTAdoption")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DTDelivery")
+                    b.Property<DateTime?>("DTAttestation")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DTReceived")
@@ -352,7 +307,29 @@ namespace Database.Migrations
                     b.ToTable("Orders");
                 });
 
-            modelBuilder.Entity("Database.Shipment", b =>
+            modelBuilder.Entity("Database.MDLS.Payer", b =>
+                {
+                    b.Property<int>("IdPayer")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPayer"));
+
+                    b.Property<string>("FIO")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("phone")
+                        .IsRequired()
+                        .HasMaxLength(12)
+                        .HasColumnType("nvarchar(12)");
+
+                    b.HasKey("IdPayer");
+
+                    b.ToTable("Payer");
+                });
+
+            modelBuilder.Entity("Database.MDLS.Shipment", b =>
                 {
                     b.Property<int>("IdShipment")
                         .ValueGeneratedOnAdd()
@@ -360,21 +337,14 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdShipment"));
 
-                    b.Property<string>("Consignee")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime?>("DTShipments")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("IdOrder")
+                    b.Property<int>("IdOrder")
                         .HasColumnType("int");
 
                     b.Property<int?>("IdTransport")
                         .HasColumnType("int");
-
-                    b.Property<float?>("NumberOfShipmentsPerMonthTons")
-                        .HasColumnType("real");
 
                     b.Property<int?>("ShipmentTotalAmountTons")
                         .HasColumnType("int");
@@ -384,7 +354,7 @@ namespace Database.Migrations
                     b.ToTable("Shipment");
                 });
 
-            modelBuilder.Entity("Database.Storage", b =>
+            modelBuilder.Entity("Database.MDLS.Storage", b =>
                 {
                     b.Property<int>("IdStorage")
                         .ValueGeneratedOnAdd()
@@ -421,6 +391,26 @@ namespace Database.Migrations
                     b.ToTable("Storage");
                 });
 
+            modelBuilder.Entity("Database.MDLS.Transport", b =>
+                {
+                    b.Property<int>("IdTransport")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTransport"));
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VehicleRegistration")
+                        .HasMaxLength(8)
+                        .HasColumnType("nvarchar(8)");
+
+                    b.HasKey("IdTransport");
+
+                    b.ToTable("Transport");
+                });
+
             modelBuilder.Entity("Database.MDLS.Consignee", b =>
                 {
                     b.HasOne("Database.MDLS.Company", "Company")
@@ -434,7 +424,7 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Database.MDLS.Defects", b =>
                 {
-                    b.HasOne("Database.Orders", "Orders")
+                    b.HasOne("Database.MDLS.Orders", "Orders")
                         .WithMany()
                         .HasForeignKey("IdOrder")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -443,7 +433,7 @@ namespace Database.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("Database.Orders", b =>
+            modelBuilder.Entity("Database.MDLS.Orders", b =>
                 {
                     b.HasOne("Database.MDLS.Company", "Company")
                         .WithMany()
@@ -459,7 +449,7 @@ namespace Database.Migrations
                         .WithMany()
                         .HasForeignKey("IdPayer");
 
-                    b.HasOne("Database.Storage", "Storage")
+                    b.HasOne("Database.MDLS.Storage", "Storage")
                         .WithMany()
                         .HasForeignKey("IdStorage");
 
@@ -472,7 +462,7 @@ namespace Database.Migrations
                     b.Navigation("Storage");
                 });
 
-            modelBuilder.Entity("Database.Storage", b =>
+            modelBuilder.Entity("Database.MDLS.Storage", b =>
                 {
                     b.HasOne("Database.MDLS.Company", "Company")
                         .WithMany("Storage")

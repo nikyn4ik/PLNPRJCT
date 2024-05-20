@@ -17,11 +17,10 @@ namespace PRGRM.ADD
             _dbContext = new ApplicationContext();
             _selectedContainer = selectedContainer;
             DatePicker.DisplayDate = DateTime.Today;
-            DatePicker.SelectedDate = DateTime.Today;
+            DatePicker.Text = DateTime.Today.ToString();
             LoadTypeModelData();
             TypeModel.SelectedItem = selectedContainer.TypeModel;
             MarkContainer.SelectedItem = selectedContainer.MarkContainer;
-            DatePicker.SelectedDate = selectedContainer.DTContainer;
         }
         private void LoadTypeModelData()
         {

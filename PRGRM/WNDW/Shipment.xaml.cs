@@ -3,6 +3,8 @@ using System.Windows;
 using System.Windows.Controls;
 using Database;
 using Database.MDLS;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace PRGRM.WNDW
 {
