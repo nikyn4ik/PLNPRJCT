@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace PRGRM.WNDW
 {
-    /// <summary>
-    /// Interaction logic for Done.xaml
-    /// </summary>
     public partial class Done : Window
     {
         public Done()
