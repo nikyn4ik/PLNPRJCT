@@ -21,13 +21,21 @@ namespace PRGRM.WNDW
         }
         private void LoadCont()
         {
-            ContainerGrid.ItemsSource = GetContData();
+            using (var context = new ApplicationContext())
+            {
+                ContainerGrid.ItemsSource = GetContData(context);
+                ContainerGrid.Items.Refresh();
+            }
         }
-        public List<Database.MDLS.Container> GetContData()
+        public List<Database.MDLS.Container> GetContData(ApplicationContext context)
         {
-            return _dbContext.Container.ToList();
+            return context.Container.ToList();
         }
         private void ECont_Closed(object sender, EventArgs e)
+        {
+            LoadCont();
+        }
+        private void AddWindow_Closed(object sender, EventArgs e)
         {
             LoadCont();
         }
@@ -44,12 +52,7 @@ namespace PRGRM.WNDW
                 var editWindow = new EContainer(selectedContainer);
                 editWindow.Closed += ECont_Closed;
                 editWindow.ShowDialog();
-                LoadCont();
             }
-        }
-        private void AddWindow_Closed(object sender, EventArgs e)
-        {
-            LoadCont();
         }
         private void BShipment(object sender, RoutedEventArgs e)
         {
@@ -80,9 +83,11 @@ namespace PRGRM.WNDW
             _dbContext.SaveChanges();
 
             MessageBox.Show("Заказ успешно отправлен в отгрузку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
-            LoadCont();
         }
-
+        private void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
         private bool CheckForEmptyFields(Database.MDLS.Container container)
         {
             if (string.IsNullOrWhiteSpace(container.TypeModel) ||
