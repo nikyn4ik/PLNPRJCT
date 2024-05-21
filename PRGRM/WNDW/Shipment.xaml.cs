@@ -24,25 +24,34 @@ namespace PRGRM.WNDW
         private void LoadShipmentsData()
         {
             var shipmentData = (from shipment in _dbContext.Shipment
-                               join order in _dbContext.Orders on shipment.IdOrder equals order.IdOrder
-                               join storage in _dbContext.Storage on order.IdStorage equals storage.IdStorage
-                               select new Database.MDLS.Shipment
-                               {
-                                   IdOrder = order.IdOrder,
-                                   IdShipment = shipment.IdShipment,
-                                   DTShipments = shipment.DTShipments,
-                                   IdTransport = shipment.IdTransport,
-                                   ShipmentTotalAmountTons = shipment.ShipmentTotalAmountTons,
-                                   StorageName = storage.NameStorage
-                               }).ToList();
+                                join order in _dbContext.Orders on shipment.IdOrder equals order.IdOrder
+                                join storage in _dbContext.Storage on order.IdStorage equals storage.IdStorage
+                                select new Database.MDLS.Shipment
+                                {
+                                    IdOrder = order.IdOrder,
+                                    IdShipment = shipment.IdShipment,
+                                    DTShipments = shipment.DTShipments,
+                                    IdTransport = shipment.IdTransport,
+                                    ShipmentTotalAmountTons = shipment.ShipmentTotalAmountTons,
+                                    StorageName = storage.NameStorage
+                                }).ToList();
 
             ShipmentGrid.ItemsSource = shipmentData;
-        }
-        public List<Database.MDLS.Shipment> GetShipmentsData()
-        {
-            return _dbContext.Shipment.ToList();
+            ShipmentGrid.Items.Refresh();
         }
 
+        public List<Database.MDLS.Shipment> GetShipmentsData(ApplicationContext context)
+        {
+            return context.Shipment.ToList();
+        }
+        private void EShip_Closed(object sender, EventArgs e)
+        {
+            LoadShipmentsData();
+        }
+        private void AddWindow_Closed(object sender, EventArgs e)
+        {
+            LoadShipmentsData();
+        }
         private void BDelivery(object sender, RoutedEventArgs e)
         {
             var selectedShipment = ShipmentGrid.SelectedItem as Database.MDLS.Shipment;
@@ -74,7 +83,6 @@ namespace PRGRM.WNDW
             _dbContext.SaveChanges();
 
             MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
-            LoadShipmentsData();
         }
 
 
@@ -88,10 +96,6 @@ namespace PRGRM.WNDW
             }
 
             return false;
-        }
-        private void AddWindow_Closed(object sender, EventArgs e)
-        {
-            LoadShipmentsData();
         }
 
         private void Select(object sender, TextChangedEventArgs e)
