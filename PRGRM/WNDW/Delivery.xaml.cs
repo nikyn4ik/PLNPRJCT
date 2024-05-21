@@ -33,7 +33,7 @@ namespace PRGRM.WNDW
                                     IdOrder = order.IdOrder,
                                     IdDelivery = delivery.IdDelivery,
                                     EarlyDelivery = delivery.EarlyDelivery,
-                                    DateOfDelivery = delivery.DateOfDelivery,
+                                    DTDelivery = delivery.DTDelivery,
                                     ProductName = order.Name
                                 }).ToList();
 
@@ -62,7 +62,7 @@ namespace PRGRM.WNDW
             }
             else
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void AddWindow_Closed(object sender, EventArgs e)
@@ -79,7 +79,7 @@ namespace PRGRM.WNDW
                         (deliv.IdDelivery != 0 && deliv.IdDelivery.ToString().Contains(searchText)) ||
                         (deliv.IdOrder != 0 && deliv.IdOrder.ToString().Contains(searchText)) ||
                         (deliv.EarlyDelivery != null && deliv.EarlyDelivery.Contains(searchText)) ||
-                        (deliv.DateOfDelivery != null && deliv.DateOfDelivery.ToString().Contains(searchText)) ||
+                        (deliv.DTDelivery != null && deliv.DTDelivery.ToString().Contains(searchText)) ||
                         (deliv.ProductName != null && deliv.ProductName.Contains(searchText))
                     )
                     .ToList();
@@ -98,7 +98,7 @@ namespace PRGRM.WNDW
             }
             else
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void PDFOUT(int idOrder)
@@ -167,24 +167,24 @@ namespace PRGRM.WNDW
                 {
                     doc1.Add(new Paragraph("Информация о заказчике", titleFont) { Alignment = Element.ALIGN_CENTER });
                     doc1.Add(new Paragraph($" " + " ", regularFont));
-                    doc1.Add(new Paragraph($"ФИО: {payer.FIO}", regularFont));
-                    doc1.Add(new Paragraph($"Телефон: {payer.phone}", regularFont));
+                    doc1.Add(new Paragraph($"ФИО: {payer.FIOPayer}", regularFont));
+                    doc1.Add(new Paragraph($"Телефон: {payer.PhoneP}", regularFont));
                 }
                 doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (company != null)
                 {
                     doc1.Add(new Paragraph("Информация о компании", titleFont) { Alignment = Element.ALIGN_CENTER });
                     doc1.Add(new Paragraph($" " + " ", regularFont));
-                    doc1.Add(new Paragraph($"Наименование: {company.Name}", regularFont));
+                    doc1.Add(new Paragraph($"Наименование: {company.NameCompany}", regularFont));
                 }
                 doc1.Add(new Paragraph($" " + " ", regularFont));
                 if (consignee != null)
                 {
                     doc1.Add(new Paragraph("Информация о грузоперевозчике", titleFont) { Alignment = Element.ALIGN_CENTER });
                     doc1.Add(new Paragraph($" " + " ", regularFont));
-                    doc1.Add(new Paragraph($"ФИО: {consignee.FIO}", regularFont));
-                    doc1.Add(new Paragraph($"Телефон: {consignee.phone}", regularFont));
-                    doc1.Add(new Paragraph($"Email: {consignee.email}", regularFont));
+                    doc1.Add(new Paragraph($"ФИО: {consignee.FIOConsignee}", regularFont));
+                    doc1.Add(new Paragraph($"Телефон: {consignee.PhoneCons}", regularFont));
+                    doc1.Add(new Paragraph($"Email: {consignee.Email}", regularFont));
                 }
                 doc1.Add(new Paragraph($" " + " ", regularFont));
                 doc1.Add(new Paragraph($" " + " ", regularFont));
@@ -197,7 +197,7 @@ namespace PRGRM.WNDW
                 {
                     doc1.Add(new Paragraph("Информация об складе", titleFont) { Alignment = Element.ALIGN_CENTER });
                     doc1.Add(new Paragraph($" " + " ", regularFont));
-                    doc1.Add(new Paragraph($"Наименование: {storage.Name}", regularFont));
+                    doc1.Add(new Paragraph($"Наименование: {storage.NameStorage}", regularFont));
                     doc1.Add(new Paragraph($"Адрес: {storage.Address}", regularFont));
                     doc1.Add(new Paragraph($"Телефон: {storage.Phone}", regularFont));
                     doc1.Add(new Paragraph($"Ответственное лицо: {storage.FIOResponsible}", regularFont));
@@ -224,7 +224,7 @@ namespace PRGRM.WNDW
                 {
                     doc1.Add(new Paragraph("Информация о транспорте", titleFont) { Alignment = Element.ALIGN_CENTER });
                     doc1.Add(new Paragraph($" " + " ", regularFont));
-                    doc1.Add(new Paragraph($"Транспорт: {transport.Name}", regularFont));
+                    doc1.Add(new Paragraph($"Транспорт: {transport.NameTransport}", regularFont));
                     doc1.Add(new Paragraph($"Номер: {transport.VehicleRegistration}", regularFont));
                 }
                 doc1.Add(new Paragraph($" " + " ", regularFont));
@@ -233,7 +233,7 @@ namespace PRGRM.WNDW
                     doc1.Add(new Paragraph("Информация о доставке", titleFont) { Alignment = Element.ALIGN_CENTER });
                     doc1.Add(new Paragraph($" " + " ", regularFont));
                     doc1.Add(new Paragraph($"Ранняя доставка: {delivery.EarlyDelivery}", regularFont));
-                    doc1.Add(new Paragraph($"Дата доставки: {delivery.DateOfDelivery}", regularFont));
+                    doc1.Add(new Paragraph($"Дата доставки: {delivery.DTDelivery}", regularFont));
                 }
                 doc1.Add(new Paragraph($" " + " ", regularFont));
                 doc1.Add(new Paragraph($" " + " ", regularFont));
@@ -244,11 +244,11 @@ namespace PRGRM.WNDW
                 doc1.Add(new Paragraph($"Ф.И.О. получателя (разборчиво)      __________________        __________________", regularFont));
                 doc1.Add(new Paragraph($" " + "                                                                          Ф.И.О                                подпись                      ", regularFont));
 
-                MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom");
+                MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom");
+                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             finally
             {

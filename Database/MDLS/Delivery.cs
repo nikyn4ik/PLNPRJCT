@@ -11,7 +11,7 @@ namespace Database.MDLS
         public int IdDelivery { get; set; }
         public int IdOrder { get; set; }
         public string? EarlyDelivery { get; set; }
-        public DateTime? DateOfDelivery { get; set; }
+        public DateTime? DTDelivery { get; set; }
 
         [NotMapped]
         public string ProductName { get; set; }

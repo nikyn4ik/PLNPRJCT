@@ -41,7 +41,7 @@ namespace PRGRM.WNDW
             var selectedStorage = StorageGrid.SelectedItem as Database.MDLS.Storage;
             if (selectedStorage == null)
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -52,7 +52,7 @@ namespace PRGRM.WNDW
                 _dbContext.Storage.Remove(selectedStorage);
                 _dbContext.SaveChanges();
 
-                MessageBox.Show("Склад удалён.", "Severstal Infocom");
+                MessageBox.Show("Склад удалён.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
                 LoadStoragesData();
             }
         }
@@ -63,12 +63,12 @@ namespace PRGRM.WNDW
 
             var filteredData = _dbContext.Storage
                 .Include(s => s.Company)
-                .Where(s => s.Name.ToLower().Contains(searchText) ||
+                .Where(s => s.NameStorage.ToLower().Contains(searchText) ||
                             s.Address.ToLower().Contains(searchText) ||
                             s.Phone.ToLower().Contains(searchText) ||
                             (s.FIOResponsible != null && s.FIOResponsible.ToLower().Contains(searchText)) ||
                             (s.DateAddStorage != null && s.DateAddStorage.ToString().ToLower().Contains(searchText)) ||
-                            s.Company.Name.ToLower().Contains(searchText))
+                            s.Company.NameCompany.ToLower().Contains(searchText))
                 .ToList();
             StorageGrid.ItemsSource = filteredData;
         }

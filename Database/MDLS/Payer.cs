@@ -8,8 +8,8 @@ namespace Database.MDLS
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdPayer { get; set; }
-        public string FIO { get; set; }
+        public string FIOPayer { get; set; }
         [MaxLength(12)]
-        public string phone { get; set; }
+        public string PhoneP { get; set; }
     }
 }

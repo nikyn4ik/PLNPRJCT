@@ -10,8 +10,8 @@ namespace Database.MDLS
         public int IdDefect { get; set; }
         public int IdOrder { get; set; }
         public string? Reasons { get; set; }
-        public DateTime? ProductSending { get; set; }
-        public string? FIO { get; set; }
+        public DateTime? DTProductSending { get; set; }
+        public string? FIOSend { get; set; }
 
         [ForeignKey("IdOrder")]
         public Orders Orders { get; set; }

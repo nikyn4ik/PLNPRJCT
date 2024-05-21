@@ -21,10 +21,10 @@ namespace PRGRM.EDIT
             {
                 int idStorage = order.IdStorage ?? 0;
                 var storage = _dbContext.Storage.FirstOrDefault(s => s.IdStorage == idStorage);
-                Storage.Items.Add(storage.Name);
-                Storage.SelectedItem = storage.Name;
+                Storage.Items.Add(storage.NameStorage);
+                Storage.SelectedItem = storage.NameStorage;
             }
-            var transports = _dbContext.Transport.Select(t => t.Name).ToList();
+            var transports = _dbContext.Transport.Select(t => t.NameTransport).ToList();
             foreach (var transport in transports)
             {
                 Transport.Items.Add(transport);
@@ -89,7 +89,7 @@ namespace PRGRM.EDIT
                 shipment.DTShipments = shipmentDate;
                 shipment.ShipmentTotalAmountTons = shipmentTotalAmountTons;
 
-                var selectedTransport = _dbContext.Transport.FirstOrDefault(t => t.Name == selectedTransportName);
+                var selectedTransport = _dbContext.Transport.FirstOrDefault(t => t.NameTransport == selectedTransportName);
 
                 if (selectedTransport != null)
                 {

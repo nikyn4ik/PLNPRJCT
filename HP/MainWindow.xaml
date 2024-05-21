@@ -3,16 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:HP"
-        Title="Добавление пользователей в систему"
-        Height="250" Width="450"
-        Foreground="#FFFFFF"
-        ResizeMode="NoResize"
-        mc:Ignorable="d"
-        WindowStartupLocation="CenterScreen">
+        Title="Создание нового пользователя"
+        Width="1200"
+Height="710"
+ResizeMode="NoResize"
+WindowStartupLocation="CenterScreen"
+mc:Ignorable="d">
 
     <Window.Background>
-        <ImageBrush ImageSource="/IMG/newbrand-bg2.jpg" />
+        <ImageBrush ImageSource="/IMG/back.jpg" />
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -32,45 +33,71 @@
 
             </RowDefinition>
         </Grid.RowDefinitions>
-        <Label Grid.Column="0"  Content="Логин"  HorizontalAlignment="Center" 
-               VerticalAlignment="Top" Width="46" Height="30"
-               Margin="0,16,0,0"></Label>
+        <Label Grid.Column="0"  Content="Логин"  
+                              VerticalAlignment="Top" Width="376" Height="75"
+               Foreground="White"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+FontFamily="Microsoft JhengHei UI Light"
+FontSize="30" Margin="94,53,130,0"></Label>
 
         <Label Grid.Column="1" Content="Пароль" 
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Top" Width="52" Height="30"
-               Margin="0,16,0,0"></Label>
+                              VerticalAlignment="Top" Width="376" Height="75"
+               Foreground="White"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+FontFamily="Microsoft JhengHei UI Light"
+FontSize="30"
+               Margin="124,53,100,0"></Label>
 
-        <TextBox Grid.Row="0" 
-                 Name="Log"            
-                 Grid.Column="0" HorizontalAlignment="Center" 
-                 TextWrapping="NoWrap" Text="" Margin="0,10,0,0" 
-                 VerticalAlignment="Center"
-                 Width="141" Height="35" FontSize="22"/>
+        <TextBox
+    x:Name="Log"
+    FontFamily="Microsoft JhengHei UI Light"
+    FontSize="30"
+    Foreground="Black"
+    BorderBrush="Black"
+    Background="White"
+    BorderThickness="1,1,1,1" Margin="77,141,112,141" Height="65" />
 
-        <PasswordBox Grid.Row="0" Grid.Column="1" 
+
+        <PasswordBox Grid.Row="0" 
                  Name="Pass"   
-                 HorizontalAlignment="Center"
-                 Margin="0,10,0,0" VerticalAlignment="Center"
-                 Width="141" Height="35" FontSize="22"/>
+                 FontFamily="Microsoft JhengHei UI Light"
+FontSize="30"
+Foreground="Black"
+BorderBrush="Black"
+Background="White"
+BorderThickness="1,1,1,1" Margin="121,141,81,141" Grid.Column="1" />
 
         <TextBox Grid.Row="1"  Grid.Column="0" Grid.ColumnSpan="2"
                  Name="FIO"   
-                 HorizontalAlignment="Center"
-                 TextWrapping="NoWrap" Text="" Margin="0,-50,0,0" VerticalAlignment="Center"
-                 Width="241" Height="35" FontSize="22"/>
+                 FontFamily="Microsoft JhengHei UI Light"
+FontSize="30"
+Foreground="Black"
+BorderBrush="Black"
+Background="White"
+BorderThickness="1,1,1,1" Margin="144,77,100,205" />
 
 
-        <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"  Content="Фамилия Имя Отчество" 
-               HorizontalAlignment="Center" 
-               VerticalAlignment="Top" Width="152" Height="30"
-               Margin="0,-20,0,0"></Label>
+        <Label Grid.Column="0" Grid.ColumnSpan="2"  Content="Фамилия Имя Отчество" 
+                              HorizontalAlignment="Left" 
+               VerticalAlignment="Top" Width="376" Height="75"
+               Foreground="White"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+FontFamily="Microsoft JhengHei UI Light"
+FontSize="30"
+               Margin="412,2,0,0" Grid.Row="1"/>
 
 
-        <Button Grid.Column="0" Grid.ColumnSpan="2" Content="Зарегистрировать" 
-                HorizontalAlignment="Center"  Grid.Row="1"
-                VerticalAlignment="Center" Height="36"
-                Width="154" Click="Button_Click"
-                Margin="0,35,0,0"/>
+        <Button
+     Margin="0,227,248,0"
+     Background="#002F6C"
+     BorderThickness="0,0,0,0"
+     Click="BSaved"
+     Content="Зарегистрировать"
+     FontFamily="Microsoft JhengHei UI Light"
+     FontSize="20"
+     Foreground="#FFFFFF" Width="704" Height="54" VerticalAlignment="Top" HorizontalAlignment="Right" Grid.Row="1" Grid.ColumnSpan="2" />
     </Grid>
 </Window>

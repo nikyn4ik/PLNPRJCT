@@ -28,21 +28,21 @@ namespace PRGRM.EDIT
                 DateTime ProductSending;
                 if (!DateTime.TryParse(DatePicker.Text, out ProductSending))
                 {
-                    MessageBox.Show("Введите корректную дату.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Введите корректную дату.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 if (ProductSending < DateTime.Today)
                 {
-                    MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 var defect = new Database.MDLS.Defects
                 {
                     IdOrder = orderId,
                     Reasons = Reason.Text,
-                    ProductSending = ProductSending,
-                    FIO = fio
+                    DTProductSending = ProductSending,
+                    FIOSend = fio
                 };
 
                 _dbContext.Defects.Add(defect);

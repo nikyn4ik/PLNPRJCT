@@ -58,14 +58,14 @@ namespace PRGRM.EDIT
 
             if (!isValid)
             {
-                MessageBox.Show(errorMessage, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show(errorMessage, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             var delivery = _dbContext.Delivery.FirstOrDefault(s => s.IdOrder == _idOrder);
             if (delivery != null)
             {
-                delivery.DateOfDelivery = DeliveryDateOfDelivery;
+                delivery.DTDelivery = DeliveryDateOfDelivery;
                 delivery.EarlyDelivery = selectedEarlyDelivery.Content.ToString();
 
                 var orderToUpdate = _dbContext.Orders.FirstOrDefault(o => o.IdOrder == _idOrder);

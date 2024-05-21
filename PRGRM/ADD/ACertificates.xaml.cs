@@ -25,13 +25,13 @@ namespace PRGRM.ADD
             int min, max;
             if (!int.TryParse(Min.Text, out min))
             {
-                MessageBox.Show("Проверьте строку 'Минимальное значение'. Оно должно быть целым числом!", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Проверьте строку 'Минимальное значение'. Оно должно быть целым числом!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (!int.TryParse(Max.Text, out max))
             {
-                MessageBox.Show("Проверьте строку 'Максимальное значение'. Оно должно быть целым числом!", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Проверьте строку 'Максимальное значение'. Оно должно быть целым числом!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             
@@ -39,9 +39,9 @@ namespace PRGRM.ADD
                 string.IsNullOrEmpty(Manufacturer.Text) ||
                 string.IsNullOrEmpty(ProductStandard.Text) ||
                 string.IsNullOrEmpty(Units.Text) ||
-                string.IsNullOrEmpty(properties_cert.Text))
+                string.IsNullOrEmpty(PropertiesCert.Text))
             {
-                MessageBox.Show("Проверьте, ввели ли Вы все значения.", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Проверьте, ввели ли Вы все значения.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             var certificate = new Certificate
@@ -49,11 +49,11 @@ namespace PRGRM.ADD
                 StandardPerMark = StandardPerMark.Text,
                 Manufacturer = Manufacturer.Text,
                 ProductStandard = ProductStandard.Text,
-                DateAddCertificate = Convert.ToDateTime(DatePicker.Text), 
+                DTCertificate = Convert.ToDateTime(DatePicker.Text), 
                 Min = min,
                 Max = max,
                 Units = Units.Text,
-                properties_cert = properties_cert.Text
+                PropertiesCert = PropertiesCert.Text
             };
 
             using (var context = new ApplicationContext())
@@ -62,8 +62,8 @@ namespace PRGRM.ADD
                 context.SaveChanges();
             }
 
-            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
-            this.Close();
+            MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
+            Close();
         }
     }
 }

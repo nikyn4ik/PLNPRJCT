@@ -7,7 +7,7 @@ namespace Database.MDLS
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IdContainer { get; set; }
+        public int IdContainerPackage { get; set; }
         public string? TypeModel { get; set; }
         public string? MarkContainer { get; set; }
     }

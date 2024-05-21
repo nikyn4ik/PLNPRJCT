@@ -74,7 +74,7 @@
                     Header="Наименование" />
                 <DataGridTextColumn
                     Width="4*"
-                    Binding="{Binding ProductSending}"
+                    Binding="{Binding DTProductSending}"
                     Header="Дата" />
                 <DataGridTextColumn
                 Width="4*"
@@ -82,7 +82,7 @@
                 Header="Причина" />
                 <DataGridTextColumn
                 Width="4*"
-                Binding="{Binding FIO}"
+                Binding="{Binding FIOSend}"
                 Header="ФИО ответственного" />
             </DataGrid.Columns>
         </DataGrid>

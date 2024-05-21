@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PRGRM.ADD"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-                Title="Severstal Infocom"
+        Title="Severstal Infocom"
         Width="1200"
         Height="710"
         ResizeMode="NoResize"
@@ -90,7 +90,7 @@
             Background="White"
             BorderThickness="1,1,1,1" 
             BorderBrush="Black"
-            TextAlignment="Left" Grid.Column="2" Grid.ColumnSpan="3" Margin="169,84,17,1"/>
+            TextAlignment="Left" Grid.Column="2" Grid.ColumnSpan="3" Margin="169,84,17,0"/>
         <TextBox
             x:Name="Manufacturer"
             RenderTransformOrigin="0.5,0.5"
@@ -118,7 +118,7 @@
             Background="White"
             BorderThickness="1,1,1,1" 
             BorderBrush="Black"
-            FontSize="17" VerticalAlignment="Stretch" Grid.Column="2" Grid.ColumnSpan="2" Margin="167,15,0,25" Grid.Row="7" Grid.RowSpan="2"/>
+            FontSize="17" VerticalAlignment="Stretch" Grid.Column="2" Grid.ColumnSpan="2" Margin="169,15,0,25" Grid.Row="7" Grid.RowSpan="2"/>
         <Button
                 Background="#FF0000"
                 BorderThickness="0,0,0,0"
@@ -126,7 +126,7 @@
                 Content="Сохранить"
                 FontFamily="Microsoft JhengHei UI Light"
                 FontSize="20"
-                Foreground="#FFFFFF" Height="54" Grid.Column="1" Width="282" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="8" Margin="451,26,0,0" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+                Foreground="#FFFFFF" Height="54" Grid.Column="1" VerticalAlignment="Top" Grid.Row="8" Margin="239,25,220,0" Grid.RowSpan="2" Grid.ColumnSpan="3" />
         <Label
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
@@ -144,7 +144,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="White" Height="48" 
-            VerticalAlignment="Top" Margin="1,19,1,0" Grid.Column="1" RenderTransformOrigin="0.5,0.5" Grid.Row="3" >
+            VerticalAlignment="Top" Margin="1,19,169,0" Grid.Column="1" RenderTransformOrigin="0.5,0.5" Grid.Row="3" Grid.ColumnSpan="2" >
             <Label.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -181,7 +181,7 @@
             Background="White"
             BorderThickness="1,1,1,1" 
             BorderBrush="Black"
-            TextAlignment="Left" Grid.Column="3" Margin="0,18,0,0" HorizontalAlignment="Center" Width="488" Height="48" Grid.Row="2"/>
+            TextAlignment="Left" Grid.Column="2" Margin="169,18,0,0" Height="48" Grid.Row="2" Grid.ColumnSpan="2"/>
         <TextBox
             x:Name="Max"
             RenderTransformOrigin="0.5,0.5"
@@ -191,7 +191,7 @@
             Background="White"
             BorderThickness="1,1,1,1" 
             BorderBrush="Black"
-            TextAlignment="Left" Grid.Column="3" Margin="0,20,0,0" HorizontalAlignment="Center" Width="488" Grid.Row="3"/>
+            TextAlignment="Left" Grid.Column="2" Margin="169,18,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
         <TextBox
             x:Name="Units"
             RenderTransformOrigin="0.5,0.5"
@@ -201,9 +201,9 @@
             Background="White"
             BorderThickness="1,1,1,1" 
             BorderBrush="Black"
-            TextAlignment="Left" Grid.Column="3" Width="490" HorizontalAlignment="Center" Margin="0,17,0,66" Grid.Row="4" Grid.RowSpan="2"/>
+            TextAlignment="Left" Grid.Column="2" Margin="168,17,0,66" Grid.Row="4" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
         <TextBox
-            x:Name="properties_cert"
+            x:Name="PropertiesCert"
             RenderTransformOrigin="0.5,0.5"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
@@ -211,6 +211,6 @@
             Background="White"
             BorderThickness="1,1,1,1" 
             BorderBrush="Black"
-            TextAlignment="Left" Grid.Column="2" Grid.ColumnSpan="2" Margin="168,20,0,67" Grid.Row="5" Grid.RowSpan="2"/>
+            TextAlignment="Left" Grid.Column="2" Grid.ColumnSpan="2" Margin="169,20,0,0" Grid.Row="5"/>
     </Grid>
 </Window>

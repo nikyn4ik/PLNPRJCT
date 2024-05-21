@@ -47,7 +47,7 @@ namespace PRGRM.EDIT
         {
             if (DatePicker.SelectedDate < DateTime.Today)
             {
-                MessageBox.Show("Неверная дата.", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Неверная дата.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrEmpty(StandardPerMark.Text) ||
@@ -55,7 +55,7 @@ namespace PRGRM.EDIT
                 string.IsNullOrEmpty(ProductStandard.Text) ||
                 DatePicker.SelectedDate == null)
             {
-                MessageBox.Show("Введите значения во все поля", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Введите значения во все поля", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             var certificate = _context.Certificate.FirstOrDefault(c => c.StandardPerMark == StandardPerMark.Text);
@@ -65,7 +65,7 @@ namespace PRGRM.EDIT
                 _order.DTAttestation = DatePicker.SelectedDate.Value;
                 _context.Orders.Update(_order);
                 _context.SaveChanges();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
         }

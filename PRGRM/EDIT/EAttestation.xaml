@@ -151,6 +151,6 @@
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="8" Grid.Column="1" Height="54" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="239,38,220,0" />
+            Foreground="#FFFFFF" Grid.Row="8" Grid.Column="1" Height="54" VerticalAlignment="Top" Margin="239,22,220,0" Grid.ColumnSpan="3" />
     </Grid>
 </Window>

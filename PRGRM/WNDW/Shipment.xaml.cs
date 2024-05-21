@@ -33,7 +33,7 @@ namespace PRGRM.WNDW
                                    DTShipments = shipment.DTShipments,
                                    IdTransport = shipment.IdTransport,
                                    ShipmentTotalAmountTons = shipment.ShipmentTotalAmountTons,
-                                   StorageName = storage.Name
+                                   StorageName = storage.NameStorage
                                }).ToList();
 
             ShipmentGrid.ItemsSource = shipmentData;
@@ -49,13 +49,13 @@ namespace PRGRM.WNDW
 
             if (selectedShipment == null)
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             if (CheckForEmptyFields(selectedShipment))
             {
-                MessageBox.Show("Для выбранного заказа не заполнены данные. Отправка в доставку невозможна.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Для выбранного заказа не заполнены данные. Отправка в доставку невозможна.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -64,7 +64,7 @@ namespace PRGRM.WNDW
             var shipped = _dbContext.Delivery.Any(s => s.IdOrder == idOrder);
             if (shipped)
             {
-                MessageBox.Show("Данный заказ уже был отправлен в доставку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Заказ уже отправлен в доставку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace PRGRM.WNDW
             _dbContext.Delivery.Add(shipmentData);
             _dbContext.SaveChanges();
 
-            MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom");
+            MessageBox.Show("Заказ успешно отправлен в доставку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
             LoadShipmentsData();
         }
 
@@ -105,14 +105,14 @@ namespace PRGRM.WNDW
                                 where (shipment.DTShipments != null && shipment.DTShipments.ToString().ToLower().Contains(searchText)) ||
                                       (shipment.ShipmentTotalAmountTons != null && shipment.ShipmentTotalAmountTons.ToString().Contains(searchText)) ||
                                       (shipment.IdTransport != null && shipment.IdTransport.ToString().Contains(searchText)) ||
-                                      storage.Name.ToLower().Contains(searchText)
+                                      storage.NameStorage.ToLower().Contains(searchText)
                                 select new
                                 {
                                     IdOrder = order.IdOrder,
                                     IdShipment = shipment.IdShipment,
                                     DTShipments = shipment.DTShipments,
                                     ShipmentTotalAmountTons = shipment.ShipmentTotalAmountTons,
-                                    StorageName = storage.Name
+                                    StorageName = storage.NameStorage
                                 }).ToList();
 
             ShipmentGrid.ItemsSource = filteredData;
@@ -129,7 +129,7 @@ namespace PRGRM.WNDW
             }
             else
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
@@ -141,7 +141,7 @@ namespace PRGRM.WNDW
             }
             else
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void PDFOUT(int idOrder)
@@ -151,7 +151,7 @@ namespace PRGRM.WNDW
 
             if (order == null)
             {
-                MessageBox.Show("Заказ не найден.", "Ошибка");
+                MessageBox.Show("Заказ не найден.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -195,11 +195,11 @@ namespace PRGRM.WNDW
                 doc1.Add(new Paragraph($"Cист С3: {order.SystC3}", regularFont));
                 doc1.Add(new Paragraph($"Лог С3: {order.LogC3}", regularFont));
                 doc1.Add(new Paragraph($"Наименование: {order.Name}", regularFont));
-                doc1.Add(new Paragraph($"Наименование склада: {storage.Name}", regularFont));
+                doc1.Add(new Paragraph($"Наименование склада: {storage.NameStorage}", regularFont));
                 doc1.Add(new Paragraph($"Адрес: {storage.Address}", regularFont));
                 doc1.Add(new Paragraph($"Телефон: {storage.Phone}", regularFont));
                 doc1.Add(new Paragraph($"Ответственное лицо: {storage.FIOResponsible}", regularFont));
-                doc1.Add(new Paragraph($"Транспорт: {transport.Name}", regularFont));
+                doc1.Add(new Paragraph($"Транспорт: {transport.NameTransport}", regularFont));
                 doc1.Add(new Paragraph($"Номер: {transport.VehicleRegistration}", regularFont));
                 doc1.Add(new Paragraph($"Отгруженно (тонн): {shipment.ShipmentTotalAmountTons}", regularFont));
                 doc1.Add(new Paragraph($"Дата отгрузки: {shipment.DTShipments}", regularFont));
@@ -211,7 +211,7 @@ namespace PRGRM.WNDW
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom");
+                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
             {

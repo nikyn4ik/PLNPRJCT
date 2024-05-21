@@ -8,7 +8,7 @@ namespace Database.MDLS
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
         public int IdStorage { get; set; }
-        public string Name { get; set; }
+        public string NameStorage { get; set; }
         public string Address { get; set; }
         [MaxLength(12)] public string Phone { get; set; }
         public string? FIOResponsible { get; set; }

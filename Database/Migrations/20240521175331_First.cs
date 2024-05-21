@@ -39,8 +39,8 @@ namespace Database.Migrations
                     Min = table.Column<int>(type: "int", nullable: false),
                     Max = table.Column<int>(type: "int", nullable: false),
                     Units = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    properties_cert = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateAddCertificate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    PropertiesCert = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DTCertificate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,7 +53,7 @@ namespace Database.Migrations
                 {
                     IdCompany = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    NameCompany = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -80,14 +80,14 @@ namespace Database.Migrations
                 name: "ContainerPackage",
                 columns: table => new
                 {
-                    IdContainer = table.Column<int>(type: "int", nullable: false)
+                    IdContainerPackage = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     TypeModel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     MarkContainer = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ContainerPackage", x => x.IdContainer);
+                    table.PrimaryKey("PK_ContainerPackage", x => x.IdContainerPackage);
                 });
 
             migrationBuilder.CreateTable(
@@ -98,7 +98,7 @@ namespace Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdOrder = table.Column<int>(type: "int", nullable: false),
                     EarlyDelivery = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfDelivery = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DTDelivery = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -111,8 +111,8 @@ namespace Database.Migrations
                 {
                     IdPayer = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FIO = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    phone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false)
+                    FIOPayer = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneP = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -141,7 +141,7 @@ namespace Database.Migrations
                 {
                     IdTransport = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NameTransport = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     VehicleRegistration = table.Column<string>(type: "nvarchar(8)", maxLength: 8, nullable: true)
                 },
                 constraints: table =>
@@ -155,10 +155,10 @@ namespace Database.Migrations
                 {
                     IdConsignee = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FIO = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    FIOConsignee = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     IdPayer = table.Column<int>(type: "int", nullable: true),
-                    phone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PhoneCons = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IdCompany = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -178,7 +178,7 @@ namespace Database.Migrations
                 {
                     IdStorage = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NameStorage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: false),
                     FIOResponsible = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -253,8 +253,8 @@ namespace Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdOrder = table.Column<int>(type: "int", nullable: false),
                     Reasons = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductSending = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    FIO = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    DTProductSending = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FIOSend = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {

@@ -14,8 +14,8 @@ namespace Database.MDLS
         public int Min { get; set; }
         public int Max { get; set; }
         public string Units { get; set; }
-        public string? properties_cert { get; set; }
+        public string? PropertiesCert { get; set; }
         
-        public DateTime DateAddCertificate { get; set; }
+        public DateTime DTCertificate { get; set; }
     }
 }

@@ -92,7 +92,7 @@
                     IsReadOnly="True" />
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding DateAddCertificate}"
+                    Binding="{Binding DTCertificate}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Дата добавления" />
@@ -123,7 +123,7 @@
             Margin="248,11,0,0"
             VerticalAlignment="Top"
             Background="#FF0000"
-            Click="outpdf"
+            Click="BPDF"
             Content="PDF"
             BorderBrush="#002F6C"
             BorderThickness="2"

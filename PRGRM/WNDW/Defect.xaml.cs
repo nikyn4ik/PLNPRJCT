@@ -41,14 +41,15 @@ namespace PRGRM.WNDW
             bool isNumeric = int.TryParse(searchText, out idDefect);
 
             var filteredData = _dbContext.Defects
+                .Include(d => d.Orders)
                 .Where(s => (isNumeric && s.IdDefect == idDefect) ||
                             (isNumeric && s.IdOrder == idDefect) ||
+                            (s.Orders != null && s.Orders.Name.ToLower().Contains(searchText)) || 
                             s.Reasons.ToLower().Contains(searchText) ||
-                            (s.FIO != null && s.FIO.ToLower().Contains(searchText)) ||
-                            (s.ProductSending != null && s.ProductSending.ToString().ToLower().Contains(searchText)))
+                            (s.FIOSend != null && s.FIOSend.ToLower().Contains(searchText)) ||
+                            (s.DTProductSending != null && s.DTProductSending.ToString().ToLower().Contains(searchText)))
                 .ToList();
             DGrid.ItemsSource = filteredData;
         }
-
     }
 }

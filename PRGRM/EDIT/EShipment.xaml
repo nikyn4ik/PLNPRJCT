@@ -54,7 +54,7 @@
             Content="Кол-во отгрузки (тонн)"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Margin="0,102,0,22" Grid.RowSpan="2" Width="508" HorizontalAlignment="Center" Grid.Column="1" />
+            Foreground="#FFFFFF" Margin="17,102,0,22" Grid.RowSpan="2" Grid.ColumnSpan="2" />
         <Label
             Grid.Row="2"
             HorizontalContentAlignment="Center"
@@ -63,7 +63,7 @@
             Content="Склад"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Height="68.0139181286549" Margin="0,38,0,23" Grid.RowSpan="2" HorizontalAlignment="Center" Width="508" Grid.Column="1" />
+            Foreground="#FFFFFF" Height="68.0139181286549" Margin="17,38,0,23" Grid.RowSpan="2" Grid.ColumnSpan="2" />
         <Label
             Grid.Row="5"
             HorizontalContentAlignment="Center"
@@ -72,7 +72,7 @@
             Content="Транспорт"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Height="68.0139181286549" Grid.Column="1" HorizontalAlignment="Center" Width="508" Margin="0,0,0,22" />
+            Foreground="#FFFFFF" Height="68.0139181286549" Margin="17,0,0,22" Grid.ColumnSpan="2" />
         <Label
             Grid.Row="6"
             HorizontalContentAlignment="Center"
@@ -81,7 +81,7 @@
             Content="Дата отгрузки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Column="1" Height="68.0139181286549" Margin="0,38,0,22" HorizontalAlignment="Center" Width="508" Grid.RowSpan="2" />
+            Foreground="#FFFFFF" Height="68.0139181286549" Margin="17,38,0,22" Grid.RowSpan="2" Grid.ColumnSpan="2" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -100,10 +100,10 @@
             Foreground="Black"
             BorderBrush="Black"
             Background="white"
-            Margin="169,38,0,0"
+            Margin="169,38,0,22"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18" VerticalAlignment="Top" Height="68" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            FontSize="18" VerticalAlignment="Stretch" Grid.ColumnSpan="2" Grid.RowSpan="2" />
         <ComboBox
     IsEnabled="False"
     x:Name="Storage"
@@ -139,7 +139,7 @@
             FontSize="18"
             Height="68" Grid.ColumnSpan="2" Margin="169,0,0,0" VerticalAlignment="Top"/>
         <Button
-            Grid.Row="8"
+            Grid.Row="9"
             Grid.Column="1"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
@@ -147,7 +147,7 @@
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="705" HorizontalAlignment="Right" Height="54" VerticalAlignment="Top" Margin="0,21,220,0" Grid.RowSpan="2" Grid.ColumnSpan="3" />
+            Foreground="#FFFFFF" Height="54" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="239,0,220,0" />
     </Grid>
 </Window>
 

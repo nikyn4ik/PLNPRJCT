@@ -62,13 +62,15 @@
             Margin="10,93,10,0"
             AutoGenerateColumns="False"
             Background="White"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="15"
             BorderBrush="#002F6C" BorderThickness="2"
             IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn
-    Width="4*"
-    Binding="{Binding IdOrder}"
-    Header="ID" />
+                    Width="4*"
+                    Binding="{Binding IdOrder}"
+                    Header="ID" />
                     <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding SystC3}"
@@ -81,15 +83,18 @@
                     Width="4*"
                     Binding="{Binding DTReceived}"
                     Header="Поступил" />
-
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding StatusOrder}"
                     Header="Статус" />
                 <DataGridTextColumn
- Width="4*"
- Binding="{Binding StorageName}"
- Header="Склад" />
+                    Width="4*"
+                    Binding="{Binding CertificateName}"
+                    Header="Сертификат" />
+                <DataGridTextColumn
+                    Width="4*"
+                     Binding="{Binding StorageName}"
+                    Header="Склад" />
                 <DataGridTextColumn
                     Width="4*"
                     Binding="{Binding ThicknessMm}"

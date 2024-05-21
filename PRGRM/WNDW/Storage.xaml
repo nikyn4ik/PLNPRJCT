@@ -45,7 +45,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding Name}"
+                    Binding="{Binding NameStorage}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Наименование"
@@ -69,7 +69,7 @@
 
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding Company.Name}"
+                    Binding="{Binding Company.NameCompany}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Грузополучатель"

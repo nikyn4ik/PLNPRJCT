@@ -10,53 +10,41 @@ namespace HP
         {
             InitializeComponent();
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void BSaved(object sender, RoutedEventArgs e)
         {
-            using (ApplicationContext db = new ApplicationContext())
+            if (string.IsNullOrWhiteSpace(Log.Text) || string.IsNullOrWhiteSpace(Pass.Password) || string.IsNullOrWhiteSpace(FIO.Text))
             {
-                Authorization Authorization = new Authorization();
-
-                if (string.IsNullOrWhiteSpace(Log.Text) || string.IsNullOrWhiteSpace(Pass.Password) || string.IsNullOrWhiteSpace(FIO.Text))
-                {
-                    MessageBox.Show("Необходимо заполнить все данные",
-                        "Severstal Infocom");
-                }
-                else
+                MessageBox.Show("Необходимо заполнить все данные", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            using (ApplicationContext db = new ApplicationContext())
                 {
                     var log = Log.Text;
                     var pass = sha256.HP(Pass.Password);
                     var fio = FIO.Text;
-                    if (CheckLog())
+
+                    var login_check = db.Authorization.FirstOrDefault(p => p.Login == log);
+                    if (login_check != null)
                     {
-                        return;
+                        MessageBox.Show("Пользователь с таким логином уже существует!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return; 
                     }
-                    Authorization.Login = log;
-                    Authorization.PassHash = pass;
-                    Authorization.FIO = fio;
+                    Authorization Authorization = new Authorization()
+                    {
+                        Login = log,
+                        PassHash = pass,
+                        FIO = fio
+                    };
+
                     db.Authorization.Add(Authorization);
                     db.SaveChanges();
+
                     Log.Clear();
                     Pass.Clear();
                     FIO.Clear();
-                    MessageBox.Show("Пользователь успешно добавлен!",
-                        "Severstal Infocom");
-                }
-            }
-        }
 
-        private Boolean CheckLog()
-        {
-            var log = Log.Text;
-            using (ApplicationContext db = new ApplicationContext())
-            {
-                var login_check = db.Authorization.Where(p => p.Login == log).ToList();
-                if (login_check.Count > 0)
-                {
-                    MessageBox.Show($"Пользователь с таким логином уже существует!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
-                    return true;
-                }
-                else return false;
+                    MessageBox.Show("Пользователь успешно добавлен!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
             }
         }
     }
-}

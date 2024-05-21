@@ -47,7 +47,7 @@
             Background="white"
             BorderBrush="Black"
             Grid.Column="2"
-            RenderTransformOrigin="0.5,0.5" Height="68" Margin="169,0,1,0" VerticalAlignment="Top"
+            RenderTransformOrigin="0.5,0.5" Margin="169,0,1,19"
             Text="Заказ на выполнении" Grid.ColumnSpan="2"/>
         <Label
     Height="68"
@@ -57,18 +57,17 @@
     Content="Склад"
     FontFamily="Microsoft JhengHei UI Light"
     FontSize="20"
-    Foreground="#FFFFFF" Margin="0,99,0,0" Width="508" HorizontalAlignment="Center" Grid.Column="1" VerticalAlignment="Top" Grid.RowSpan="2" />
-        <Label Margin="0,37,0,17" Grid.Column="1"
+    Foreground="#FFFFFF" Margin="17,99,0,0" VerticalAlignment="Top" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+        <Label Margin="17,37,0,17"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Грузополучатель"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Center" Grid.Row="2" Grid.RowSpan="2" />
+            Foreground="#FFFFFF" Grid.Row="2" Grid.RowSpan="2" Grid.ColumnSpan="2" />
         <Label
             Grid.Row="5" Margin="0,0,0,19"
-            Width="507"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
@@ -76,10 +75,9 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" 
-            Height="68.013918128655" HorizontalAlignment="Center" Grid.Column="1" />
+            Height="68.013918128655" Grid.Column="1" />
         <Label
             Margin="0,0,0,19"
-            Width="507"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
@@ -87,7 +85,7 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF"
-            Grid.Row="7" HorizontalAlignment="Center" Height="68.013918128655" Grid.Column="1" />
+            Grid.Row="7" Height="68.013918128655" Grid.Column="1" />
         <DatePicker
             x:Name="DatePicker"
             Grid.Row="6"
@@ -95,10 +93,10 @@
             Foreground="Black"
             Background="white"
             BorderBrush="Black"
-            Margin="169,37,1,0"
+            Margin="169,37,1,19"
             FirstDayOfWeek="Monday"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18" VerticalAlignment="Top" Grid.RowSpan="2" Height="69" Grid.ColumnSpan="2" />
+            FontSize="18" VerticalAlignment="Stretch" Grid.RowSpan="2" Grid.ColumnSpan="2" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -149,6 +147,6 @@ FontSize="18" BorderBrush="Black" Margin="168,99,1,20" Grid.ColumnSpan="2" Grid.
             Background="white"
             BorderBrush="Black"
             Grid.Column="2"
-            RenderTransformOrigin="0.5,0.5" Height="68" Margin="169,37,1,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2" />
+            RenderTransformOrigin="0.5,0.5" Margin="169,37,1,20" Grid.ColumnSpan="2" Grid.Row="2" Grid.RowSpan="2" />
     </Grid>
 </Window>

@@ -36,7 +36,7 @@ namespace PRGRM.WNDW
             var selectedContainer = ContainerGrid.SelectedItem as Database.MDLS.Container;
             if (selectedContainer == null)
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             else
@@ -56,7 +56,7 @@ namespace PRGRM.WNDW
             var selectedContainer = ContainerGrid.SelectedItem as Database.MDLS.Container;
             if (selectedContainer == null)
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -79,7 +79,7 @@ namespace PRGRM.WNDW
             _dbContext.Shipment.Add(shipment);
             _dbContext.SaveChanges();
 
-            MessageBox.Show("Заказ успешно отправлен в отгрузку!", "Severstal Infocom");
+            MessageBox.Show("Заказ успешно отправлен в отгрузку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
             LoadCont();
         }
 
@@ -115,7 +115,7 @@ namespace PRGRM.WNDW
             }
             else
             {
-                MessageBox.Show("Выберите строку!", "Severstal Infocom");
+                MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
         private void PDFOUT(int idOrder)
@@ -125,7 +125,7 @@ namespace PRGRM.WNDW
 
             if (order == null)
             {
-                MessageBox.Show("Заказ не найден.", "Ошибка");
+                MessageBox.Show("Заказ не найден.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
             var container = _dbContext.Container.FirstOrDefault(c => c.IdOrder == order.IdOrder);
@@ -175,11 +175,11 @@ namespace PRGRM.WNDW
                 doc1.Add(new Paragraph($" " + " ", regularFont));
                 doc1.Add(new Paragraph($"Ф.И.О. получателя (разборчиво)      __________________        __________________", regularFont));
                 doc1.Add(new Paragraph($" " + "                                                                          Ф.И.О                                подпись                      ", regularFont));
-                MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom");
+                MessageBox.Show("PDF документ успешно сохранён!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom");
+                MessageBox.Show("Ошибка при создании PDF-файла: " + ex.Message, "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
             finally
             {

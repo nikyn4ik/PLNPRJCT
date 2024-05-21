@@ -37,15 +37,14 @@
         <TextBox
             x:Name="Reason"
             Grid.Column="2"
-            Margin="163,106,0,0"
+            Margin="163,106,0,57"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="16"
             Foreground="Black"
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
-            Height="71"
-            TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" />
         <Label
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
@@ -53,7 +52,7 @@
             Content="Причина"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Center" Margin="0,106,0,57" Grid.Column="1" Height="70.4904157549233" Grid.RowSpan="2" />
+            Foreground="#FFFFFF" Margin="0,106,164,57" Grid.Column="1" Height="70.4904157549233" Grid.RowSpan="2" Grid.ColumnSpan="2" />
         <Label
             Grid.Row="3"
             HorizontalContentAlignment="Center"
@@ -62,7 +61,7 @@
             Content="Дата отправки в брак"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Center" Grid.Column="1" Margin="0,0,0,10" />
+            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Left" Grid.Column="1" Margin="0,0,0,10" Grid.ColumnSpan="2" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -83,12 +82,11 @@
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
-            Height="69"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18" Margin="163,1,0,0" Grid.ColumnSpan="2" VerticalAlignment="Top" />
+            FontSize="18" Margin="163,1,0,10" Grid.ColumnSpan="2" VerticalAlignment="Stretch" />
         <Button
             Grid.Row="5"
-            Margin="229,45,231,0"
+            Margin="229,35,231,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="BSaved"

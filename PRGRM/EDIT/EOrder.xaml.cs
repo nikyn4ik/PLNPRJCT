@@ -29,7 +29,7 @@ namespace PRGRM.EDIT
 
                 if (company != null)
                 {
-                    Company.Text = company.Name;
+                    Company.Text = company.NameCompany;
                 }
                 else
                 {
@@ -49,7 +49,7 @@ namespace PRGRM.EDIT
         {
             var storages = _dbContext.Storage.ToList();
             Storage.ItemsSource = storages;
-            Storage.DisplayMemberPath = "Name";
+            Storage.DisplayMemberPath = "NameStorage";
             Storage.SelectedValuePath = "IdStorage";
         }
         private void BSaved(object sender, RoutedEventArgs e)
@@ -59,19 +59,19 @@ namespace PRGRM.EDIT
                 DateTime Adoption;
                 if (!DateTime.TryParse(DatePicker.Text, out Adoption))
                 {
-                    MessageBox.Show("Введите корректную дату.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Введите корректную дату.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 if (Adoption < DateTime.Today)
                 {
-                    MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 var selectedStorage = Storage.SelectedItem as Storage;
                 if (selectedStorage == null)
                 {
-                    MessageBox.Show("Выберите склад.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Выберите склад.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
                 var selectedCompany = Company.Text;
@@ -85,7 +85,7 @@ namespace PRGRM.EDIT
 
                     _dbContext.SaveChanges();
 
-                    MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
                     Close();
                 }
             }

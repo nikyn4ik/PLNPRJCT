@@ -8,11 +8,11 @@ namespace Database.MDLS
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdConsignee{ get; set; }
-        public string FIO { get; set; }
+        public string FIOConsignee { get; set; }
         public int? IdPayer { get; set; }
         [MaxLength(12)]
-        public string phone { get; set; }
-        public string? email { get; set; }
+        public string PhoneCons { get; set; }
+        public string? Email { get; set; }
         public int IdCompany { get; set; }
         public Company Company { get; set; }
     }

@@ -30,28 +30,27 @@ namespace PRGRM.ADD
                 string phone = Phone.Text;
                 if (string.IsNullOrWhiteSpace(phone) || !phone.All(char.IsDigit))
                 {
-                    MessageBox.Show("Некорректный формат телефона.", "Severstal Infocom", MessageBoxButton.OK);
-                    return;
+                    MessageBox.Show("Некорректный формат телефона.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
-                if (string.IsNullOrWhiteSpace(Name.Text) ||
+                if (string.IsNullOrWhiteSpace(NameStorage.Text) ||
                     string.IsNullOrWhiteSpace(Address.Text) ||
                     string.IsNullOrWhiteSpace(FIOResponsible.Text))
                 {
-                    MessageBox.Show("Введите значения во все текстовые поля.", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Введите значения во все текстовые поля.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 DateTime dateAddStorage;
                 if (!DateTime.TryParse(DatePicker.Text, out dateAddStorage))
                 {
-                    MessageBox.Show("Некорректная дата", "Severstal Infocom", MessageBoxButton.OK);
+                    MessageBox.Show("Некорректная дата", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
                 var storage = new Storage
                 {
-                    Name = Name.Text,
+                    NameStorage = NameStorage.Text,
                     Address = Address.Text,
                     Phone = phone,
                     FIOResponsible = FIOResponsible.Text,
@@ -62,12 +61,12 @@ namespace PRGRM.ADD
                 _dbContext.Storage.Add(storage);
                 _dbContext.SaveChanges();
 
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
             }
             else
             {
-                MessageBox.Show("Укажите грузоперевозчика.", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Не указан грузоперевозчик.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -78,7 +77,7 @@ namespace PRGRM.ADD
                 var selectedCompany = Company.SelectedItem as Company;
                 if (selectedCompany != null)
                 {
-                    Company.Text = selectedCompany.Name;
+                    Company.Text = selectedCompany.NameCompany;
                 }
             }
         }

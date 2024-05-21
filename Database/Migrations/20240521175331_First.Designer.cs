@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Database.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240520175924_First")]
+    [Migration("20240521175331_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -62,7 +62,7 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdQuaCertificate"));
 
-                    b.Property<DateTime>("DateAddCertificate")
+                    b.Property<DateTime>("DTCertificate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Manufacturer")
@@ -79,15 +79,15 @@ namespace Database.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PropertiesCert")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("StandardPerMark")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Units")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("properties_cert")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdQuaCertificate");
@@ -103,7 +103,7 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdCompany"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameCompany")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -120,7 +120,10 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdConsignee"));
 
-                    b.Property<string>("FIO")
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FIOConsignee")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -130,10 +133,7 @@ namespace Database.Migrations
                     b.Property<int?>("IdPayer")
                         .HasColumnType("int");
 
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("phone")
+                    b.Property<string>("PhoneCons")
                         .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
@@ -172,11 +172,11 @@ namespace Database.Migrations
 
             modelBuilder.Entity("Database.MDLS.ContainerPackage", b =>
                 {
-                    b.Property<int>("IdContainer")
+                    b.Property<int>("IdContainerPackage")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdContainer"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdContainerPackage"));
 
                     b.Property<string>("MarkContainer")
                         .HasColumnType("nvarchar(max)");
@@ -184,7 +184,7 @@ namespace Database.Migrations
                     b.Property<string>("TypeModel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdContainer");
+                    b.HasKey("IdContainerPackage");
 
                     b.ToTable("ContainerPackage");
                 });
@@ -197,14 +197,14 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDefect"));
 
-                    b.Property<string>("FIO")
+                    b.Property<DateTime?>("DTProductSending")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("FIOSend")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("IdOrder")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("ProductSending")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Reasons")
                         .HasColumnType("nvarchar(max)");
@@ -224,7 +224,7 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdDelivery"));
 
-                    b.Property<DateTime?>("DateOfDelivery")
+                    b.Property<DateTime?>("DTDelivery")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("EarlyDelivery")
@@ -318,11 +318,11 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPayer"));
 
-                    b.Property<string>("FIO")
+                    b.Property<string>("FIOPayer")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("phone")
+                    b.Property<string>("PhoneP")
                         .IsRequired()
                         .HasMaxLength(12)
                         .HasColumnType("nvarchar(12)");
@@ -378,7 +378,7 @@ namespace Database.Migrations
                     b.Property<int>("IdCompany")
                         .HasColumnType("int");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameStorage")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -402,7 +402,7 @@ namespace Database.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdTransport"));
 
-                    b.Property<string>("Name")
+                    b.Property<string>("NameTransport")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("VehicleRegistration")

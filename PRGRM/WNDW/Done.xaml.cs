@@ -29,14 +29,14 @@ namespace PRGRM.WNDW
                                   join consignee in _dbContext.Consignee
                                   on order.IdConsignee equals consignee.IdConsignee into consigneeJoin
                                   from consignee in consigneeJoin.DefaultIfEmpty()
-                                  where order.StatusOrder == "Заказ выполнен" && delivery.DateOfDelivery.HasValue
+                                  where order.StatusOrder == "Заказ выполнен" && delivery.DTDelivery.HasValue
                                   select new
                                   {
                                       IdOrder = order.IdOrder,
                                       Name = order.Name,
-                                      PayerFIO = payer != null ? payer.FIO : string.Empty,
-                                      ConsigneeFIO = consignee != null ? consignee.FIO : string.Empty,
-                                      DateOfDelivery = delivery.DateOfDelivery.Value
+                                      PayerFIO = payer != null ? payer.FIOPayer : string.Empty,
+                                      ConsigneeFIO = consignee != null ? consignee.FIOConsignee : string.Empty,
+                                      DateOfDelivery = delivery.DTDelivery.Value
                                   }).ToList();
 
             DocGrid.ItemsSource = filteredOrders;
@@ -93,19 +93,19 @@ namespace PRGRM.WNDW
                                       on order.IdConsignee equals consignee.IdConsignee into consigneeJoin
                                       from consignee in consigneeJoin.DefaultIfEmpty()
                                       where order.StatusOrder == "Заказ выполнен"
-                                            && delivery.DateOfDelivery.HasValue
+                                            && delivery.DTDelivery.HasValue
                                             && (order.Name.ToLower().Contains(searchText)
-                                                || payer.FIO.ToLower().Contains(searchText)
-                                                || consignee.FIO.ToLower().Contains(searchText)
+                                                || payer.FIOPayer.ToLower().Contains(searchText)
+                                                || consignee.FIOConsignee.ToLower().Contains(searchText)
                                                 || order.IdOrder.ToString().Contains(searchText)
-                                                || delivery.DateOfDelivery.Value.ToString().Contains(searchText))
+                                                || delivery.DTDelivery.Value.ToString().Contains(searchText))
                                       select new
                                       {
                                           IdOrder = order.IdOrder,
                                           Name = order.Name,
-                                          PayerFIO = payer != null ? payer.FIO : string.Empty,
-                                          ConsigneeFIO = consignee != null ? consignee.FIO : string.Empty,
-                                          DateOfDelivery = delivery.DateOfDelivery.Value
+                                          PayerFIO = payer != null ? payer.FIOPayer : string.Empty,
+                                          ConsigneeFIO = consignee != null ? consignee.FIOConsignee : string.Empty,
+                                          DateOfDelivery = delivery.DTDelivery.Value
                                       }).ToList();
                 DocGrid.ItemsSource = filteredOrders;
             }

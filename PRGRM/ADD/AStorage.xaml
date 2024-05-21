@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:PRGRM.ADD"
-            Title="Severstal Infocom"
-    Width="1200"
+        Title="Severstal Infocom"
+        Width="1200"
         Height="710"
-    ResizeMode="NoResize"
-    WindowStartupLocation="CenterScreen"
-    mc:Ignorable="d">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
 
     <Window.Background>
 
@@ -98,7 +98,7 @@
             Foreground="White" Grid.Row="3" Height="48" VerticalAlignment="Top" Grid.ColumnSpan="2" Margin="0,38,169,0" Grid.Column="1" />
 
         <TextBox
-            x:Name="Name"
+            x:Name="NameStorage"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
@@ -125,9 +125,9 @@
             Grid.Row="2" 
             Grid.Column="3" Margin="1,44,0,2" />
         <ComboBox
-    x:Name="Company"
-    IsEditable="False"
-    Grid.Row="4"
+            x:Name="Company"
+            IsEditable="False"
+            Grid.Row="4"
     Grid.Column="3"
     RenderTransformOrigin="0.5,0.5"
     FontFamily="Microsoft JhengHei UI Light"
@@ -141,7 +141,7 @@
     Grid.ColumnSpan="2"
     Margin="1,38,15,0"
     VerticalAlignment="Top"
-    DisplayMemberPath="Name"
+    DisplayMemberPath="NameCompany"
     SelectedValuePath="IdCompany"/>
         <TextBox
             x:Name="FIOResponsible"
@@ -165,15 +165,13 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18" Grid.ColumnSpan="2" Margin="169,39,0,0" VerticalAlignment="Top" />
         <Button
-            Width="282"
-            HorizontalAlignment="Center"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="BSaved"
             Content="Сохранить"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" Height="54" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="0,20,0,0" Grid.RowSpan="2" />
+            Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" Height="54" VerticalAlignment="Top" Grid.ColumnSpan="3" Margin="239,20,220,0" Grid.RowSpan="2" />
         <Label
             Width="507.8"
             HorizontalContentAlignment="Center"

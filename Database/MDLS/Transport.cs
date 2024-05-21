@@ -8,7 +8,7 @@ namespace Database.MDLS
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdTransport { get; set; }
-        public string? Name { get; set; }
+        public string? NameTransport { get; set; }
         [MaxLength(8)] public string? VehicleRegistration { get; set; }
     }
 }

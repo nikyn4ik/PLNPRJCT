@@ -8,7 +8,7 @@ namespace Database.MDLS
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdCompany { get; set; }
-        public string Name { get; set; }
+        public string NameCompany { get; set; }
         public ICollection<Storage> Storage { get; set; }
         public ICollection<Consignee> Consignee { get; set; }
     }

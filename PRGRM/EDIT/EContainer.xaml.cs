@@ -62,13 +62,13 @@ namespace PRGRM.ADD
             DateTime DTContainer;
             if (!DateTime.TryParse(DatePicker.Text, out DTContainer))
             {
-                MessageBox.Show("Введите корректную дату.", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Введите корректную дату.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
             if (DTContainer < DateTime.Today)
             {
-                MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Дата не может быть меньше текущей даты.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             var selectedContainer = _dbContext.Container.FirstOrDefault(c => c.IdContainer == _selectedContainer.IdContainer);
@@ -79,7 +79,7 @@ namespace PRGRM.ADD
                 selectedContainer.DTContainer = DTContainer;
 
                 _dbContext.SaveChanges();
-                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK);
+                MessageBox.Show("Сохранено!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Information);
                 Close();
                 _refreshContainerGrid?.Invoke();
             }
