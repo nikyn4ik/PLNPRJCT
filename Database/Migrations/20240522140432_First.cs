@@ -254,7 +254,8 @@ namespace Database.Migrations
                     IdOrder = table.Column<int>(type: "int", nullable: false),
                     Reasons = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     DTProductSending = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    FIOSend = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    FIOSend = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IDSend = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
