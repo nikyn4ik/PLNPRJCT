@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HP", "HP\HP.csproj", "{0856
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PRGRM", "PRGRM\PRGRM.csproj", "{C1BC0E64-7112-4CDE-890E-87C234032E10}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Database", "Database\Database.csproj", "{F12338AD-FFB1-4963-96FC-7C339E4A2315}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{F12338AD-FFB1-4963-96FC-7C339E4A2315}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
