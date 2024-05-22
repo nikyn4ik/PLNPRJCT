@@ -40,7 +40,7 @@ namespace PRGRM
                 if (user != null)
                 {
 
-                    var window = new Main(user.FIO);
+                    var window = new Main(user.FIO, user.ID_aut);
                     window.lplogin.Content = user.FIO;
 
                     MessageBox.Show(

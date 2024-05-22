@@ -7,6 +7,7 @@ using PRGRM.EDIT;
 using Database.MDLS;
 using System.Linq;
 using System;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace PRGRM.WNDW
 {
@@ -15,11 +16,13 @@ namespace PRGRM.WNDW
         private readonly string fio;
         private readonly ApplicationContext _dbContext;
         private int IdOrder;
-        public Orders(string FIO)
+        private readonly int sendId;
+        public Orders(string FIO, int IDSend)
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
             fio = FIO;
+            this.sendId = IDSend;
             LoadOrders();
         }
         private void LoadOrders()
@@ -131,7 +134,7 @@ namespace PRGRM.WNDW
 
         private void BDefect(object sender, RoutedEventArgs e)
         {
-            Defect addWindow = new Defect();
+            Defect addWindow = new Defect(sendId);
             addWindow.Closed += AddWindow_Closed;
             addWindow.ShowDialog();
         }
@@ -228,9 +231,8 @@ namespace PRGRM.WNDW
                 {
                     MessageBox.Show("Заказ не проходит по нормам аттестации!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Error);
                     selectedOrder.StatusOrder = "Заказ в браке";
-                    _dbContext.SaveChanges();
                     LoadOrders();
-                    var defectWindow = new SendingDefect(selectedOrder, fio);
+                    var defectWindow = new SendingDefect(selectedOrder, fio, sendId);
                     defectWindow.Closed += AddWindow_Closed;
                     defectWindow.ShowDialog();
                 }

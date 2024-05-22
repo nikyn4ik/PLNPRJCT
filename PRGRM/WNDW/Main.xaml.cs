@@ -12,14 +12,17 @@ namespace PRGRM.WNDW
         private readonly ApplicationContext _dbContext;
         private Login loginWindow;
         public string FIO;
+        public int IDSend;
+        public int ID_aut;
 
-        public Main(string fio)
+        public Main(string fio, int ID_aut)
         {
             InitializeComponent();
             loginWindow = null;
             _dbContext = new ApplicationContext();
             FIO = fio;
             lplogin.Content = fio;
+            this.IDSend = ID_aut;
         }
 
         private async Task OpenPage(Window page)
@@ -51,7 +54,7 @@ namespace PRGRM.WNDW
             page.ShowDialog();
             Show();
         }
-        private void BOrder(object sender, RoutedEventArgs e) => OpenPage(new Orders(FIO));
+        private void BOrder(object sender, RoutedEventArgs e) => OpenPage(new Orders(FIO, IDSend));
         private void BStorage(object sender, RoutedEventArgs e) => OpenPage(new Storage());
         private void BShipment(object sender, RoutedEventArgs e) => OpenPage(new Shipment());
 

@@ -10,10 +10,12 @@ namespace PRGRM.WNDW
     public partial class Defect : Window
     {
         private readonly ApplicationContext _dbContext;
-        public Defect()
+        private readonly int sendId;
+        public Defect(int sendId )
         {
             InitializeComponent();
             _dbContext = new ApplicationContext();
+            this.sendId = sendId;
             LoadOrdersData();
         }
 
@@ -44,12 +46,26 @@ namespace PRGRM.WNDW
                 .Include(d => d.Orders)
                 .Where(s => (isNumeric && s.IdDefect == idDefect) ||
                             (isNumeric && s.IdOrder == idDefect) ||
-                            (s.Orders != null && s.Orders.Name.ToLower().Contains(searchText)) || 
+                            (s.Orders != null && s.Orders.Name.ToLower().Contains(searchText)) ||
                             s.Reasons.ToLower().Contains(searchText) ||
                             (s.FIOSend != null && s.FIOSend.ToLower().Contains(searchText)) ||
                             (s.DTProductSending != null && s.DTProductSending.ToString().ToLower().Contains(searchText)))
                 .ToList();
             DGrid.ItemsSource = filteredData;
+        }
+        private void SaveDefect(int orderId, string reasons, DateTime sendingDate, string fioSend)
+        {
+            var defect = new Defects
+            {
+                IdOrder = orderId,
+                Reasons = reasons,
+                DTProductSending = sendingDate,
+                FIOSend = fioSend,
+                IDSend = sendId
+            };
+
+            _dbContext.Defects.Add(defect);
+            _dbContext.SaveChanges();
         }
     }
 }

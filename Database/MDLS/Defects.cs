@@ -12,6 +12,7 @@ namespace Database.MDLS
         public string? Reasons { get; set; }
         public DateTime? DTProductSending { get; set; }
         public string? FIOSend { get; set; }
+        public int IDSend { get; set; }
 
         [ForeignKey("IdOrder")]
         public Orders Orders { get; set; }

@@ -19,32 +19,32 @@
     </Window.Background>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20*" />
-            <ColumnDefinition Width="507*"/>
-            <ColumnDefinition Width="165*"/>
-            <ColumnDefinition Width="490*"/>
-            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="11*" />
+            <ColumnDefinition Width="318*" />
+            <ColumnDefinition Width="104*"/>
+            <ColumnDefinition Width="305*"/>
+            <ColumnDefinition Width="11*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70*" />
-            <RowDefinition Height="84*" />
-            <RowDefinition Height="58*" />
-            <RowDefinition Height="53*"/>
-            <RowDefinition Height="58*"/>
-            <RowDefinition Height="73*" />
-            <RowDefinition Height="61*"/>
+            <RowDefinition Height="130*" />
+            <RowDefinition Height="108*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="108*"/>
+            <RowDefinition Height="47*"/>
+            <RowDefinition Height="129*"/>
+            <RowDefinition Height="115*"/>
         </Grid.RowDefinitions>
         <TextBox
             x:Name="Reason"
-            Grid.Column="2"
-            Margin="163,106,0,57"
+            Grid.Column="3"
+            Margin="0,0,14,41"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="18"
             Foreground="Black"
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
-            TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.RowSpan="2" />
+            TextWrapping="Wrap" Grid.ColumnSpan="2" Grid.Row="1" />
         <Label
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
@@ -52,16 +52,16 @@
             Content="Причина"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Margin="0,106,164,57" Grid.Column="1" Height="70.4904157549233" Grid.RowSpan="2" Grid.ColumnSpan="2" />
+            Foreground="#FFFFFF" Margin="0,0,1,41" Grid.Column="1" Height="68.0139181286549" Grid.Row="1" />
         <Label
-            Grid.Row="3"
+            Grid.Row="4"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
             Content="Дата отправки в брак"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="#FFFFFF" Width="508" HorizontalAlignment="Left" Grid.Column="1" Margin="0,0,0,10" Grid.ColumnSpan="2" />
+            Foreground="#FFFFFF" Margin="0,47,1,63" Grid.RowSpan="2" Height="68.0139181286549" Grid.Column="1" />
         <Label
             Grid.ColumnSpan="5"
             Height="56"
@@ -75,18 +75,18 @@
             Foreground="#002F6C" />
         <DatePicker
             x:Name="DatePicker"
-            Grid.Row="3"
-            Grid.Column="2"
+            Grid.Row="4"
+            Grid.Column="3"
             FirstDayOfWeek="Monday"
             Foreground="Black"
             BorderBrush="Black"
             Background="White"
             BorderThickness="1,1,1,1"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18" Margin="163,1,0,10" Grid.ColumnSpan="2" VerticalAlignment="Stretch" />
+            FontSize="18" Margin="0,47,14,63" Grid.ColumnSpan="2" VerticalAlignment="Stretch" Grid.RowSpan="2" />
         <Button
-            Grid.Row="5"
-            Margin="229,35,231,0"
+            Grid.Row="6"
+            Margin="252,19,207,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="BSaved"
@@ -94,5 +94,27 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Grid.Column="1" Height="65" VerticalAlignment="Top" Grid.ColumnSpan="3" />
+        <TextBox
+            x:Name="StatusOrder"
+            IsEnabled="False"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="18"
+            Grid.Row="2"
+            Foreground="Black"
+            Background="white"
+            BorderBrush="Black"
+            Grid.Column="2"
+            RenderTransformOrigin="0.5,0.5" Margin="166,48,2,41"
+            Text="Заказ в браке" Grid.RowSpan="2" Grid.ColumnSpan="2"/>
+        <Label
+            Grid.Row="3" Margin="0,1,1,41"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            Background="#002F6C"
+            Content="Статус заказа"
+            FontFamily="Microsoft JhengHei UI Light"
+            FontSize="20"
+            Foreground="#FFFFFF" 
+            Height="68.0139181286549" Grid.Column="1" />
     </Grid>
 </Window>
