@@ -23,11 +23,8 @@ namespace PRGRM.WNDW
         }
         private void LoadDelivData()
         {
-            var deliveries = _dbContext.Delivery.ToList();
-            var orders = _dbContext.Orders.ToList();
-
-            var deliveryData = (from delivery in deliveries
-                                join order in orders on delivery.IdOrder equals order.IdOrder
+            var deliveryData = (from delivery in _dbContext.Delivery
+                                join order in _dbContext.Orders on delivery.IdOrder equals order.IdOrder
                                 select new Database.MDLS.Delivery
                                 {
                                     IdOrder = order.IdOrder,
@@ -38,17 +35,21 @@ namespace PRGRM.WNDW
                                 }).ToList();
 
             DeliveryGrid.ItemsSource = deliveryData;
+            DeliveryGrid.Items.Refresh();
         }
 
-        public List<Database.MDLS.Delivery> GetDelivData()
+        public List<Database.MDLS.Delivery> GetDelivData(ApplicationContext context)
         {
-            return _dbContext.Delivery.ToList();
+            return context.Delivery.ToList();
         }
-        private void EditWindow_DataSaved(object sender, EventArgs e)
+        private void EDel_Closed(object sender, EventArgs e)
         {
             LoadDelivData();
         }
-
+        private void AddWindow_Closed(object sender, EventArgs e)
+        {
+            LoadDelivData();
+        }
         private void BEdit(object sender, RoutedEventArgs e)
         {
             if (DeliveryGrid.SelectedItem is Database.MDLS.Delivery selectedDeliv)
@@ -56,7 +57,6 @@ namespace PRGRM.WNDW
                 var idOrder = selectedDeliv.IdOrder;
 
                 EDelivery editWindow = new EDelivery(idOrder);
-                editWindow.DataSaved += EditWindow_DataSaved;
                 editWindow.Closed += AddWindow_Closed;
                 editWindow.ShowDialog();
             }
@@ -65,36 +65,38 @@ namespace PRGRM.WNDW
                 MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
-        private void AddWindow_Closed(object sender, EventArgs e)
-        {
-            LoadDelivData();
-        }
         private void Search(object sender, TextChangedEventArgs e)
         {
-            var searchText = ((TextBox)sender).Text;
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                var filteredDeliv = GetDelivData()
-                    .Where(deliv =>
-                        (deliv.IdDelivery != 0 && deliv.IdDelivery.ToString().Contains(searchText)) ||
-                        (deliv.IdOrder != 0 && deliv.IdOrder.ToString().Contains(searchText)) ||
-                        (deliv.EarlyDelivery != null && deliv.EarlyDelivery.Contains(searchText)) ||
-                        (deliv.DTDelivery != null && deliv.DTDelivery.ToString().Contains(searchText)) ||
-                        (deliv.ProductName != null && deliv.ProductName.Contains(searchText))
-                    )
-                    .ToList();
-                DeliveryGrid.ItemsSource = filteredDeliv;
-            }
-            else
-            {
-                LoadDelivData();
-            }
+            TextBox textBox = sender as TextBox;
+            string searchText = textBox.Text.ToLower();
+
+            var filteredDeliv = (from deliv in _dbContext.Delivery
+                                 join order in _dbContext.Orders on deliv.IdOrder equals order.IdOrder
+                                 where (deliv.IdDelivery != 0 && deliv.IdDelivery.ToString().Contains(searchText)) ||
+                                       (deliv.IdOrder != 0 && deliv.IdOrder.ToString().Contains(searchText)) ||
+                                       (deliv.EarlyDelivery != null && deliv.EarlyDelivery.Contains(searchText)) ||
+                                       (deliv.DTDelivery != null && deliv.DTDelivery.ToString().Contains(searchText)) ||
+                                       (order.Name != null && order.Name.ToLower().Contains(searchText))
+                                 select new
+                                 {
+                                     IdOrder = order.IdOrder,
+                                     IdDelivery = deliv.IdDelivery,
+                                     EarlyDelivery = deliv.EarlyDelivery,
+                                     DTDelivery = deliv.DTDelivery,
+                                     ProductName = order.Name
+                                 }).ToList();
+
+            DeliveryGrid.ItemsSource = filteredDeliv;
+        }
+        private void SaveChanges()
+        {
+            _dbContext.SaveChanges();
         }
         private void BPDF(object sender, RoutedEventArgs e)
         {
-            if (DeliveryGrid.SelectedItem is Database.MDLS.Delivery selectedDelivery)
+           if (DeliveryGrid.SelectedItem is Database.MDLS.Delivery selectedDeliv)
             {
-                PDFOUT(selectedDelivery.IdOrder);
+                PDFOUT(selectedDeliv.IdOrder);
             }
             else
             {
@@ -129,8 +131,7 @@ namespace PRGRM.WNDW
             }
 
             string fileName = $"Заказ № {order.IdOrder}.pdf";
-            // string imgPath = Path.Combine(directory, "IMG", "SeverstalPDF.jpg");
-            string imgPath = @"C:\Users\nikab\source\repos\PLNPRJCT\PRGRM\IMG\SeverstalPDF.jpg";
+            string imgPath = Path.Combine(projectRoot, "IMG", "SeverstalPDF.jpg");
             string pdfPath = Path.Combine(documentationFolder, fileName);
 
             Document doc1 = new Document(PageSize.A4);

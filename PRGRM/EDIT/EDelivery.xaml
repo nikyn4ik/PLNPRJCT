@@ -43,7 +43,7 @@
             Foreground="#002F6C" Grid.ColumnSpan="5" />
 
         <Button
-            Margin="240,24,219,39"
+            Margin="239,0,220,0"
             Background="#FF0000"
             BorderThickness="0,0,0,0"
             Click="BSaved"
@@ -51,9 +51,8 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Grid.Row="6" Grid.Column="1" 
-            Grid.ColumnSpan="3" Height="54" />
+            Grid.ColumnSpan="3" Height="54" Width="705.893617021276" VerticalAlignment="Top" />
         <Label
-            Width="508"
             Height="68.0139181286549"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
@@ -61,11 +60,9 @@
             Content="Дата доставки"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="White" Grid.Row="2" 
-            HorizontalAlignment="Center" Grid.Column="1" Margin="0,48,0,42" Grid.RowSpan="2" />
+            Foreground="White" Grid.Row="3" Grid.Column="1" Margin="0,1,1,41" />
         <Label
             Grid.Column="1"
-            Width="508"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
             Background="#002F6C"
@@ -73,17 +70,16 @@
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
             Foreground="#FFFFFF" Grid.Row="4" 
-            Height="68.0139181286549" HorizontalAlignment="Center" Margin="0,47,0,63" Grid.RowSpan="2" />
+            Height="68.0139181286549" Margin="0,47,1,63" Grid.RowSpan="2" />
 
         <ComboBox
             x:Name="EarlyDelivery"
-            Height="68"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
+            FontSize="18"
             Foreground="Black"
             BorderBrush="Black"
             Background="white"
-            Grid.Row="1" Grid.Column="3" VerticalAlignment="Top">
+            Grid.Row="1" Grid.Column="3" VerticalAlignment="Stretch" Margin="0,0,0,41">
             <ComboBoxItem Content="Да" />
             <ComboBoxItem Content="Нет" />
         </ComboBox>
@@ -97,11 +93,10 @@
             Foreground="Black"
             Background="white"
             Grid.Column="3"
-            Margin="0,2,1,0"
-            RenderTransformOrigin="0.5,0.5" Height="66" VerticalAlignment="Top"
+            Margin="0,2,1,63"
+            RenderTransformOrigin="0.5,0.5"
             Text="Заказ выполнен"/>
         <Label
-            Width="508"
             Height="68.0139181286549"
             HorizontalContentAlignment="Center"
             VerticalContentAlignment="Center"
@@ -109,17 +104,16 @@
             Content="Ранняя отгрузка"
             FontFamily="Microsoft JhengHei UI Light"
             FontSize="20"
-            Foreground="White" Grid.Row="1" 
-            HorizontalAlignment="Center" Margin="0,0,0,41" Grid.Column="1" />
+            Foreground="White" Grid.Row="1" Margin="0,0,1,41" Grid.Column="1" />
         <DatePicker
             x:Name="DatePicker"
-            Margin="1,48,0,0"
+            Margin="1,48,0,41"
             FirstDayOfWeek="Monday"
             Foreground="Black"
             BorderBrush="Black"
             Background="white"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="18" Grid.Row="2" Grid.Column="3" VerticalAlignment="Top" Grid.RowSpan="2" Height="69" />
+            FontSize="18" Grid.Row="2" Grid.Column="3" VerticalAlignment="Stretch" Grid.RowSpan="2" />
 
     </Grid>
 </Window>

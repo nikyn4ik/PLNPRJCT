@@ -44,6 +44,10 @@ namespace PRGRM.WNDW
         {
             return context.Shipment.ToList();
         }
+        private void SaveChanges()
+        {
+            _dbContext.SaveChanges();
+        }
         private void EShip_Closed(object sender, EventArgs e)
         {
             LoadShipmentsData();
@@ -172,8 +176,7 @@ namespace PRGRM.WNDW
             }
 
             string fileName = $"ОтгрузкаЗаказ № {order.IdOrder}.pdf";
-            // string imgPath = Path.Combine(directory, "IMG", "SeverstalPDF.jpg");
-            string imgPath = @"C:\Users\nikab\source\repos\PLNPRJCT\PRGRM\IMG\SeverstalPDF.jpg";
+            string imgPath = Path.Combine(projectRoot, "IMG", "SeverstalPDF.jpg");
             string pdfPath = Path.Combine(documentationFolder, fileName);
 
             Document doc1 = new Document(PageSize.A4);

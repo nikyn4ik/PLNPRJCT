@@ -140,7 +140,7 @@
             FirstDayOfWeek="Monday"
             Foreground="Black"
             Background="White"
-            FontSize="17" BorderBrush="Black" 
+            FontSize="18" BorderBrush="Black" 
             BorderThickness="1,1,1,1" Height="48" 
             Grid.Row="5"
             Grid.Column="2" Grid.ColumnSpan="2" Margin="169,0,0,0" VerticalAlignment="Top" />

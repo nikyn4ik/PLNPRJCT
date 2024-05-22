@@ -39,7 +39,7 @@
             Grid.Column="2"
             Margin="163,106,0,57"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="16"
+            FontSize="18"
             Foreground="Black"
             BorderBrush="Black"
             Background="White"

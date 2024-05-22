@@ -87,7 +87,7 @@
                     Header="Наименование"/>
                 <DataGridTextColumn
                     Width="*"
-                    Binding="{Binding DateOfDelivery}"
+                    Binding="{Binding DTDelivery}"
                     FontFamily="Microsoft JhengHei UI Light"
                     FontSize="13"
                     Header="Дата доставки" />

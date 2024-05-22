@@ -88,12 +88,6 @@ namespace PRGRM.WNDW
         private void Search(object sender, TextChangedEventArgs e)
         {
             var searchText = ((TextBox)sender).Text;
-            DateTime parsedDate;
-            bool isDate = DateTime.TryParseExact(searchText,
-                new[] { "dd.MM.yyyy", "d.M.yyyy", "dd.MM.yy", "d.M.yy" },
-                System.Globalization.CultureInfo.InvariantCulture,
-                System.Globalization.DateTimeStyles.None,
-                out parsedDate);
 
             var filteredOrders = _dbContext.Orders
                 .Include(o => o.Storage)
@@ -111,12 +105,9 @@ namespace PRGRM.WNDW
                     (o.Order.IdCompany != null && o.Order.IdCompany.ToString().Contains(searchText)) ||
                     (o.Order.IdConsignee != null && o.Order.IdConsignee.ToString().Contains(searchText)) ||
                     (o.Order.IdStorage != null && o.Order.IdStorage.ToString().Contains(searchText)) ||
-                    (!isDate && o.Order.DTReceived.ToString().Contains(searchText)) ||
-                    (!isDate && o.Order.DTAdoption.HasValue && o.Order.DTAdoption.Value.ToString().Contains(searchText)) ||
-                    (!isDate && o.Order.DTAttestation.HasValue && o.Order.DTAttestation.Value.ToString().Contains(searchText)) ||
-                    (isDate && o.Order.DTReceived.Date == parsedDate.Date) ||
-                    (isDate && o.Order.DTAdoption.HasValue && o.Order.DTAdoption.Value.Date == parsedDate.Date) ||
-                    (isDate && o.Order.DTAttestation.HasValue && o.Order.DTAttestation.Value.Date == parsedDate.Date) ||
+                    (o.Order.DTReceived.ToString().Contains(searchText)) ||
+                    (o.Order.DTAdoption.HasValue && o.Order.DTAdoption.Value.ToString().Contains(searchText)) ||
+                    (o.Order.DTAttestation.HasValue && o.Order.DTAttestation.Value.ToString().Contains(searchText)) ||
                     o.Order.ThicknessMm.ToString().Contains(searchText) ||
                     o.Order.WidthMm.ToString().Contains(searchText) ||
                     o.Order.LengthMm.ToString().Contains(searchText) ||

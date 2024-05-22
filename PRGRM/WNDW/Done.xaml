@@ -66,7 +66,7 @@
             AutoGenerateColumns="False"
             Background="White"
             FontFamily="Microsoft JhengHei UI Light"
-            FontSize="15"
+FontSize="15"
             Foreground="Black"
             BorderBrush="#002F6C" BorderThickness="2"
             IsReadOnly="True">
