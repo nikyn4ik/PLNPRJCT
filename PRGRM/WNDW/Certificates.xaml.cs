@@ -111,7 +111,7 @@ namespace PRGRM.WNDW
                 Font titleFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 16);
                 Font regularFont = FontFactory.GetFont("C:\\Windows\\Fonts\\arial.ttf", BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED, 12);
 
-                doc1.Add(new Paragraph("Информация об упаковке", titleFont) { Alignment = Element.ALIGN_CENTER });
+                doc1.Add(new Paragraph("Информация о сертификате", titleFont) { Alignment = Element.ALIGN_CENTER });
                 doc1.Add(new Paragraph($" " + " ", regularFont));
                 doc1.Add(new Paragraph($"ID сертификата: {certif.IdQuaCertificate}", regularFont));
                 doc1.Add(new Paragraph($"Стандарт на марку: {certif.StandardPerMark}", regularFont));

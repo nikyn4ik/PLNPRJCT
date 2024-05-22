@@ -38,8 +38,8 @@ namespace PRGRM.WNDW
                 }
                 else if (page is Storage)
                 {
-                    if (!_dbContext.Storage.Any())
-                        errorMessage += "Нет данных в таблице Storage.\n";
+                    if (!_dbContext.Company.Any())
+                        errorMessage += "Нет данных в таблице Company.\n";
                 }
 
                 if (!string.IsNullOrEmpty(errorMessage))
