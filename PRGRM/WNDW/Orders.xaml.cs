@@ -147,7 +147,7 @@ namespace PRGRM.WNDW
                 MessageBox.Show("Выберите строку!", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-            if (!selectedOrder.IdQuaCertificate.HasValue || !selectedOrder.DTAttestation.HasValue)
+            if (!selectedOrder.IdQuaCertificate.HasValue || !selectedOrder.DTAttestation.HasValue || string.IsNullOrEmpty(selectedOrder.StatusOrder) || !selectedOrder.DTAdoption.HasValue)
             {
                 MessageBox.Show("Проверьте, заполнены ли данные.", "Severstal Infocom", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
