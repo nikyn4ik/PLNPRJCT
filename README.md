@@ -4,6 +4,8 @@
 # Требования к запуску:
 - Visual Studio 2022 | ([минимальные сист.требования](https://docs.microsoft.com/en-us/visualstudio/releases/2022/system-requirements))
 
+# [Демонстрация проекта](https://drive.google.com/file/d/1DGDjIIxYQctAgJ-peIVK1WqcfQCvNRMy/view?usp=drive_link)
+
 # Как работать с проектом:
 1.	скачать проект с GitHub - Code - Open with Visual Studio (таким образом произойдёт автоматическая загрузка всех NuGet пакетов для решения);
 2.	выбрать в проекте: «Вид - Обозреватель объектов SQL Server – SQL Server – (localdb)\MSSQLLocalDB – Базы данных (нажать правой кнопкой мыши) – Публикация приложения уровня данных... – Выбрать файл (DACPAC) на диске – Указать имя базы данных «PLNPRJCT» - поставить галочку «Зарегистрировать как приложение уровня данных» - Опубликовать»;
