@@ -20,7 +20,9 @@ namespace Database
         public DbSet<ContainerPackage> ContainerPackage { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=PLNPRJCT;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(
+                @"Server=localhost;Database=PLNPRJCT;Trusted_Connection=True;TrustServerCertificate=True;"
+            );
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
