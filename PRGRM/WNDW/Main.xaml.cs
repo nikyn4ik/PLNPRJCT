@@ -34,7 +34,7 @@ namespace PRGRM.WNDW
                 if (page is Orders)
                 {
                     if (!_dbContext.Orders.Any())
-                        errorMessage += "Нет заказа в таблице Orders.\n";
+                        errorMessage += "Нет заказов в таблице Orders.\n";
                 }
                 else if (page is Storage)
                 {
